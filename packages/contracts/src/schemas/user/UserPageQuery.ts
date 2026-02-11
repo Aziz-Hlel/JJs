@@ -17,6 +17,7 @@ export const rootLevelSortableFields: RootKeys[] = [
   'status',
   'authId',
   'role',
+  'points',
   'provider',
   'createdAt',
 ] as const;

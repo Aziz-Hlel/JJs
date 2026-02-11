@@ -3,24 +3,25 @@ import { Role } from '../../generated/prisma/browser';
 import { GenericEntityCreateInput } from '../../types/prisma/GenericEntityUtilityTypes';
 import { User } from '../../generated/prisma/client';
 import { StrictDecodedIdToken } from '../../types/auth/StrictDecodedIdToken';
-import { Page } from '../../types/page/Page';
 import { DefaultSearchParams } from '../../types/api/DefaultSearchParams';
 import { UserResponse } from '@contracts/schemas/user/UserResponse';
 import { ProfileRowResponse, UserProfileRowResponse, UserRowResponse } from '@contracts/schemas/user/UserRowResponse';
 import { UserWithProfile } from '../types';
 import { ProfileMapper } from './profile.mapper';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+import { Page } from '@contracts/types/page/Page';
 
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 
 class UserMapper {
-  static toUserCreateInput(decodedToken: StrictDecodedIdToken): UserCreateInputCustom {
+  static toUserCreateInput(decodedToken: StrictDecodedIdToken, referenceCode: string): UserCreateInputCustom {
     const user: UserCreateInputCustom = {
       authId: decodedToken.uid,
       email: decodedToken.email as string,
       username: (decodedToken as any).name,
+      referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
-      role: Role.USER,
+      role: Role.SUPER_ADMIN,
       isEmailVerified: decodedToken.email_verified ?? false,
     };
     return user;
@@ -31,6 +32,8 @@ class UserMapper {
       id: user.id,
       email: user.email,
       authId: user.authId,
+      referenceCode: user.referenceCode,
+      points: user.points,
       username: user.username,
       provider: user.provider,
       status: user.status,
@@ -57,6 +60,8 @@ class UserMapper {
       id: user.id,
       createdAt: user.createdAt,
       authId: user.authId,
+      referenceCode: user.referenceCode,
+      points: user.points,
       email: user.email,
       username: user.username,
       provider: user.provider,

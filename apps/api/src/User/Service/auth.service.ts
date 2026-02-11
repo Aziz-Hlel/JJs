@@ -4,6 +4,7 @@ import { InternalServerError } from '../../err/customErrors';
 import { DecodedIdTokenWithClaims } from '../../types/auth/DecodedIdTokenWithClaims';
 import { userRepo } from '../repo/user.repo';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+import { generateUserReferenceCode } from '../utils/generateUserReferenceCode';
 
 class AuthService {
   private firebaseService = firebaseAuthService;
@@ -21,7 +22,8 @@ class AuthService {
         authId: ${decodedToken.uid}, email: ${email}`,
       );
 
-    const userToCreate = UserMapper.toUserCreateInput(decodedToken);
+    const referenceCode = generateUserReferenceCode();
+    const userToCreate = UserMapper.toUserCreateInput(decodedToken, referenceCode);
     const newUser = await userRepo.createUser(userToCreate);
 
     await this.firebaseService.setCustomUserClaims({
@@ -56,7 +58,8 @@ class AuthService {
     let user = await userRepo.getUserByAuthId(userAuthId);
 
     if (!user) {
-      const userToCreate = UserMapper.toUserCreateInput(decodedToken);
+      const referenceCode = generateUserReferenceCode();
+      const userToCreate = UserMapper.toUserCreateInput(decodedToken, referenceCode);
       user = await userRepo.createUser(userToCreate);
       await this.firebaseService.setCustomUserClaims({
         userId: user.id,

@@ -7,12 +7,13 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
-
 }
+
 
 datasource db {
   provider = "postgresql"
 }
+
 
 enum Role {
   USER
@@ -20,6 +21,7 @@ enum Role {
   SUPER_ADMIN
   STAFF
 }
+
 
 enum Status {
   ACTIVE
@@ -38,13 +40,74 @@ model User {
   role Role @default(USER)
   isEmailVerified Boolean @default(false)
   status Status @default(ACTIVE)
-
-  profile Profile?
   
+  profile Profile?
+    
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  referenceCode String @db.VarChar(6) @unique
+  points Int @default(0)
+
+  transactionHistories TransactionHistory[] @relation(name: "UserTransactionHistory")
+  staffTransactionHistories TransactionHistory[] @relation(name: "StaffTransactionHistory")
 }
+
+enum OfferStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  DELETED
+}
+
+model Offer {
+  id String @id @default(uuid())
+  code String @unique
+  title String
+  description String
+  points Int
+  status OfferStatus @default(ACTIVE)
+
+  thumbnailId     String?  @unique
+  thumbnail       Media?   @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  transactionHistories TransactionHistory[]
+}
+
+
+enum PointsTransactionType {
+  EARN
+  REDEEM
+  ADJUSTMENT
+}
+
+
+model TransactionHistory {
+  id String @id @default(uuid())
+
+  offerName String
+  offerPrice Int
+
+  type PointsTransactionType
+  points Int
+
+  offerId String?
+  offer Offer? @relation(fields: [offerId], references: [id], onDelete: SetNull)
+
+
+  userId String
+  user User @relation(name: "UserTransactionHistory",fields: [userId], references: [id], onDelete: Cascade)
+
+  staffId String
+  staff User @relation(name: "StaffTransactionHistory",fields: [staffId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
 
 model Profile {
   id String @id @default(uuid())
@@ -83,8 +146,9 @@ model Media {
   deletedAt    DateTime?
   confirmedAt  DateTime?
 
-
   product     Product?   @relation
+  offer       Offer?     @relation
+
 }
 
 
@@ -93,6 +157,7 @@ enum ProductStatus {
   OUT_OF_STOCK
   DISCONTINUED
 }
+
 
 model Product {
   id          String      @id @default(uuid())
@@ -105,8 +170,22 @@ model Product {
   thumbnail       Media?   @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
 
   
+  
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
 
+
+
+
+model KaraokeSong  {
+  id          String      @id @default(uuid())
+  title       String      @unique
+  artist      String?
+  album       String?
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+}
 

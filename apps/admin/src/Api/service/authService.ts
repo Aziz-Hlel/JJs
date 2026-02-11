@@ -6,6 +6,7 @@ import type { FirebaseSignInRequestDto } from '@/types22/auth/SignInRequestDto';
 import type { ApiResponse } from '../../types22/api/ApiResponse';
 import type { FirebaseSignUpRequestSchema } from '@/types22/auth/SignUpRequestDto';
 import type { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+
 export interface IauthService {
   signIn: (payload: FirebaseSignInRequestDto) => Promise<ApiResponse<SignInResponseDto>>;
 

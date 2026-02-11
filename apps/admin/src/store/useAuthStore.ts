@@ -36,6 +36,16 @@ const loginFunc = async (payload: FirebaseSignInRequestDto) => {
   }
 };
 
+const signUpFunc = async (payload: FirebaseSignInRequestDto) => {
+  try {
+    const response = await authService.signUp(payload);
+    return response.success ? response.data : null;
+  } catch (error) {
+    console.log('something went wrong while signing up', error);
+    return null;
+  }
+};
+
 const oAuthLoginFunc = async (payload: FirebaseSignInRequestDto) => {
   try {
     const response = await authService.oAuthSignIn(payload);
@@ -71,7 +81,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   register: async (payload: FirebaseSignInRequestDto) => {
     set({ status: 'loading' });
 
-    const signUpResponse = await loginFunc(payload);
+    const signUpResponse = await signUpFunc(payload);
 
     if (!signUpResponse) {
       set({ status: 'unauthenticated' });

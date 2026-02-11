@@ -4,7 +4,8 @@ import { Request, Response } from 'express';
 import { ProductResponse } from '@contracts/schemas/product/productResponse';
 import { updateProductRequestSchema } from '@contracts/schemas/product/updateProductRequest';
 import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
-import { ProductPageQuerySortFields, productsQueryParamsSchema } from '@contracts/schemas/product/ProductPageQuery';
+import { productsQueryParamsSchema } from '@contracts/schemas/product/ProductPageQuery';
+import { Page } from '@contracts/types/page/Page';
 
 class ProductController {
   async create(req: Request, res: Response<ProductResponse>) {
@@ -22,7 +23,7 @@ class ProductController {
     res.status(200).json(productResponse);
   }
 
-  async update(req: Request, res: Response<ProductResponse>) {
+  async update<T extends Request>(req: T, res: Response<ProductResponse>) {
     const { productId } = req.params;
     const parsedSchema = updateProductRequestSchema.parse(req.body);
     const productResponse = await productService.update(productId, parsedSchema);
@@ -30,7 +31,7 @@ class ProductController {
     res.status(200).json(productResponse);
   }
 
-  async getPage(req: Request, res: Response) {
+  async getPage(req: Request, res: Response<Page<ProductResponse>>) {
     const queryParams = productsQueryParamsSchema.parse(req.query);
     const productPage = await productService.getPage(queryParams);
 

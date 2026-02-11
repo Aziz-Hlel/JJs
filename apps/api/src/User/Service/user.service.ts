@@ -1,7 +1,6 @@
 import { UserProfileRowResponse } from '@contracts/schemas/user/UserRowResponse';
 import { UserOrderByWithRelationInput, UserWhereInput } from '../../generated/prisma/models';
 import { prisma } from '../../bootstrap/db.init';
-import { Page } from '../../types/page/Page';
 import UserMapper from '../mapper/user.mapper';
 import {
   ProfileKeys,
@@ -21,6 +20,8 @@ import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
 import { UpdateUserProfileRequest } from '@contracts/schemas/profile/updateUserProfileRequest';
 import { logger } from '@/bootstrap/logger.init';
 import { RedisKeys } from '@/cache/keys/cache.keys';
+import { generateUserReferenceCode } from '../utils/generateUserReferenceCode';
+import { Page } from '@contracts/types/page/Page';
 
 class UserService {
   async getUserPage(queryParams: UserPageQuery): Promise<Page<UserProfileRowResponse>> {
@@ -97,7 +98,9 @@ class UserService {
       role: schema.role,
     });
 
-    const user = await userRepo.createUserProfile(schema, userRecord.uid);
+    const referenceCode = generateUserReferenceCode();
+
+    const user = await userRepo.createUserProfile({ schema, referenceCode, authId: userRecord.uid });
 
     const userProfileResponse = UserMapper.toUserProfileResponse(user, null);
     return userProfileResponse;

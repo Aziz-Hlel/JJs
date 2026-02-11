@@ -61,7 +61,15 @@ export class UserRepo {
     return await prisma.user.findUnique({ where: { id }, include: this.includeProfile() });
   }
 
-  async createUserProfile(schema: CreateUserProfileRequest, authId: string): Promise<UserWithProfile> {
+  async createUserProfile({
+    schema,
+    referenceCode,
+    authId,
+  }: {
+    schema: CreateUserProfileRequest;
+    referenceCode: string;
+    authId: string;
+  }): Promise<UserWithProfile> {
     const user = await prisma.user.create({
       data: {
         username: schema.username,
@@ -69,6 +77,7 @@ export class UserRepo {
         provider: 'manual',
         role: schema.role,
         status: Status.ACTIVE,
+        referenceCode: referenceCode,
 
         authId,
         profile: {

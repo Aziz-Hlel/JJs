@@ -1,17 +1,20 @@
 import { faker } from '@faker-js/faker';
 import { prisma } from '../../bootstrap/db.init';
 import { Role, Status } from '@/generated/prisma/enums';
+import { generateUserReferenceCode } from '@/User/utils/generateUserReferenceCode';
 
 faker.seed(1); // Ensure consistent fake data across runs
 
 const createFakeUser = (index: number) => {
   const fakeEmail = `user${index}@example.com`;
+  const referenceCode = generateUserReferenceCode();
   const fakeUser = {
     email: fakeEmail,
     username: faker.internet.username(),
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
     authId: faker.string.uuid(),
+    referenceCode: referenceCode,
     provider: faker.helpers.arrayElement(['fake', 'google.com', 'apple.com', 'password']),
     role: faker.helpers.arrayElement(Object.values(Role)),
     status: faker.helpers.arrayElement(Object.values(Status)),
@@ -35,7 +38,7 @@ const seedUsers = async (nbr: number) => {
     await prisma.user.upsert({
       where: { email: user.email },
       create: { ...user, profile: { create: user.profile } },
-      update: { ...user, profile: { update: user.profile } },
+      update: {}, //{ ...user, profile: { update: user.profile } },
     });
   }
 };

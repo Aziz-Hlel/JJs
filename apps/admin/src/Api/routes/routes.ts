@@ -28,6 +28,19 @@ const apiRoutes = {
     updateProduct: (id: string) => `/products/${id}` as const,
     deleteProduct: (id: string) => `/products/${id}` as const,
   },
+  karaokeSongs: {
+    getAll: () => '/karaoke-songs' as const,
+    update: (id: string) => `/karaoke-songs/${id}` as const,
+    createKaraokeSong: () => '/karaoke-songs/' as const,
+    updateKaraokeSong: (id: string) => `/karaoke-songs/${id}` as const,
+    deleteKaraokeSong: (id: string) => `/karaoke-songs/${id}` as const,
+  },
+  offers: {
+    getPage: () => '/offers' as const,
+    createOffer: () => '/offers/' as const,
+    updateOffer: (id: string) => `/offers/${id}` as const,
+    deleteOffer: (id: string) => `/offers/${id}` as const,
+  },
 
   services: {
     emailContactUs: () => '/services/email/contact-us' as const,

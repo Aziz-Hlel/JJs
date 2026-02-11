@@ -5,6 +5,8 @@ export type UserRowResponse = {
   id: string;
   createdAt: Date;
   authId: string;
+  referenceCode: string;
+  points: number;
   email: string | null;
   provider: string;
   username: string | null;

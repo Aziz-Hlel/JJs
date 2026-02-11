@@ -4,6 +4,8 @@ export type UserResponse = {
   id: string;
   authId: string;
   email: string | null;
+  referenceCode: string;
+  points: number;
   provider: string;
   username: string | null;
   userRole: Role;

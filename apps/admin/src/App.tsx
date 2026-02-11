@@ -14,6 +14,8 @@ import { UserSessionProvider } from './context/UserContext';
 import UserPage from './pages/User';
 import ProductPage from './pages/Products';
 import { ThemeProvider } from './utils/theme-provider';
+import KaraokeSongs from './pages/KaraokeSongs';
+import Offers from './pages/offers';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +50,8 @@ function App() {
                         <Route index path="/profile" element={<Profile />} />
                         <Route path="users/" element={<UserPage />} />
                         <Route path="products/" element={<ProductPage />} />
+                        <Route path="karaoke-songs/" element={<KaraokeSongs />} />
+                        <Route path="offers/" element={<Offers />} />
                       </Route>
                     </Route>
                   </Route>

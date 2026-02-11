@@ -2,8 +2,10 @@ import { Router } from 'express';
 import { RootRouter } from '../../root/router/root.router';
 import { AuthRouter } from '../../User/router/auth.route';
 import { UserPage } from '../../User/router/user.route';
-import { productRouter } from '@/products/products.route';
+import { productRouter } from '@/products/product.route';
 import { mediaRouter } from '@/media/media.route';
+import { karaokeSongRouter } from '@/karaokeSong/karaokeSong.route';
+import { offerRouter } from '@/Offer/offer.route';
 
 const router = Router();
 
@@ -13,5 +15,7 @@ router.use('/auth', AuthRouter);
 router.use('/users', UserPage);
 router.use('/media', mediaRouter);
 router.use('/products', productRouter);
+router.use('/karaoke-songs', karaokeSongRouter);
+router.use('/offers', offerRouter);
 
 export default router;

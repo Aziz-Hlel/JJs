@@ -98,6 +98,35 @@ const columnsRowsDefinition: ColumnDef<TableRowType>[] = [
     enableHiding: true,
   },
   {
+    id: 'referenceCode',
+    accessorKey: 'referenceCode',
+
+    header: () => {
+      return (
+        <HeaderContainer>
+          <span>Reference Code</span>
+        </HeaderContainer>
+      );
+    },
+    cell: ({ getValue }) => <RowContainer className="">{getValue<string | null>()}</RowContainer>,
+  },
+  {
+    id: 'points',
+    accessorKey: 'points',
+
+    header: ({ column }) => {
+      return (
+        <HeaderContainer onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          <span>Points</span>
+          {column.getIsSorted() === 'asc' && <ArrowUp />}
+          {column.getIsSorted() === 'desc' && <ArrowUp className="rotate-180" />}
+          {column.getIsSorted() === false && <ChevronsUpDown />}
+        </HeaderContainer>
+      );
+    },
+    cell: ({ getValue }) => <RowContainer className="">{getValue<number>()}</RowContainer>,
+  },
+  {
     id: 'phoneNumber',
     accessorFn: (row: TableRowType) => row.profile?.phoneNumber ?? null,
 
