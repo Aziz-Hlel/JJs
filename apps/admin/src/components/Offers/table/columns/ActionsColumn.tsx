@@ -1,10 +1,8 @@
-import { EllipsisVertical, Trash2, SquarePen } from 'lucide-react';
+import { EllipsisVertical, Trash2, SquarePen, Star } from 'lucide-react';
 
 import React, { Fragment } from 'react';
 import type { TableRowType } from '../tableDeclarations/typesAndFieldsDeclaration';
 import type { Row } from '@tanstack/react-table';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
-import { useUser } from '@/context/UserContext';
 import { useSelectedRow } from '../../context/selected-row-provider';
 import {
   DropdownMenu,
@@ -16,9 +14,10 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import RowContainer from '../ContainerComp/RowContainer';
 import { Button } from '@/components/ui/button';
+import { OfferStatus } from '@contracts/types/enums/enums';
 
 type RowAction = {
-  key: 'edit' | 'delete' | 'disable' | 'enable';
+  key: 'edit' | 'delete' | 'feature';
   label: string;
   icon: React.ReactNode;
   isPermitted: boolean;
@@ -32,16 +31,18 @@ type RowActionState = {
 };
 
 const ActionsColumn = ({ row }: { row: Row<TableRowType> }) => {
-  const userRole = useUser().userRole;
   const { handleDialogChange, setCurrentRow } = useSelectedRow();
 
-  const canActOnUser = PERMISSION_SCORE[userRole] >= PERMISSION_SCORE.ADMIN;
-
   const getActionState = (actionKey: RowAction['key']): RowActionState => {
-    const isPermitted = canActOnUser;
+    if (actionKey === 'feature' && row.original.status !== OfferStatus.ACTIVE) {
+      return {
+        isPermitted: false,
+        tooltipMessage: 'Only offers with status ACTIVE can be featured',
+      };
+    }
     return {
-      isPermitted,
-      tooltipMessage: isPermitted ? undefined : `You do not have permission to ${actionKey} this product.`,
+      isPermitted: true,
+      tooltipMessage: undefined,
     };
   };
 
@@ -50,14 +51,22 @@ const ActionsColumn = ({ row }: { row: Row<TableRowType> }) => {
       key: 'edit',
       label: 'Edit',
       icon: <SquarePen size={16} className="text-green-500" />,
-      isVisible: true,
-
+      isPermitted: true,
       onClick: () => {
         setCurrentRow(row.original);
         handleDialogChange('edit');
       },
     },
-
+    {
+      key: 'feature',
+      label: row.original.isFeatured ? 'Unfeature' : 'Feature',
+      icon: <Star size={16} className="text-amber-500" />,
+      isPermitted: true,
+      onClick: () => {
+        setCurrentRow(row.original);
+        handleDialogChange('feature');
+      },
+    },
     {
       key: 'delete',
       label: 'Delete',

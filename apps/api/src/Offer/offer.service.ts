@@ -7,7 +7,8 @@ import { OfferPageQuery } from '@contracts/schemas/offre/OfferPageQuery';
 import { OfferOrderByWithRelationInput, OfferWhereInput } from '@/generated/prisma/models';
 import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
 import { Page } from '@contracts/types/page/Page';
-import { NotFoundError } from '@/err/customErrors';
+import { ConflictError, NotFoundError } from '@/err/customErrors';
+import { OfferStatus } from '@/generated/prisma/enums';
 
 class OfferService {
   async create(schema: CreateOfferRequest) {
@@ -69,11 +70,28 @@ class OfferService {
   async delete(offerId: string) {
     const isOfferExists = await offerRepository.isOfferExists(offerId);
     if (!isOfferExists) {
-      throw new Error('Offer not found');
+      throw new NotFoundError('Offer not found');
     }
 
     await offerRepository.delete(offerId);
     return;
+  }
+
+  async toggleFeatured(offerId: string) {
+    const offer = await offerRepository.getById(offerId);
+    if (!offer) {
+      throw new NotFoundError('Offer not found');
+    }
+
+    if (offer.status !== OfferStatus.ACTIVE) {
+      throw new ConflictError('Only active offers can be featured');
+    }
+
+    const featured = !offer.isFeatured;
+    const updatedOffer = await offerRepository.updateFeatured(offerId, featured);
+
+    const offerResponse = OfferMapper.toResponse(updatedOffer);
+    return offerResponse;
   }
 }
 

@@ -31,9 +31,7 @@ export type Status = (typeof Status)[keyof typeof Status]
 
 export const OfferStatus = {
   ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-  EXPIRED: 'EXPIRED',
-  DELETED: 'DELETED'
+  INACTIVE: 'INACTIVE'
 } as const
 
 export type OfferStatus = (typeof OfferStatus)[keyof typeof OfferStatus]

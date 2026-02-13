@@ -6,15 +6,17 @@ import HeaderContainer from '../ContainerComp/HeaderContainer';
 import RowContainer from '../ContainerComp/RowContainer';
 import type { TableRowType } from './typesAndFieldsDeclaration';
 import ActionsColumn from '../columns/ActionsColumn';
+import IsFeatured from '../EnumColumns/IsFeatured/IsFeatured';
+
 
 type ColumnDefCustom<T> = ColumnDef<T> & { accessorKey?: keyof T };
 
 const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
   {
     id: 'title',
-    accessorKey: 'title',
     accessorFn: (row: TableRowType) => ({
       title: row.title,
+      isFeatured: row.isFeatured,
     }),
     header: ({ column }) => {
       return (
@@ -27,10 +29,17 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       );
     },
     cell: ({ getValue }) => {
-      const { title } = getValue<{
+      const { title, isFeatured } = getValue<{
         title: string;
+        isFeatured: boolean;
       }>();
-      return <RowContainer className="lowercase w-96 ">{title}</RowContainer>;
+      return (
+        <RowContainer className="lowercase w-96 ">
+          <IsFeatured isFeatured={isFeatured} />
+          &nbsp;
+          {title}
+        </RowContainer>
+      );
     },
 
     enableSorting: true,

@@ -7,8 +7,6 @@ import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
 import { Page } from '@contracts/types/page/Page';
 
 export class OfferMapper {
-
-  
   static toResponse(offer: OfferWithThumbnail): OfferResponse {
     const thumbnail = mediaService.getMediaKeyAndUrl(offer.thumbnail);
 
@@ -20,6 +18,7 @@ export class OfferMapper {
       status: offer.status,
       points: offer.points,
       thumbnail: thumbnail,
+      isFeatured: offer.isFeatured,
       createdAt: offer.createdAt.toISOString(),
       updatedAt: offer.updatedAt.toISOString(),
     };
@@ -34,7 +33,8 @@ export class OfferMapper {
       id: offer.id,
       status: offer.status,
       points: offer.points,
-      thumbnailUrl: thumbnail?.url || null,
+      thumbnail: thumbnail,
+      isFeatured: offer.isFeatured,
       createdAt: offer.createdAt.toISOString(),
       updatedAt: offer.updatedAt.toISOString(),
     };

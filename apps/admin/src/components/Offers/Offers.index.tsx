@@ -3,6 +3,7 @@ import BreadcrumbHeader from '@/pages/Header';
 import { Button } from '../ui/button';
 import OffersTable from './OffersTable';
 import { useSelectedRow } from './context/selected-row-provider';
+import DialogContainer from './dialogs/DialogContainer';
 
 const OffersIndex = () => {
   const { handleDialogChange } = useSelectedRow();
@@ -20,8 +21,7 @@ const OffersIndex = () => {
           </CardHeader>
           <CardContent>
             <OffersTable />
-            {/* 
-            <DialogContainer /> */}
+            <DialogContainer />
           </CardContent>
           <CardFooter>
             <p>Card Footer</p>

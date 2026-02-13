@@ -1,6 +1,5 @@
 import { prisma } from '@/bootstrap/db.init';
 import { OfferStatus } from '@/generated/prisma/enums';
-import { generateOfferReferenceCode } from '@/Offer/offer.utils';
 import { faker } from '@faker-js/faker';
 
 faker.seed(1); // Ensure consistent fake data across runs
@@ -10,11 +9,17 @@ const fakeOffersTitle = [
   'Free pizza',
   '20% off on your next order',
   'Special package deal: 3 beers + burger',
+  'Free pizza and beer combo',
+  'Beer bucket',
 ];
 
-const createFakeOffer = () => {
+const createFakeOffer = (_: unknown, index: number) => {
+  if (index >= fakeOffersTitle.length) {
+    throw new Error(`Index ${index} is out of bounds for fakeOffersTitle array.`);
+  }
+
   const fakeOffer = {
-    title: faker.helpers.arrayElement(fakeOffersTitle),
+    title: fakeOffersTitle[index],
     description: faker.lorem.paragraph(),
     code: faker.number.int({ min: 10, max: 1000 }).toString(),
     points: faker.number.int({ min: 10, max: 1000 }),
@@ -22,7 +27,9 @@ const createFakeOffer = () => {
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
   };
+
   return fakeOffer;
+  
 };
 
 const seedOffers = async () => {

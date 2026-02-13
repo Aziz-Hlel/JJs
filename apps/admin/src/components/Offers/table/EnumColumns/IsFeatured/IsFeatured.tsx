@@ -1,34 +1,34 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { MailCheck, MailX } from 'lucide-react';
+import { Star } from 'lucide-react';
 
-const IsEmailVerifiedComponent = ({ isEmailVerified }: { isEmailVerified: boolean }) => {
-  if (isEmailVerified)
+const IsFeatured = ({ isFeatured }: { isFeatured: boolean }) => {
+  if (isFeatured)
     return (
       <>
         <Tooltip>
           <TooltipTrigger>
-            <MailCheck className="h-4 w-4 text-green-500" />
+            <Star className="h-4 w-4 text-amber-500/70 fill-amber-500/70" />
           </TooltipTrigger>
           <TooltipContent>
-            <p>Email is verified</p>
+            <p>Offer is featured</p>
           </TooltipContent>
         </Tooltip>
       </>
     );
 
-  if (!isEmailVerified)
+  if (!isFeatured)
     return (
       <>
         <Tooltip>
           <TooltipTrigger>
-            <MailX className="h-4 w-4 text-gray-500" />
+            <Star className="h-4 w-4 text-amber-500/70" />
           </TooltipTrigger>
           <TooltipContent>
-            <p>Email is not verified</p>
+            <p>Offer is not featured</p>
           </TooltipContent>
         </Tooltip>
       </>
     );
 };
 
-export default IsEmailVerifiedComponent;
+export default IsFeatured;

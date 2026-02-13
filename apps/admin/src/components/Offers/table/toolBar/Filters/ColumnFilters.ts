@@ -1,5 +1,5 @@
+import offerStatusTextMapping from '@/EnumTextMapping/offerStatusTextMapping';
 import type { TableRowType } from '../../tableDeclarations/typesAndFieldsDeclaration';
-import ProductTextMapping from '@/EnumTextMapping/ProductTextMapping';
 
 export type ColumnFilter<T extends keyof TableRowType> = {
   columnId: T;
@@ -14,9 +14,9 @@ export type ColumnFilter<T extends keyof TableRowType> = {
 const statusFilterData: ColumnFilter<'status'> = {
   columnId: 'status',
   title: 'Status',
-  options: Object.keys(ProductTextMapping).map((key) => ({
-    label: ProductTextMapping[key as keyof typeof ProductTextMapping],
-    value: key as keyof typeof ProductTextMapping,
+  options: Object.keys(offerStatusTextMapping).map((key) => ({
+    label: offerStatusTextMapping[key as keyof typeof offerStatusTextMapping],
+    value: key as keyof typeof offerStatusTextMapping,
   })),
 };
 

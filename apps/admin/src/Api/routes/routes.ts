@@ -37,9 +37,10 @@ const apiRoutes = {
   },
   offers: {
     getPage: () => '/offers' as const,
-    createOffer: () => '/offers/' as const,
-    updateOffer: (id: string) => `/offers/${id}` as const,
-    deleteOffer: (id: string) => `/offers/${id}` as const,
+    create: () => '/offers/' as const,
+    update: (id: string) => `/offers/${id}` as const,
+    delete: (id: string) => `/offers/${id}` as const,
+    toggleFeatured: (id: string) => `/offers/${id}/toggle-featured` as const,
   },
 
   services: {

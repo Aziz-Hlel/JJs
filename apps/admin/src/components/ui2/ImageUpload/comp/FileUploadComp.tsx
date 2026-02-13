@@ -18,7 +18,9 @@ export default function FileUploadComp({
 }: FileUploadCompProps) {
   return (
     <div className="relative w-full h-full flex flex-col justify-start ">
-      <div className=" text-sm text-left w-full font-semibold mb-1">Thumbnail</div>
+      <div className={cn(' text-sm text-left w-full font-semibold mb-1', hasErrors && 'text-red-400')}>
+        Thumbnail
+      </div>
       <div className=" text-sm text-left w-full text-gray-600 font-light mb-4">Select an image to upload.</div>
 
       <FileUploader
@@ -28,7 +30,7 @@ export default function FileUploadComp({
         dropzoneOptions={dropZoneConfig}
         className="relative  bg-background rounded-lg p-2"
       >
-        <FileInput className={cn('outline-dashed outline-1 outline-slate-500', hasErrors && 'outline-red-500')}>
+        <FileInput className={cn('outline-dashed outline-1 outline-slate-500', hasErrors && 'outline-red-400')}>
           <div className="flex items-center justify-center flex-col p-8 w-full ">
             <CloudUpload className="text-gray-500 min-h-56 size-16" />
             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">

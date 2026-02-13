@@ -8,7 +8,7 @@ import { type TableRowType } from './table/tableDeclarations/typesAndFieldsDecla
 import useMyTable from './use-my-table';
 import TableBodyContent from './table/TableMainComp/TableBodyContent';
 import { SelectedRowProvider } from './context/selected-row-provider';
-// import DialogContainer from './dialogs/DialogContainer';
+import DialogContainer from './dialogs/DialogContainer';
 
 const OffersTable = () => {
   const { table, pageSize, isLoading } = useMyTable();
@@ -30,7 +30,7 @@ const OffersTable = () => {
           </div>
           <div>
             <DataTablePagination table={table} className="mt-auto" />
-            {/* <DialogContainer /> */}
+            <DialogContainer />
           </div>
         </div>
       </SelectedRowProvider>

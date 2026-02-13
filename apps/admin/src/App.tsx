@@ -15,7 +15,7 @@ import UserPage from './pages/User';
 import ProductPage from './pages/Products';
 import { ThemeProvider } from './utils/theme-provider';
 import KaraokeSongs from './pages/KaraokeSongs';
-import Offers from './pages/offers';
+import Offers from './pages/Offers';
 
 const queryClient = new QueryClient({
   defaultOptions: {

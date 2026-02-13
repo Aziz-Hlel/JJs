@@ -1,4 +1,5 @@
-import { OfferStatus } from "../../types/enums/enums";
+import { OfferStatus } from '../../types/enums/enums';
+import { MediaResponse } from '../media/MediaResponse';
 
 export type OfferRowResponse = {
   id: string;
@@ -7,7 +8,8 @@ export type OfferRowResponse = {
   description: string;
   status: OfferStatus;
   points: number;
-  thumbnailUrl: string | null;
+  thumbnail: MediaResponse | null;
+  isFeatured: boolean;
   createdAt: string;
   updatedAt: string;
 };

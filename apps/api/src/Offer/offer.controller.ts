@@ -43,6 +43,14 @@ class OfferController {
 
     res.status(200).json({ message: 'Offer deleted successfully' });
   }
+
+  async toggleFeatured(req: Request, res: Response) {
+    const { id } = req.params;
+    const updatedOffer = await offerService.toggleFeatured(id);
+    res.status(200).json(updatedOffer);
+  }
+
+  
 }
 
 export const offerController = new OfferController();

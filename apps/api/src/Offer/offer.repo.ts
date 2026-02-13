@@ -1,5 +1,4 @@
 import { prisma } from '@/bootstrap/db.init';
-import { OfferStatus } from '@/generated/prisma/enums';
 import { OfferInclude, OfferOrderByWithRelationInput, OfferWhereInput } from '@/generated/prisma/models';
 import { CreateOfferRequest } from '@contracts/schemas/offre/createOfferRequest';
 import { UpdateOfferRequest } from '@contracts/schemas/offre/updateOfferRequest';
@@ -24,7 +23,6 @@ class OfferRepository {
     const offer = await this.getById(offerId);
     return !!offer;
   }
-
 
   async create(schema: CreateOfferRequest, code: string) {
     try {
@@ -83,15 +81,30 @@ class OfferRepository {
 
   async delete(offerId: string) {
     try {
-      const deletedOffer = await prisma.offer.update({
+      const deletedOffer = await prisma.offer.delete({
         where: { id: offerId },
-        data: { status: OfferStatus.DELETED },
       });
       return deletedOffer;
     } catch (error) {
       throw error;
     }
   }
+
+  async updateFeatured(offerId: string, isFeatured: boolean) {
+    try {
+      const updatedOffer = await prisma.offer.update({
+        where: { id: offerId },
+        data: { isFeatured },
+        include: this.includeThumbnail(),
+      });
+      return updatedOffer;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
 }
 
 export const offerRepository = new OfferRepository();

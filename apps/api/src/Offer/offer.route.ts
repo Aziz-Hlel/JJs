@@ -16,6 +16,13 @@ router.post(
   asyncHandler((req: Request, res: Response) => offerController.create(req, res)),
 );
 
+router.post(
+  '/:id/toggle-featured',
+  requireAuth,
+  requireRole(Role.ADMIN),
+  asyncHandler((req: Request, res: Response) => offerController.toggleFeatured(req, res)),
+);
+
 router.put(
   '/:id',
   requireAuth,
@@ -39,5 +46,6 @@ router.delete(
   requireRole(Role.ADMIN),
   asyncHandler((req: Request, res: Response) => offerController.delete(req, res)),
 );
+
 
 export const offerRouter = router;

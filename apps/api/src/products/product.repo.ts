@@ -76,6 +76,7 @@ class ProductRepo {
 
     return { content, totalElements };
   }
+
 }
 
 export const productRepo = new ProductRepo();

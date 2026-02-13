@@ -9,6 +9,7 @@ export type OfferResponse = {
   status: OfferStatus;
   points: number;
   thumbnail: MediaResponse | null;
+  isFeatured: boolean;
   createdAt: string;
   updatedAt: string;
 };

@@ -56,8 +56,6 @@ model User {
 enum OfferStatus {
   ACTIVE
   INACTIVE
-  EXPIRED
-  DELETED
 }
 
 model Offer {
@@ -67,6 +65,7 @@ model Offer {
   description String
   points Int
   status OfferStatus @default(ACTIVE)
+  isFeatured Boolean @default(false)
 
   thumbnailId     String?  @unique
   thumbnail       Media?   @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)

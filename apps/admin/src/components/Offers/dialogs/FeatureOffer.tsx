@@ -11,46 +11,51 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import productService from '@/Api/service/productService';
+import offerService from '@/Api/service/offerService';
 
-const DeleteProduct = () => {
+const FeatureOffer = () => {
   const { handleCancel, openDialog, currentRow } = useSelectedRow();
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationKey: ['products', 'delete'],
-    mutationFn: productService.deleteProduct,
+    mutationKey: ['offers', 'feature'],
+    mutationFn: offerService.toggleFeatured,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['products'], exact: false });
-      toast.success('Product deleted successfully');
+      queryClient.invalidateQueries({ queryKey: ['offers'], exact: false });
+      toast.success('Offer featured successfully');
       handleCancel();
     },
   });
 
-  const deleteProduct = async () => {
+  const featureOffer = async () => {
     try {
       await mutateAsync(currentRow?.id!);
     } catch (error) {
-      toast.error('Failed to delete product');
+      toast.error('Failed to feature offer');
       handleCancel();
     }
   };
-  const dialogOpen = openDialog === 'delete';
+  const dialogOpen = openDialog === 'feature';
+
+  const IsofferFeatured = currentRow?.isFeatured;
+
+  const title = IsofferFeatured ? 'unfeature' : 'feature';
+  const descriptionAction = IsofferFeatured
+    ? 'This action will unfeature the offer'
+    : 'This action will feature the offer';
+  const action = IsofferFeatured ? 'unfeaturing' : 'featuring';
   return (
     <>
       <AlertDialog open={dialogOpen} onOpenChange={handleCancel}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the product "{currentRow?.name}" and remove its
-              data from our servers.
-            </AlertDialogDescription>
+            <AlertDialogTitle className=" capitalize"> {title}</AlertDialogTitle>
+            <AlertDialogDescription>{descriptionAction}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
-            <Button onClick={deleteProduct} className=" bg-red-600 hover:bg-red-500">
-              Delete
+            <Button onClick={featureOffer} className=" bg-blue-600 hover:bg-blue-500 capitalize">
+              {action}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -59,4 +64,4 @@ const DeleteProduct = () => {
   );
 };
 
-export default DeleteProduct;
+export default FeatureOffer;
