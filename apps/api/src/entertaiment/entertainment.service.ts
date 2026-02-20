@@ -66,6 +66,14 @@ class EntertainmentService {
     const entertainment = await entertainmentRepository.delete(id);
     return true;
   }
+
+  async toogleFeatured(id: string) {
+    const entertainment = await entertainmentRepository.getById(id);
+    if (!entertainment) throw new NotFoundError(`Entertainment with id ${id} not found`);
+    const updatedEntertaiment = await entertainmentRepository.toogleFeatured(id, !entertainment.isFeatured);
+    const entertainmentResponse = EntertainmentMapper.toResponse(updatedEntertaiment);
+    return entertainmentResponse;
+  }
 }
 
 export const entertainmentService = new EntertainmentService();

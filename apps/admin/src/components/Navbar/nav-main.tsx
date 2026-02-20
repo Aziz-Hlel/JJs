@@ -1,4 +1,4 @@
-import { ChevronRight, LayoutDashboard, Settings2, UsersRound, Package, MicVocal, Ticket, Wallet } from 'lucide-react';
+import { ChevronRight, LayoutDashboard, Settings2, UsersRound, Package, MicVocal, Ticket, Wallet, PartyPopper } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   SidebarGroup,
@@ -70,6 +70,12 @@ const navRoutes: NavRoute[] = [
     title: 'Transaction History',
     url: '/transaction-history',
     icon: Wallet,
+    isActive: true,
+  },
+  {
+    title: 'Entertainment',
+    url: '/entertainment',
+    icon: PartyPopper,
     isActive: true,
   },
   {

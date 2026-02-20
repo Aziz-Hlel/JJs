@@ -8,6 +8,7 @@ import { karaokeSongRouter } from '@/karaokeSong/karaokeSong.route';
 import { offerRouter } from '@/Offer/offer.route';
 import { transactionHistoryRoute } from '@/transactionHistory/transactionHistory.route';
 import { pointsRouter } from '@/points/points.route';
+import { entertainmentRouter } from '@/entertaiment/entertainment.route';
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.use('/karaoke-songs', karaokeSongRouter);
 router.use('/offers', offerRouter);
 router.use('/transaction-history', transactionHistoryRoute);
 router.use('/points', pointsRouter);
+router.use('/entertainment', entertainmentRouter);
 
 export default router;

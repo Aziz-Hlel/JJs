@@ -19,6 +19,13 @@ router.get('/:id', asyncHandler(entertainmentController.getById));
 
 router.put('/:id', requireAuth, requireRole(Role.ADMIN), asyncHandler(entertainmentController.update));
 
+router.put(
+  '/:id/toggle-featured',
+  requireAuth,
+  requireRole(Role.ADMIN),
+  asyncHandler(entertainmentController.toggleFeatured),
+);
+
 router.delete('/:id', requireAuth, requireRole(Role.ADMIN), asyncHandler(entertainmentController.delete));
 
-export default router;
+export const entertainmentRouter = router;

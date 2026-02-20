@@ -14,7 +14,6 @@ export const updateEntertainmentRequestSchema = z.object({
     .min(3, 'Date must be at least 3 characters long')
     .max(100, 'Date must be at most 100 characters long'),
   thumbnailId: z.uuid(),
-  isFeatured: z.boolean().default(true).nonoptional(),
 });
 
 export type UpdateEntertainmentRequest = z.infer<typeof updateEntertainmentRequestSchema>;

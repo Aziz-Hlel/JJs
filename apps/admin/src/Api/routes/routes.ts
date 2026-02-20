@@ -45,6 +45,13 @@ const apiRoutes = {
   transactionHistory: {
     getPage: () => '/transaction-history' as const,
   },
+  entertainment: {
+    getPage: () => '/entertainment' as const,
+    create: () => '/entertainment/' as const,
+    update: (id: string) => `/entertainment/${id}` as const,
+    delete: (id: string) => `/entertainment/${id}` as const,
+    toggleFeatured: (id: string) => `/entertainment/${id}/toggle-featured` as const,
+  },
   services: {
     emailContactUs: () => '/services/email/contact-us' as const,
     emailProperty: () => '/services/email/property' as const,

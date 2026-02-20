@@ -4,6 +4,7 @@ import seedUsers from './fakes/users.fake';
 import { seedProdUsers } from './prod/users';
 import { seedProducts } from './fakes/products.fake';
 import seedOffers from './fakes/offers.fake';
+import seedEntertainments from './fakes/entertainment.fake';
 
 const seed = async () => {
   if (ENV.NODE_ENV === 'production') {
@@ -15,9 +16,10 @@ const seed = async () => {
 
   const productsSeed = seedProducts();
   const offersSeed = seedOffers();
+  const entertaimentSeed = seedEntertainments();
 
   try {
-    await Promise.all([userSeed, prodUsersSeed, productsSeed, offersSeed]);
+    await Promise.all([userSeed, prodUsersSeed, productsSeed, entertaimentSeed, offersSeed]);
   } catch (error) {
     console.error('❌ ERROR : Seeding failed.', error);
     throw error;

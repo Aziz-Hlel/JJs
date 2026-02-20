@@ -119,6 +119,23 @@ class EntertainmentRepository {
       throw error;
     }
   }
+
+  async toogleFeatured(id: string, isFeatured: boolean) {
+    try {
+      const updatedEntertaiment = await prisma.entertainment.update({
+        where: {
+          id,
+        },
+        data: {
+          isFeatured,
+        },
+        include: this.includeThumbnail(),
+      });
+      return updatedEntertaiment;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export const entertainmentRepository = new EntertainmentRepository();

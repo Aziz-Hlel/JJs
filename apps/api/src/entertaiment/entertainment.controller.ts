@@ -40,6 +40,12 @@ class EntertainmentController {
     const entertainment = await entertainmentService.delete(id);
     res.status(200).json(entertainment);
   }
+
+  async toggleFeatured(req: Request, res: Response) {
+    const id = req.params.id;
+    const entertainment = await entertainmentService.toogleFeatured(id);
+    res.status(200).json(entertainment);
+  }
 }
 
 export const entertainmentController = new EntertainmentController();
