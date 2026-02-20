@@ -1,9 +1,9 @@
-import { CreatekaraekoSongRequest } from '@contracts/karaekoSong/createkaraekoSongRequest';
+import { CreatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
 import { karaokeSongRepo } from './karaokeSongRepo';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
 import { KaraokeSongMapper } from './KaraokeSong.mapper';
-import { UpdatekaraekoSongRequest } from '@contracts/karaekoSong/updatekaraekoSongRequest';
-import { KaraokeSongResponse } from '@contracts/karaekoSong/KaraokeSongResponse';
+import { UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
 
 class KaraokeSongService {
   async createKaraokeSong(data: CreatekaraekoSongRequest): Promise<KaraokeSongResponse> {

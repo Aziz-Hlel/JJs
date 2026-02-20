@@ -7,8 +7,7 @@
     "stivo.tailwind-fold", // * Tailwind Fold
     "humao.rest-client", // * REST Client
     "yoavbls.pretty-ts-errors", // * TypeScript Errors
-    "pkief.material-icon-theme", // * Material Icons
-
+    "pkief.material-icon-theme" // * Material Icons
   ],
   "unwantedRecommendations": []
 }

@@ -1,0 +1,79 @@
+
+@apiKey = AIzaSyDWKplAl5Vp43pG0j5j3vnThRJIPwv1E44
+
+@firebaseUrl = https://identitytoolkit.googleapis.com/v1
+
+
+@baseUrl = http://localhost:5000/api
+
+
+
+
+### 
+# @name firebase_signin
+POST {{firebaseUrl}}/accounts:signInWithPassword?key={{apiKey}}
+Content-Type: application/json
+
+{
+  "email": "waiter@gmail.com",
+  "password": "12345678",
+  "returnSecureToken": true
+}
+
+
+### 
+# @name server_signup
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "idToken": "{{firebase_signin.response.body.idToken}}"
+}
+
+
+### 
+# @name earn_quote
+POST {{baseUrl}}/points/earn/quote
+Content-Type: application/json
+Authorization: Bearer {{firebase_signin.response.body.idToken}}
+
+{
+    "userRefrenceCode": "101010",
+    "amount": 100
+}
+
+
+### 
+# @name earn_confirm
+POST {{baseUrl}}/points/earn/confirm
+Content-Type: application/json
+Authorization: Bearer {{firebase_signin.response.body.idToken}}
+
+{
+    "userId": "{{earn_quote.response.body.user.id}}",
+    "dollarAmount": 100
+}
+
+
+### 
+# @name redeem_quote
+POST {{baseUrl}}/points/redeem/quote
+Content-Type: application/json
+Authorization: Bearer {{firebase_signin.response.body.idToken}}
+
+{
+    "userRefrenceCode": "101010",
+    "offerCode": "325"
+}
+
+
+### 
+# @name redeem_confirm
+POST {{baseUrl}}/points/redeem/confirm
+Content-Type: application/json
+Authorization: Bearer {{firebase_signin.response.body.idToken}}
+
+{
+    "userId": "754aedbd-10b6-4e0c-83b4-8bf6ddab5761",
+    "offerId": "dce56e41-cf6a-4446-aad9-b4800d455f88"
+}

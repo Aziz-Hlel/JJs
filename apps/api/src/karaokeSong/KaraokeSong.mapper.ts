@@ -1,5 +1,5 @@
 import { KaraokeSong } from '@/generated/prisma/client';
-import { KaraokeSongResponse } from '@contracts/karaekoSong/KaraokeSongResponse';
+import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
 
 export class KaraokeSongMapper {
   static toResponseDto(karaokeSong: KaraokeSong): KaraokeSongResponse {

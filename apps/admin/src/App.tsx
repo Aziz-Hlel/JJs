@@ -16,6 +16,7 @@ import ProductPage from './pages/Products';
 import { ThemeProvider } from './utils/theme-provider';
 import KaraokeSongs from './pages/KaraokeSongs';
 import Offers from './pages/Offers';
+import TransactionHistory from './pages/TransactionHistory';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,7 @@ function App() {
                         <Route path="products/" element={<ProductPage />} />
                         <Route path="karaoke-songs/" element={<KaraokeSongs />} />
                         <Route path="offers/" element={<Offers />} />
+                        <Route path="transaction-history/" element={<TransactionHistory />} />
                       </Route>
                     </Route>
                   </Route>

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { karaokeSongService } from './KaraokeSong.service';
-import { KaraokeSongResponse } from '@contracts/karaekoSong/KaraokeSongResponse';
+import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
 
 class KaraokeSongController {
   async getAll(req: Request, res: Response<KaraokeSongResponse[]>) {

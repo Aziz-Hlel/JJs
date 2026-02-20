@@ -13,7 +13,7 @@ const createFakeUser = (index: number) => {
     username: faker.internet.username(),
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
-    authId: faker.string.uuid(),
+    authId: faker.string.uuid(),  
     referenceCode: referenceCode,
     provider: faker.helpers.arrayElement(['fake', 'google.com', 'apple.com', 'password']),
     role: faker.helpers.arrayElement(Object.values(Role)),

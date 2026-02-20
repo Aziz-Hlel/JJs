@@ -103,8 +103,13 @@ class OfferRepository {
     }
   }
 
-
-
+  async getByCode(code: string) {
+    const offer = await prisma.offer.findUnique({
+      where: { code },
+      include: this.includeThumbnail(),
+    });
+    return offer;
+  }
 }
 
 export const offerRepository = new OfferRepository();

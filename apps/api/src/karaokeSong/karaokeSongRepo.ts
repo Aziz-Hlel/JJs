@@ -1,8 +1,8 @@
 import { prisma } from '@/bootstrap/db.init';
 import { logger } from '@/bootstrap/logger.init';
 import { Prisma } from '@/generated/prisma/client';
-import { CreatekaraekoSongRequest } from '@contracts/karaekoSong/createkaraekoSongRequest';
-import { UpdatekaraekoSongRequest } from '@contracts/karaekoSong/updatekaraekoSongRequest';
+import { CreatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
+import { UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
 
 class KaraokeSongRepo {
   async getByTitle(title: string) {

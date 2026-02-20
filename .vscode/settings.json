@@ -1,6 +1,6 @@
 {
-    "cSpell.words": [
-        "appendonly",
-        "nonoptional"
-    ]
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "cSpell.words": ["appendonly", "nonoptional"]
 }

@@ -7,7 +7,7 @@ import RowContainer from '../ContainerComp/RowContainer';
 import type { TableRowType } from './typesAndFieldsDeclaration';
 import ActionsColumn from '../columns/ActionsColumn';
 import IsFeatured from '../EnumColumns/IsFeatured/IsFeatured';
-
+import { LongText } from '../long-text';
 
 type ColumnDefCustom<T> = ColumnDef<T> & { accessorKey?: keyof T };
 
@@ -47,12 +47,12 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
     enableGlobalFilter: true,
   },
   {
-    id: 'description',
-    accessorKey: 'description',
+    id: 'code',
+    accessorKey: 'code',
     header: ({ column }) => {
       return (
         <HeaderContainer onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          <span>Description</span>
+          <span>Code</span>
           {column.getIsSorted() === 'asc' && <ArrowUp />}
           {column.getIsSorted() === 'desc' && <ArrowUp className="rotate-180" />}
           {column.getIsSorted() === false && <ChevronsUpDown />}
@@ -60,13 +60,14 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       );
     },
     cell: ({ getValue }) => {
-      const description = getValue<string>();
-      return <RowContainer className=" w-96 truncate whitespace-nowrap ">{description}</RowContainer>;
+      const code = getValue<string>();
+      return <RowContainer className=" w-96 truncate whitespace-nowrap ">{code}</RowContainer>;
     },
 
     enableSorting: true,
     enableHiding: true,
   },
+
   {
     id: 'status',
     accessorKey: 'status',

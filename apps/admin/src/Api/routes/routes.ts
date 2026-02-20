@@ -42,7 +42,9 @@ const apiRoutes = {
     delete: (id: string) => `/offers/${id}` as const,
     toggleFeatured: (id: string) => `/offers/${id}/toggle-featured` as const,
   },
-
+  transactionHistory: {
+    getPage: () => '/transaction-history' as const,
+  },
   services: {
     emailContactUs: () => '/services/email/contact-us' as const,
     emailProperty: () => '/services/email/property' as const,

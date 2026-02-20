@@ -1,19 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
 }
 
-
 datasource db {
   provider = "postgresql"
 }
-
 
 enum Role {
   USER
@@ -22,34 +14,32 @@ enum Role {
   STAFF
 }
 
-
 enum Status {
   ACTIVE
   INACTIVE
-  DISABLED 
+  DISABLED
   DELETED
 }
 
-
 model User {
-  id    String     @id @default(uuid())
-  authId String @unique
-  email String?  @unique
-  provider String
-  username String?
-  role Role @default(USER)
+  id              String  @id @default(uuid())
+  authId          String  @unique
+  email           String? @unique
+  provider        String
+  username        String?
+  role            Role    @default(USER)
   isEmailVerified Boolean @default(false)
-  status Status @default(ACTIVE)
-  
+  status          Status  @default(ACTIVE)
+
   profile Profile?
-    
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  referenceCode String @db.VarChar(6) @unique
-  points Int @default(0)
+  referenceCode String @unique @db.VarChar(6)
+  points        Int    @default(0)
 
-  transactionHistories TransactionHistory[] @relation(name: "UserTransactionHistory")
+  transactionHistories      TransactionHistory[] @relation(name: "UserTransactionHistory")
   staffTransactionHistories TransactionHistory[] @relation(name: "StaffTransactionHistory")
 }
 
@@ -59,68 +49,61 @@ enum OfferStatus {
 }
 
 model Offer {
-  id String @id @default(uuid())
-  code String @unique
-  title String
+  id          String      @id @default(uuid())
+  code        String      @unique
+  title       String
   description String
-  points Int
-  status OfferStatus @default(ACTIVE)
-  isFeatured Boolean @default(false)
+  points      Int
+  status      OfferStatus @default(ACTIVE)
+  isFeatured  Boolean     @default(false)
 
-  thumbnailId     String?  @unique
-  thumbnail       Media?   @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
+  thumbnailId String? @unique
+  thumbnail   Media?  @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   transactionHistories TransactionHistory[]
 }
 
-
 enum PointsTransactionType {
   EARN
   REDEEM
-  ADJUSTMENT
 }
-
 
 model TransactionHistory {
   id String @id @default(uuid())
 
-  offerName String
-  offerPrice Int
-
-  type PointsTransactionType
+  type   PointsTransactionType
   points Int
 
   offerId String?
-  offer Offer? @relation(fields: [offerId], references: [id], onDelete: SetNull)
-
+  offer   Offer?  @relation(fields: [offerId], references: [id], onDelete: SetNull)
 
   userId String
-  user User @relation(name: "UserTransactionHistory",fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(name: "UserTransactionHistory", fields: [userId], references: [id], onDelete: Cascade)
 
   staffId String
-  staff User @relation(name: "StaffTransactionHistory",fields: [staffId], references: [id], onDelete: Cascade)
+  staff   User   @relation(name: "StaffTransactionHistory", fields: [staffId], references: [id], onDelete: Cascade)
+
+  metadata Json?
 
   createdAt DateTime @default(now())
 }
 
-
 model Profile {
-  id String @id @default(uuid())
+  id          String  @id @default(uuid())
   phoneNumber String?
-  address String?
-  avatar String?
+  address     String?
+  avatar      String?
 
   userId String @unique
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
 
 enum MediaStatus {
   PENDING
@@ -129,27 +112,24 @@ enum MediaStatus {
   FAILED
 }
 
-
 model Media {
-  id           String      @id @default(uuid())
-  key          String     @unique
-  baseName     String
-  fileType     String
-  mimeType     String
-  fileSize     Int?
-  status       MediaStatus @default(PENDING)
+  id       String      @id @default(uuid())
+  key      String      @unique
+  baseName String
+  fileType String
+  mimeType String
+  fileSize Int?
+  status   MediaStatus @default(PENDING)
 
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  confirmedAt DateTime?
 
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
-  confirmedAt  DateTime?
-
-  product     Product?   @relation
-  offer       Offer?     @relation
-
+  product Product? @relation
+  offer   Offer?   @relation
+  entertainment Entertainment? @relation
 }
-
 
 enum ProductStatus {
   AVAILABLE
@@ -157,34 +137,47 @@ enum ProductStatus {
   DISCONTINUED
 }
 
-
 model Product {
-  id          String      @id @default(uuid())
-  name        String      @unique
+  id          String        @id @default(uuid())
+  name        String        @unique
   description String
-  price       Decimal     @db.Decimal(10, 2)
+  price       Decimal       @db.Decimal(10, 2)
   status      ProductStatus @default(AVAILABLE)
 
-  thumbnailId     String?  @unique
-  thumbnail       Media?   @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
+  thumbnailId String? @unique
+  thumbnail   Media?  @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
 
-  
-  
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model KaraokeSong {
+  id     String  @id @default(uuid())
+  title  String  @unique
+  artist String?
+  album  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 
 
 
-model KaraokeSong  {
-  id          String      @id @default(uuid())
-  title       String      @unique
-  artist      String?
-  album       String?
+model Entertainment {
+  id String @id @default(uuid())
+  name String
+  description String
+  date String
+  
 
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  thumbnailId String? @unique
+  thumbnail   Media?  @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
 
+  isFeatured Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isFeatured])
 }
-

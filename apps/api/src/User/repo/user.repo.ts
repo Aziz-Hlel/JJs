@@ -1,7 +1,7 @@
 import { UserInclude } from '@/generated/prisma/models';
 import { prisma } from '../../bootstrap/db.init';
 import { DefaultArgs } from '@prisma/client/runtime/client';
-import { UserWithProfile } from '../types';
+import { Tx, UserWithProfile } from '../types';
 import { CreateUserProfileRequest } from '@contracts/schemas/profile/createUserProfileRequest';
 import { StrictDecodedIdToken } from '@/types/auth/StrictDecodedIdToken';
 import UserMapper, { UserCreateInputCustom } from '../mapper/user.mapper';
@@ -17,6 +17,11 @@ export class UserRepo {
 
   async isUserExists(id: string): Promise<boolean> {
     const user = await prisma.user.findUnique({ where: { id } });
+    return !!user;
+  }
+
+  async isUserUidExists(uid: string): Promise<boolean> {
+    const user = await prisma.user.findUnique({ where: { authId: uid } });
     return !!user;
   }
 
@@ -128,6 +133,35 @@ export class UserRepo {
     await prisma.user.update({
       where: { id },
       data: { status: Status.ACTIVE },
+    });
+  }
+
+  async getByRefrenceCode(referenceCode: string) {
+    const user = await prisma.user.findUnique({
+      where: { referenceCode },
+      include: this.includeProfile(),
+    });
+    return user;
+  }
+
+  async adjustUserPoints({
+    prismaTx,
+    userId,
+    points,
+    type,
+  }: {
+    prismaTx: Tx;
+    userId: string;
+    points: number;
+    type: 'EARN' | 'REDEEM';
+  }) {
+    await prismaTx.user.update({
+      where: { id: userId },
+      data: {
+        points: {
+          increment: type === 'EARN' ? points : -points,
+        },
+      },
     });
   }
 }
