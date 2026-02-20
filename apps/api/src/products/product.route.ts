@@ -13,7 +13,7 @@ router.post(
   '/',
   requireAuth,
   requireRole(Role.ADMIN),
-  asyncHandler((req: Request, res: Response) => productController.create(req, res)),
+    asyncHandler((req: Request, res: Response) => productController.create(req, res)),
 );
 
 router.get(

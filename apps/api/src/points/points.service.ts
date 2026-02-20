@@ -76,7 +76,7 @@ class PointsService {
 
     try {
       await prisma.$transaction(async (tx) => {
-        await transactionHistoryRepository.createTransactionHistory({
+        await transactionHistoryRepository.create({
           prismaTx: tx,
           props: {
             points,
@@ -131,7 +131,7 @@ class PointsService {
 
     try {
       await prisma.$transaction(async (tx) => {
-        await transactionHistoryRepository.createTransactionHistory({
+        await transactionHistoryRepository.create({
           prismaTx: tx,
           props: {
             points: offer.points,

@@ -28,7 +28,7 @@ class TransactionHistoryRepository {
     } as const satisfies TransactionHistoryInclude<DefaultArgs>;
   }
 
-  async createTransactionHistory({ props, prismaTx }: { props: Tr; prismaTx: Tx }) {
+  async create({ props, prismaTx }: { props: Tr; prismaTx: Tx }) {
     const metadata = props.type === 'EARN' ? { amount: props.schema.dollarAmount } : { offerName: props.offerName };
 
     const transaction = await prismaTx.transactionHistory.create({
@@ -44,7 +44,7 @@ class TransactionHistoryRepository {
     return transaction;
   }
 
-  async getUserTransactionHistory(userId: string, params: CursorQueryParam) {
+  async getUserHistory(userId: string, params: CursorQueryParam) {
     const transactions = await prisma.transactionHistory.findMany({
       where: { userId },
       orderBy: { createdAt: 'desc' },
@@ -60,7 +60,7 @@ class TransactionHistoryRepository {
     return { transactions, hasNextPage };
   }
 
-  async getStaffTransactionHistory(staffId: string, params: CursorQueryParam) {
+  async getStaffHistory(staffId: string, params: CursorQueryParam) {
     const transactions = await prisma.transactionHistory.findMany({
       where: { staffId },
       orderBy: { createdAt: 'desc' },

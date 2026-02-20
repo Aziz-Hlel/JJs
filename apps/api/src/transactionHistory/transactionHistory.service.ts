@@ -28,7 +28,7 @@ class TransactionHistoryService {
     if (!userExists) {
       throw new NotFoundError('User does not exist');
     }
-    const { transactions, hasNextPage } = await transactionHistoryRepository.getUserTransactionHistory(userId, params);
+    const { transactions, hasNextPage } = await transactionHistoryRepository.getUserHistory(userId, params);
     const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage);
     return transactionResponse;
   }
@@ -42,10 +42,7 @@ class TransactionHistoryService {
     if (!isStaff) {
       throw new NotFoundError('User is not a staff');
     }
-    const { transactions, hasNextPage } = await transactionHistoryRepository.getStaffTransactionHistory(
-      staffId,
-      params,
-    );
+    const { transactions, hasNextPage } = await transactionHistoryRepository.getStaffHistory(staffId, params);
     const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage);
     return transactionResponse;
   }

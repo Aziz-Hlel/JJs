@@ -165,13 +165,13 @@ model KaraokeSong {
 
 
 model Entertainment {
-  id String @id @default(uuid())
-  name String
-  description String
-  date String
+  id String @id @default(uuid()) 
+  name String @db.VarChar(100)
+  description String @db.Text
+  date String @db.VarChar(100)
   
 
-  thumbnailId String? @unique
+  thumbnailId String? @unique 
   thumbnail   Media?  @relation(fields: [thumbnailId], references: [id], onDelete: SetNull)
 
   isFeatured Boolean @default(false)
