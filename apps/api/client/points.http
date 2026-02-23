@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### 
 # @name server_signup
-POST {{baseUrl}}/auth/login
+POST {{baseUrl}}/auth/login     
 Content-Type: application/json
 
 {

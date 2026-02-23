@@ -2,12 +2,13 @@ import { Request, Response } from 'express';
 import { authService as authService } from '../Service/auth.service';
 import { AuthenticatedRequest } from '../../types/auth/AuthenticatedRequest';
 import { CreateUserSchema } from '@contracts/schemas/user/CreateUserDto';
+import { RegisterUserNoProviderSchema } from '@contracts/schemas/user/RegisterUserNoProvider';
 
 class AuthController {
   async register(req: Request, res: Response) {
-    const { idToken } = CreateUserSchema.parse(req.body);
+    const schema = RegisterUserNoProviderSchema.parse(req.body);
 
-    const user = await authService.registerUser(idToken);
+    const user = await authService.registerUser(schema);
 
     res.status(201).json(user);
   }

@@ -2,7 +2,7 @@
 @firebaseUrl = https://identitytoolkit.googleapis.com/v1
 
 
-@baseUrl = http://localhost:8080
+@baseUrl = http://localhost:5000/api
 
 
 
@@ -13,7 +13,7 @@ POST {{firebaseUrl}}/accounts:signUp?key={{apiKey}}
 Content-Type: application/json
 
 {
-  "email": "tigana110@gmail.com",
+  "email": "tigana100@gmail.com",
   "password": "12345678",
   "returnSecureToken": true
 }
@@ -25,7 +25,8 @@ POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-    "tokenId": "{{firebase_signup.response.body.idToken}}"
+    "idToken": "{{firebase_signup.response.body.idToken}}",
+    "username": "tigana100"
 }
 
 

@@ -5,12 +5,13 @@ import { DecodedIdTokenWithClaims } from '../../types/auth/DecodedIdTokenWithCla
 import { userRepo } from '../repo/user.repo';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
 import { generateUserReferenceCode } from '../utils/generateUserReferenceCode';
+import { type RegisterUserNoProviderDto } from '@contracts/schemas/user/RegisterUserNoProvider';
 
 class AuthService {
   private firebaseService = firebaseAuthService;
 
-  async registerUser(tokenId: string): Promise<UserProfileResponse> {
-    const decodedToken = await this.firebaseService.verifyToken(tokenId);
+  async registerUser(schema: RegisterUserNoProviderDto): Promise<UserProfileResponse> {
+    const decodedToken = await this.firebaseService.verifyToken(schema.idToken);
 
     let email = decodedToken.email as string;
 
@@ -18,12 +19,12 @@ class AuthService {
 
     if (isEmailExist)
       throw new InternalServerError(
-        `New User registered with auth Provider but account email already exists in the system.
+        `New User registered with auth Provider but account email already exists in the system. 
         authId: ${decodedToken.uid}, email: ${email}`,
       );
 
     const referenceCode = generateUserReferenceCode();
-    const userToCreate = UserMapper.toUserCreateInput(decodedToken, referenceCode);
+    const userToCreate = UserMapper.toUserCreateInputWithFullName(decodedToken, referenceCode, schema.username);
     const newUser = await userRepo.createUser(userToCreate);
 
     await this.firebaseService.setCustomUserClaims({

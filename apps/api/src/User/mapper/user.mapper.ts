@@ -3,17 +3,29 @@ import { Role } from '../../generated/prisma/browser';
 import { GenericEntityCreateInput } from '../../types/prisma/GenericEntityUtilityTypes';
 import { User } from '../../generated/prisma/client';
 import { StrictDecodedIdToken } from '../../types/auth/StrictDecodedIdToken';
-import { DefaultSearchParams } from '../../types/api/DefaultSearchParams';
 import { UserResponse } from '@contracts/schemas/user/UserResponse';
 import { ProfileRowResponse, UserProfileRowResponse, UserRowResponse } from '@contracts/schemas/user/UserRowResponse';
 import { UserWithProfile } from '../types';
 import { ProfileMapper } from './profile.mapper';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
 import { Page } from '@contracts/types/page/Page';
+import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
 
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 
 class UserMapper {
+  static toUserCreateInputWithFullName(decodedToken: StrictDecodedIdToken, referenceCode: string, fullName: string) {
+    const user: UserCreateInputCustom = {
+      authId: decodedToken.uid,
+      email: decodedToken.email as string,
+      username: fullName,
+      referenceCode: referenceCode,
+      provider: decodedToken.firebase.sign_in_provider,
+      role: Role.SUPER_ADMIN,
+      isEmailVerified: decodedToken.email_verified ?? false,
+    };
+    return user;
+  }
   static toUserCreateInput(decodedToken: StrictDecodedIdToken, referenceCode: string): UserCreateInputCustom {
     const user: UserCreateInputCustom = {
       authId: decodedToken.uid,
