@@ -60,7 +60,7 @@ const fakeOffersData: { title: string; imgUrl: string; baseName: string; isFeatu
 
 const createFakeOffer = (
   _: unknown,
-  { title, imgUrl, baseName }: { title: string; imgUrl: string; baseName: string },
+  { title, imgUrl, baseName, isFeatured }: { title: string; imgUrl: string; baseName: string; isFeatured: boolean },
 ) => {
   const fakeOffer = {
     title: title,
@@ -68,6 +68,7 @@ const createFakeOffer = (
     code: faker.number.int({ min: 10, max: 1000 }).toString(),
     points: faker.number.int({ min: 10, max: 1000 }),
     status: faker.helpers.arrayElement(Object.values(OfferStatus)),
+    isFeatured: isFeatured,
     thumbnail: {
       key: imgUrl,
       baseName: baseName,
