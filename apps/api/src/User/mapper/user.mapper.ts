@@ -21,7 +21,7 @@ class UserMapper {
       username: fullName,
       referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
-      role: Role.SUPER_ADMIN,
+      role: Role.USER,
       isEmailVerified: decodedToken.email_verified ?? false,
     };
     return user;
@@ -33,7 +33,7 @@ class UserMapper {
       username: (decodedToken as any).name,
       referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
-      role: Role.SUPER_ADMIN,
+      role: Role.USER,
       isEmailVerified: decodedToken.email_verified ?? false,
     };
     return user;

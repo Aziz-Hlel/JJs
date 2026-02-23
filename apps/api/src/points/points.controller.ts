@@ -5,6 +5,7 @@ import { earnPointsRequestSchema } from '@contracts/schemas/points/EarnPointsReq
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
 import { redeemPointsRequestSchema } from '@contracts/schemas/points/RedeemPointsRequest';
 import { earnQuoteRequest } from '@contracts/schemas/points/EarnQuoteRequest';
+import redis from '@/bootstrap/redis.init';
 
 class PointsController {
   async earnQuote(req: Request, res: Response) {
@@ -33,6 +34,28 @@ class PointsController {
     const staffUid = user.uid;
     const redeemQuoteResponse = await pointsService.confirmRedeemPoints({ ...schema, type: 'REDEEM' }, staffUid);
     res.status(200).json(redeemQuoteResponse);
+  }
+
+  async streamPoints(req: AuthenticatedRequest, res: Response) {
+    const user = req.user;
+    const userUid = user.uid;
+
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    const subscriber = redis.duplicate();
+    await subscriber.connect();
+
+    const channel = `user:${userId}:points`;
+    await subscriber.subscribe(channel, (message) => {
+      res.write(`data: ${message}\n\n`);
+    });
+
+    req.on('close', async () => {
+      await subscriber.unsubscribe(channel);
+      await subscriber.quit();
+    });
   }
 }
 
