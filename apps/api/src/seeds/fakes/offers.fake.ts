@@ -6,19 +6,21 @@ faker.seed(1); // Ensure consistent fake data across runs
 
 const fakeOffersData: { title: string; imgUrl: string; baseName: string }[] = [
   {
-    title: 'Special Discount on next 5 beers',
-    imgUrl: 'offers/5_beers_bucket_offer.webp',
-    baseName: '5_beers_bucket_offer.webp',
+    title: 'Special Discount on next 5 sodas',
+    imgUrl: 'offers/5_sodas_bucket_offer.webp',
+    baseName: '5_sodas_bucket_offer.webp',
   },
   { title: 'Free pizza', imgUrl: 'offers/free_pizza_offer.jpg', baseName: 'free_pizza_offer.jpg' },
   { title: '20% off on your next order', imgUrl: 'offers/20_pourcent_off.jpg', baseName: '20_pourcent_off.jpg' },
-  {
-    title: 'Special package deal: 3 beers + burger',
-    imgUrl: 'offers/3burgers_1beer.jpg',
-    baseName: '3burgers_1beer.jpg',
-  },
-  { title: 'Free pizza and beer combo', imgUrl: 'offers/pizza_and_beer.jpg', baseName: 'pizza_and_beer.jpg' },
-  { title: 'Beer bucket', imgUrl: 'offers/bucket_beer.jpg', baseName: 'bucket_beer.jpg' },
+  // {
+  //   title: 'Special package deal: 3 beers + burger',
+  //   imgUrl: 'offers/3burgers_1beer.jpg',
+  //   baseName: '3burgers_1beer.jpg',
+  // },
+  // { title: 'Free pizza and beer combo', imgUrl: 'offers/pizza_and_beer.jpg', baseName: 'pizza_and_beer.jpg' },
+  // { title: 'Beer bucket', imgUrl: 'offers/bucket_beer.jpg', baseName: 'bucket_beer.jpg' },
+  { title: 'Special Discount on next 3 drinks', imgUrl: 'offers/3juices.jpg', baseName: '3juices.jpg' },
+  { title: '3 Cheezious Burger Deal with Chicken', imgUrl: 'offers/3cheezious.jpg', baseName: '3cheezious.jpg' },
 ];
 
 const createFakeOffer = (
