@@ -7,6 +7,8 @@
     "prepare": "husky",
     "format:fix": "prettier --write .",
     "local": "node scripts/docker-up.js local",
+    "dev-api": "cd apps/api && pnpm run dev",
+    "dev-admin": "cd apps/admin && pnpm run dev",
     "dev": "node scripts/docker-up.js dev",
     "test": ""
   },
