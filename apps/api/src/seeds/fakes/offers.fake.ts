@@ -21,6 +21,22 @@ const fakeOffersData: { title: string; imgUrl: string; baseName: string }[] = [
   // { title: 'Beer bucket', imgUrl: 'offers/bucket_beer.jpg', baseName: 'bucket_beer.jpg' },
   { title: 'Special Discount on next 3 drinks', imgUrl: 'offers/3juices.jpg', baseName: '3juices.jpg' },
   { title: '3 Cheezious Burger Deal with Chicken', imgUrl: 'offers/3cheezious.jpg', baseName: '3cheezious.jpg' },
+  {
+    title: 'Pizza Deal for 3 Persons',
+    imgUrl: 'offers/cheezious-pizza-deal-for-3-persons.jpg',
+    baseName: 'cheezious-pizza-deal-for-3-persons.jpg',
+  },
+  { title: '3 pizzas', imgUrl: 'offers/3pizzas.jpg', baseName: '3pizzas.jpg' },
+  {
+    title: 'Snack Box Combo - Boneless Wings, Fries and Drink',
+    imgUrl: 'offers/combo-meal.png',
+    baseName: 'combo-meal.png',
+  },
+  {
+    title: 'Family Combo',
+    imgUrl: 'offers/family-combo.jpg',
+    baseName: 'family-combo.jpg',
+  },
 ];
 
 const createFakeOffer = (
