@@ -9,9 +9,11 @@ import { AppRouter } from './routes';
 export function createExpressApp() {
   const app = express();
 
+  // 🔐 MUST come before rate limiter
+  app.set('trust proxy', true);
+
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ limit: '10mb', extended: true }));
-
 
   app.use(...configureSecurity());
 
