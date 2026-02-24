@@ -110,6 +110,14 @@ class OfferRepository {
     });
     return offer;
   }
+
+  async getFeatured() {
+    const featuredOffers = await prisma.offer.findMany({
+      where: { isFeatured: true },
+      include: this.includeThumbnail(),
+    });
+    return featuredOffers;
+  }
 }
 
 export const offerRepository = new OfferRepository();

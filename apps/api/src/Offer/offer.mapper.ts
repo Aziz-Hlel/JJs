@@ -24,6 +24,10 @@ export class OfferMapper {
     };
   }
 
+  static toResponses(offers: OfferWithThumbnail[]): OfferResponse[] {
+    return offers.map((offer) => this.toResponse(offer));
+  }
+
   private static toRowResponse(offer: OfferWithThumbnail): OfferRowResponse {
     const thumbnail = mediaService.getMediaKeyAndUrl(offer.thumbnail);
     return {

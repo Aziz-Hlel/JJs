@@ -45,6 +45,7 @@ export class TransactionMapper {
 
   static toPersonalHistoryResponse(
     transaction: TransactionHistoryWithUserAndStaff,
+    isStaff: boolean = false,
   ): PersonalTransactionHistoryResponse {
     const offerName =
       transaction.type === 'EARN' && typeof transaction.metadata === 'object'
@@ -68,16 +69,21 @@ export class TransactionMapper {
         offerName: offerName,
         dollarAmount: dollarAmount,
       }),
+
+      ...(isStaff && {
+        userCode:transaction.user.referenceCode)
+        
     };
   }
 
   static toPersonalHistoryResponses(
     transaction: TransactionHistoryWithUserAndStaff[],
     hasNextPage: boolean,
+    isStaff: boolean = false,
   ): Cursor<PersonalTransactionHistoryResponse> {
     const lastTransactionId = transaction.length > 0 ? transaction[transaction.length - 1].id : null;
     return {
-      data: transaction.map((transaction) => this.toPersonalHistoryResponse(transaction)),
+      data: transaction.map((transaction) => this.toPersonalHistoryResponse(transaction, isStaff)),
       cursor: {
         hasNextPage: hasNextPage,
         cursor: lastTransactionId,

@@ -37,6 +37,11 @@ class OfferController {
     res.status(200).json(offerResponse);
   }
 
+  async getFeatured(req: Request, res: Response) {
+    const featuredOffers = await offerService.getFeatured();
+    res.status(200).json(featuredOffers);
+  }
+
   async delete(req: Request, res: Response<SimpleApiResponse>) {
     const { id } = req.params;
     await offerService.delete(id);
@@ -49,8 +54,6 @@ class OfferController {
     const updatedOffer = await offerService.toggleFeatured(id);
     res.status(200).json(updatedOffer);
   }
-
-  
 }
 
 export const offerController = new OfferController();

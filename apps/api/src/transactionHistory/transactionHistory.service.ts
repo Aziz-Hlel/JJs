@@ -43,7 +43,7 @@ class TransactionHistoryService {
       throw new NotFoundError('User is not a staff');
     }
     const { transactions, hasNextPage } = await transactionHistoryRepository.getStaffHistory(staffId, params);
-    const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage);
+    const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage, true);
     return transactionResponse;
   }
 

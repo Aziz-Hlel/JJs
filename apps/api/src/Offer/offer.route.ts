@@ -36,6 +36,11 @@ router.get(
 );
 
 router.get(
+  '/featured',
+  asyncHandler((req: Request, res: Response) => offerController.getFeatured(req, res)),
+);
+
+router.get(
   '/:id',
   asyncHandler((req: Request, res: Response) => offerController.getById(req, res)),
 );

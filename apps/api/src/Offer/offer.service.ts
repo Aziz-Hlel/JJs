@@ -67,6 +67,12 @@ class OfferService {
     return offerPage;
   }
 
+  async getFeatured() {
+    const featuredOffers = await offerRepository.getFeatured();
+    const offerPage = OfferMapper.toResponses(featuredOffers);
+    return offerPage;
+  }
+
   async delete(offerId: string) {
     const isOfferExists = await offerRepository.isOfferExists(offerId);
     if (!isOfferExists) {
