@@ -4,10 +4,7 @@ import { Router } from 'express';
 import { Request, Response } from 'express';
 import { karaokeSongController } from './KaraokeSong.controller';
 
-
-
 const router = Router();
-
 
 router.get(
   '/',
@@ -17,6 +14,11 @@ router.get(
 router.put(
   '/:id',
   asyncHandler((req: Request, res: Response) => karaokeSongController.update(req, res)),
+);
+
+router.get(
+  '/shuffle',
+  asyncHandler((req: Request, res: Response) => karaokeSongController.getShuffle(req, res)),
 );
 
 export const karaokeSongRouter = router;

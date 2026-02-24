@@ -14,6 +14,11 @@ class KaraokeSongController {
     const updatedKaraokeSong = await karaokeSongService.updateKaraokeSong(id, data);
     res.status(200).json(updatedKaraokeSong);
   }
+
+  async getShuffle(req: Request, res: Response) {
+    const karaokeSongs = await karaokeSongService.getAllKaraokeSongs();
+    res.status(200).json(karaokeSongs);
+  }
 }
 
 export const karaokeSongController = new KaraokeSongController();
