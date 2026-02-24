@@ -168,8 +168,8 @@ class PointsService {
     return redeemQuoteResponse;
   }
 
-  async getUserPoints(userId: string) {
-    const result = await pointsRepo.getUserPoints(userId);
+  async getUserPoints(userAuthId: string) {
+    const result = await pointsRepo.getUserPoints(userAuthId);
     if (!result) {
       throw new NotFoundError('User not found');
     }

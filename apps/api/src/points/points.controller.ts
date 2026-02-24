@@ -39,21 +39,21 @@ class PointsController {
 
   async streamPoints(req: AuthenticatedRequest, res: Response) {
     const user = req.user;
-    const userId = user.uid;
+    const userAuthId = user.uid;
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
-    const points = await pointsService.getUserPoints(userId);
+    const points = await pointsService.getUserPoints(userAuthId);
     res.write(`${JSON.stringify({ points })}`);
 
-    if (!pointsConnections.has(userId)) {
-      pointsConnections.set(userId, new Set());
+    if (!pointsConnections.has(userAuthId)) {
+      pointsConnections.set(userAuthId, new Set());
     }
 
-    pointsConnections.get(userId)!.add(res);
+    pointsConnections.get(userAuthId)!.add(res);
     req.on('close', () => {
-      pointsConnections.get(userId)?.delete(res);
+      pointsConnections.get(userAuthId)?.delete(res);
     });
     res.flushHeaders();
   }
