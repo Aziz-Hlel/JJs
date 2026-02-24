@@ -71,8 +71,8 @@ export class TransactionMapper {
       }),
 
       ...(isStaff && {
-        userCode:transaction.user.referenceCode)
-        
+        userCode: transaction.user.referenceCode,
+      }),
     };
   }
 
