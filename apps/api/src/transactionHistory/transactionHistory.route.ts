@@ -25,6 +25,6 @@ router.get(
   asyncHandler(transactionHistoryController.getStaffTransactionHistory),
 );
 
-router.get('/', requireAuth, asyncHandler(transactionHistoryController.getUserTransactionHistory));
+router.get('/user', requireAuth, asyncHandler(transactionHistoryController.getUserTransactionHistory));
 
 export const transactionHistoryRoute = router;

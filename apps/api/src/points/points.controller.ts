@@ -6,6 +6,7 @@ import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
 import { redeemPointsRequestSchema } from '@contracts/schemas/points/RedeemPointsRequest';
 import { earnQuoteRequest } from '@contracts/schemas/points/EarnQuoteRequest';
 import redis from '@/bootstrap/redis.init';
+import { connections } from '@/bootstrap/pubsub.init';
 
 class PointsController {
   async earnQuote(req: Request, res: Response) {
@@ -38,23 +39,20 @@ class PointsController {
 
   async streamPoints(req: AuthenticatedRequest, res: Response) {
     const user = req.user;
-    const userUid = user.uid;
+    const userId = user.claims.id;
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
+    res.flushHeaders();
 
-    const subscriber = redis.duplicate();
-    await subscriber.connect();
+    if (!connections.has(userId)) {
+      connections.set(userId, new Set());
+    }
 
-    const channel = `user:${userId}:points`;
-    await subscriber.subscribe(channel, (message) => {
-      res.write(`data: ${message}\n\n`);
-    });
-
-    req.on('close', async () => {
-      await subscriber.unsubscribe(channel);
-      await subscriber.quit();
+    connections.get(userId)!.add(res);
+    req.on('close', () => {
+      connections.get(userId)?.delete(res);
     });
   }
 }

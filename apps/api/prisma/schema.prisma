@@ -72,25 +72,7 @@ enum PointsTransactionType {
   REDEEM
 }
 
-model TransactionHistory {
-  id String @id @default(uuid())
-
-  type   PointsTransactionType
-  points Int
-
-  offerId String?
-  offer   Offer?  @relation(fields: [offerId], references: [id], onDelete: SetNull)
-
-  userId String
-  user   User   @relation(name: "UserTransactionHistory", fields: [userId], references: [id], onDelete: Cascade)
-
-  staffId String
-  staff   User   @relation(name: "StaffTransactionHistory", fields: [staffId], references: [id], onDelete: Cascade)
-
-  metadata Json?
-
-  createdAt DateTime @default(now())
-}
+ 
 
 model Profile {
   id          String  @id @default(uuid())
@@ -162,6 +144,27 @@ model KaraokeSong {
 }
 
 
+
+
+model TransactionHistory {
+  id String @id @default(uuid())
+
+  type   PointsTransactionType
+  points Int
+
+  offerId String?
+  offer   Offer?  @relation(fields: [offerId], references: [id], onDelete: SetNull)
+
+  userId String
+  user   User   @relation(name: "UserTransactionHistory", fields: [userId], references: [id], onDelete: Cascade)
+
+  staffId String
+  staff   User   @relation(name: "StaffTransactionHistory", fields: [staffId], references: [id], onDelete: Cascade)
+
+  metadata Json?
+
+  createdAt DateTime @default(now())
+}
 
 
 model Entertainment {
