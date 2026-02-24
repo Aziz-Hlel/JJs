@@ -44,7 +44,8 @@ class PointsController {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
-    res.write(`data: connected\n\n`);
+    const points = await pointsService.getUserPoints(userId);
+    res.write(`${JSON.stringify({ points })}`);
 
     if (!pointsConnections.has(userId)) {
       pointsConnections.set(userId, new Set());

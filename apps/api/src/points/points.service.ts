@@ -13,6 +13,7 @@ import { PointsTransactionType } from '@/generated/prisma/enums';
 import { prisma } from '@/bootstrap/db.init';
 import { logger } from '@/bootstrap/logger.init';
 import { cachePubSub } from '@/cache/service/cache.pubsub';
+import { pointsRepo } from './points.repo';
 
 class PointsService {
   generatePointsAmount(amount: number) {
@@ -165,6 +166,14 @@ class PointsService {
 
     const redeemQuoteResponse = PointsMapper.toRedeemQuoteResponse(user, offer);
     return redeemQuoteResponse;
+  }
+
+  async getUserPoints(userId: string) {
+    const result = await pointsRepo.getUserPoints(userId);
+    if (!result) {
+      throw new NotFoundError('User not found');
+    }
+    return result.points;
   }
 }
 
