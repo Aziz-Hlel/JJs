@@ -6,7 +6,7 @@ import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
 import { redeemPointsRequestSchema } from '@contracts/schemas/points/RedeemPointsRequest';
 import { earnQuoteRequest } from '@contracts/schemas/points/EarnQuoteRequest';
 import redis from '@/bootstrap/redis.init';
-import { connections } from '@/bootstrap/pubsub.init';
+import { pointsConnections, transactionConnections } from '@/bootstrap/pubsub.init';
 
 class PointsController {
   async earnQuote(req: Request, res: Response) {
@@ -39,20 +39,40 @@ class PointsController {
 
   async streamPoints(req: AuthenticatedRequest, res: Response) {
     const user = req.user;
-    const userId = user.claims.id;
+    const userId = user.uid;
+
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.write(`data: connected\n\n`);
+
+    if (!pointsConnections.has(userId)) {
+      pointsConnections.set(userId, new Set());
+    }
+
+    pointsConnections.get(userId)!.add(res);
+    req.on('close', () => {
+      pointsConnections.get(userId)?.delete(res);
+    });
+    res.flushHeaders();
+  }
+
+  async getResult(req: AuthenticatedRequest, res: Response) {
+    const user = req.user;
+    const userId = user.uid;
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
     res.flushHeaders();
 
-    if (!connections.has(userId)) {
-      connections.set(userId, new Set());
+    if (!transactionConnections.has(userId)) {
+      transactionConnections.set(userId, new Set());
     }
 
-    connections.get(userId)!.add(res);
+    transactionConnections.get(userId)!.add(res);
     req.on('close', () => {
-      connections.get(userId)?.delete(res);
+      transactionConnections.get(userId)?.delete(res);
     });
   }
 }

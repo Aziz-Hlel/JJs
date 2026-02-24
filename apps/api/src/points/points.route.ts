@@ -14,6 +14,7 @@ router.post('/earn/confirm', requireAuth, requireRole(Role.STAFF), asyncHandler(
 router.post('/redeem/quote', requireAuth, requireRole(Role.STAFF), asyncHandler(pointsController.redeemQuote));
 router.post('/redeem/confirm', requireAuth, requireRole(Role.STAFF), asyncHandler(pointsController.redeemConfirm));
 
-router.get('/stream', requireAuth, (req, res) => pointsController.streamPoints(req as AuthenticatedRequest, res));
+router.get('/stream', (req, res) => pointsController.streamPoints(req as AuthenticatedRequest, res));
+router.get('/result', (req, res) => pointsController.getResult(req as AuthenticatedRequest, res));
 
 export const pointsRouter = router;

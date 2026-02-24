@@ -12,11 +12,7 @@ import { CreateTransactionHistoryRequest } from '@contracts/schemas/transactionH
 import { PointsTransactionType } from '@/generated/prisma/enums';
 import { prisma } from '@/bootstrap/db.init';
 import { logger } from '@/bootstrap/logger.init';
-
-// POST /points/earn/quote
-// POST /points/earn/confirm
-// POST /points/redeem/quote
-// POST /points/redeem/confirm
+import { cachePubSub } from '@/cache/service/cache.pubsub';
 
 class PointsService {
   generatePointsAmount(amount: number) {
@@ -97,6 +93,13 @@ class PointsService {
       throw new InternalServerError('Failed to confirm earn points transaction');
     }
 
+    await cachePubSub.publishUserPoints({ userId: user.authId, points: user.points + points });
+    await cachePubSub.publishTrasactionToUser({
+      userId: user.authId,
+      points,
+      transactionType: PointsTransactionType.EARN,
+      offerName: null,
+    });
     const earnQuoteResponse = PointsMapper.toEarnQuoteResponse(user, points);
     return earnQuoteResponse;
   }
@@ -152,6 +155,14 @@ class PointsService {
       logger.error({ error, schema, staffAuthId }, 'Error redeeming points');
       throw new InternalServerError('Failed to redeem points');
     }
+    await cachePubSub.publishUserPoints({ userId: user.authId, points: user.points - offer.points });
+    await cachePubSub.publishTrasactionToUser({
+      userId: user.authId,
+      points: offer.points,
+      transactionType: PointsTransactionType.REDEEM,
+      offerName: offer.title,
+    });
+
     const redeemQuoteResponse = PointsMapper.toRedeemQuoteResponse(user, offer);
     return redeemQuoteResponse;
   }

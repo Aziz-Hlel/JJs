@@ -22,7 +22,7 @@ Content-Type: application/json
 
 
 ### 
-# @name server_signup
+# @name server_signin
 POST {{baseUrl}}/auth/login     
 Content-Type: application/json
 
@@ -63,7 +63,7 @@ Authorization: Bearer {{firebase_signin.response.body.idToken}}
 
 {
     "userRefrenceCode": "101010",
-    "offerCode": "325"
+    "offerCode": "744"
 }
 
 
@@ -74,6 +74,6 @@ Content-Type: application/json
 Authorization: Bearer {{firebase_signin.response.body.idToken}}
 
 {
-    "userId": "754aedbd-10b6-4e0c-83b4-8bf6ddab5761",
-    "offerId": "dce56e41-cf6a-4446-aad9-b4800d455f88"
+    "userId": "{{redeem_quote.response.body.user.id}}",
+    "offerId": "{{redeem_quote.response.body.offer.id}}"
 }

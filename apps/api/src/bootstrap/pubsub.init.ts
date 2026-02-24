@@ -20,27 +20,40 @@ export async function connectPubSub() {
   }
 }
 
-function extractUserId(channel: string): string {
-  return channel.split(':')[1];
-}
+export const pointsConnections = new Map<string, Set<Response>>();
+export const transactionConnections = new Map<string, Set<Response>>();
 
-export const connections = new Map<string, Set<Response>>();
+subscriber.psubscribe('user:*:points', 'user:*:transaction');
 
-function notifyConnectedClients(userId: string, message: string) {
-  const userConnections = connections.get(userId);
+const handleTransactionUpdate = (userId: string, stringifiedMessage: string) => {
+  const userConnections = transactionConnections.get(userId);
 
   if (!userConnections) return;
 
   for (const res of userConnections) {
-    res.write(`data: ${message}\n\n`);
+    res.write(`${stringifiedMessage}`);
   }
-}
+};
 
-subscriber.psubscribe('user:*:points');
+const handlePointsUpdate = (userId: string, stringifiedMessage: string) => {
+  const userConnections = pointsConnections.get(userId);
+  if (!userConnections) return;
+  for (const res of userConnections) {
+    res.write(`${stringifiedMessage}`);
+  }
+};
 
 subscriber.on('pmessage', (pattern: string, channel: string, message: string) => {
-  const userId = extractUserId(channel);
-  notifyConnectedClients(userId, message);
+  const [, userId, type] = channel.split(':');
+  switch (type) {
+    case 'points':
+      handlePointsUpdate(userId, message);
+      break;
+
+    case 'transaction':
+      handleTransactionUpdate(userId, message);
+      break;
+  }
 });
 
 export default subscriber;
