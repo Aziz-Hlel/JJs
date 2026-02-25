@@ -3,6 +3,7 @@ import { authService as authService } from '../Service/auth.service';
 import { AuthenticatedRequest } from '../../types/auth/AuthenticatedRequest';
 import { CreateUserSchema } from '@contracts/schemas/user/CreateUserDto';
 import { RegisterUserNoProviderSchema } from '@contracts/schemas/user/RegisterUserNoProvider';
+import { CreateUserWithProviderSchema } from '@contracts/schemas/user/CreateUserWithProviderRequest';
 
 class AuthController {
   async register(req: Request, res: Response) {
@@ -21,8 +22,8 @@ class AuthController {
   }
 
   async authenticateWithProvider(req: Request, res: Response) {
-    const { idToken } = CreateUserSchema.parse(req.body);
-    const user = await authService.authenticateWithProvider(idToken);
+    const { idToken, username } = CreateUserWithProviderSchema.parse(req.body);
+    const user = await authService.authenticateWithProvider(idToken, username);
 
     res.status(200).json(user);
   }

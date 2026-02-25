@@ -1,7 +1,13 @@
+export const Providers = {
+  google: 'google.com',
+  apple: 'apple.com',
+  email: 'email',
+} as const;
+
 export const ProvidersMapping = {
-  'google.com': 'google',
-  'apple.com': 'apple',
-  password: 'email/password',
+  [Providers.google]: 'google',
+  [Providers.apple]: 'apple',
+  [Providers.email]: 'email/password',
 } as const;
 
 export type ProviderType = keyof typeof ProvidersMapping;

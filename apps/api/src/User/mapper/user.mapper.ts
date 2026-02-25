@@ -10,6 +10,7 @@ import { ProfileMapper } from './profile.mapper';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
 import { Page } from '@contracts/types/page/Page';
 import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
+import { Providers, ProvidersMapping } from '@contracts/map/ProvidersMapping';
 
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 
@@ -26,11 +27,21 @@ class UserMapper {
     };
     return user;
   }
-  static toUserCreateInput(decodedToken: StrictDecodedIdToken, referenceCode: string): UserCreateInputCustom {
+  static toUserCreateInput(
+    decodedToken: StrictDecodedIdToken,
+    referenceCode: string,
+    username: string | null,
+  ): UserCreateInputCustom {
+    const getUsername = (decodedToken: StrictDecodedIdToken) => {
+      if (decodedToken.firebase.sign_in_provider === Providers.apple) {
+        return username ?? (decodedToken as any).name ?? decodedToken.email?.split('@')[0] ?? decodedToken.uid;
+      }
+      return (decodedToken as any).name ?? 'N/A';
+    };
     const user: UserCreateInputCustom = {
       authId: decodedToken.uid,
       email: decodedToken.email as string,
-      username: (decodedToken as any).name,
+      username: getUsername(decodedToken),
       referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
       role: Role.USER,

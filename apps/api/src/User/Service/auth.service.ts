@@ -52,7 +52,7 @@ class AuthService {
     return UserMapper.toUserProfileResponse(user, decodedToken.picture || null);
   }
 
-  async authenticateWithProvider(tokenId: string): Promise<UserProfileResponse> {
+  async authenticateWithProvider(tokenId: string, username: string | null): Promise<UserProfileResponse> {
     const decodedToken = await this.firebaseService.verifyToken(tokenId);
 
     const userAuthId = decodedToken.uid;
@@ -60,7 +60,7 @@ class AuthService {
 
     if (!user) {
       const referenceCode = generateUserReferenceCode();
-      const userToCreate = UserMapper.toUserCreateInput(decodedToken, referenceCode);
+      const userToCreate = UserMapper.toUserCreateInput(decodedToken, referenceCode,username);
       user = await userRepo.createUser(userToCreate);
       await this.firebaseService.setCustomUserClaims({
         userId: user.id,
