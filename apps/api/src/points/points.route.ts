@@ -6,6 +6,7 @@ import requireRole from '@/middleware/requireRole.middleware';
 import { Role } from '@/generated/prisma/enums';
 import { pointsController } from './points.controller';
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
+import sseHeadersMiddleware from '@/middleware/sseHeaders.middleware';
 
 const router = Router();
 
@@ -14,7 +15,11 @@ router.post('/earn/confirm', requireAuth, requireRole(Role.STAFF), asyncHandler(
 router.post('/redeem/quote', requireAuth, requireRole(Role.STAFF), asyncHandler(pointsController.redeemQuote));
 router.post('/redeem/confirm', requireAuth, requireRole(Role.STAFF), asyncHandler(pointsController.redeemConfirm));
 
-router.get('/stream', requireAuth, (req, res) => pointsController.streamPoints(req as AuthenticatedRequest, res));
-router.get('/result', requireAuth, (req, res) => pointsController.getResult(req as AuthenticatedRequest, res));
+router.get('/stream', requireAuth, sseHeadersMiddleware, (req, res) =>
+  pointsController.streamPoints(req as AuthenticatedRequest, res),
+);
+router.get('/result', requireAuth, sseHeadersMiddleware, (req, res) =>
+  pointsController.getResult(req as AuthenticatedRequest, res),
+);
 
 export const pointsRouter = router;

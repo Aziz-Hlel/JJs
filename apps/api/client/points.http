@@ -15,7 +15,7 @@ POST {{firebaseUrl}}/accounts:signInWithPassword?key={{apiKey}}
 Content-Type: application/json
 
 {
-  "email": "waiter@gmail.com",
+  "email": "user@gmail.com",
   "password": "12345678",
   "returnSecureToken": true
 }

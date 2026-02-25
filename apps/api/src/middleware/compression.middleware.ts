@@ -6,6 +6,12 @@ const shouldCompress = (req: Request, res: Response) => {
   if (req.headers['x-no-compression']) {
     return false;
   }
+
+  // SSE doesn't quite work in combination with compression
+  if (req.headers['content-type'] === 'text/event-stream') {
+    return false;
+  }
+
   return compression.filter(req, res);
 };
 

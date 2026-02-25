@@ -2,6 +2,7 @@ import Redis from 'ioredis';
 import redis from './redis.init';
 import { logger } from './logger.init';
 import { Response } from 'express';
+import { pointsSSE } from '@/points/points.sse';
 
 const subscriber: Redis = redis.duplicate({
   lazyConnect: true,
@@ -31,7 +32,7 @@ const handleTransactionUpdate = (userId: string, stringifiedMessage: string) => 
   if (!userConnections) return;
 
   for (const res of userConnections) {
-    res.write(`${stringifiedMessage}`);
+    pointsSSE.writeResponse(res, stringifiedMessage);
   }
 };
 
@@ -39,7 +40,7 @@ const handlePointsUpdate = (userId: string, stringifiedMessage: string) => {
   const userConnections = pointsConnections.get(userId);
   if (!userConnections) return;
   for (const res of userConnections) {
-    res.write(`${stringifiedMessage}`);
+    pointsSSE.writeResponse(res, stringifiedMessage);
   }
 };
 
