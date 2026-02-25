@@ -24,7 +24,7 @@ class AuthService {
       );
 
     const referenceCode = generateUserReferenceCode();
-    const userToCreate = UserMapper.toUserCreateInputWithFullName(decodedToken, referenceCode, schema.username);
+    const userToCreate = UserMapper.toUserCreateInputWithUsername(decodedToken, referenceCode, schema.username);
     const newUser = await userRepo.createUser(userToCreate);
 
     await this.firebaseService.setCustomUserClaims({

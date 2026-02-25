@@ -15,11 +15,11 @@ import { Providers, ProvidersMapping } from '@contracts/map/ProvidersMapping';
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 
 class UserMapper {
-  static toUserCreateInputWithFullName(decodedToken: StrictDecodedIdToken, referenceCode: string, fullName: string) {
+  static toUserCreateInputWithUsername(decodedToken: StrictDecodedIdToken, referenceCode: string, username: string) {
     const user: UserCreateInputCustom = {
       authId: decodedToken.uid,
       email: decodedToken.email as string,
-      username: fullName,
+      username: username,
       referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
       role: Role.USER,
