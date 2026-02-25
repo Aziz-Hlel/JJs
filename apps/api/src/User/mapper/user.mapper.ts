@@ -30,7 +30,7 @@ class UserMapper {
   static toUserCreateInput(
     decodedToken: StrictDecodedIdToken,
     referenceCode: string,
-    username: string | null,
+    username?: string | null,
   ): UserCreateInputCustom {
     const getUsername = (decodedToken: StrictDecodedIdToken) => {
       if (decodedToken.firebase.sign_in_provider === Providers.apple) {
