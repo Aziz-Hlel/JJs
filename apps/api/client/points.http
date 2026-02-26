@@ -15,7 +15,7 @@ POST {{firebaseUrl}}/accounts:signInWithPassword?key={{apiKey}}
 Content-Type: application/json
 
 {
-  "email": "user@gmail.com",
+  "email": "waiter@gmail.com",
   "password": "12345678",
   "returnSecureToken": true
 }
@@ -39,7 +39,7 @@ Authorization: Bearer {{firebase_signin.response.body.idToken}}
 
 {
     "userRefrenceCode": "101010",
-    "amount": 100
+    "dollarAmount": 100
 }
 
 
@@ -77,3 +77,11 @@ Authorization: Bearer {{firebase_signin.response.body.idToken}}
     "userId": "{{redeem_quote.response.body.user.id}}",
     "offerId": "{{redeem_quote.response.body.offer.id}}"
 }
+
+
+### 
+# @name transaction_history
+GET {{baseUrl}}/transaction-history/staff
+Content-Type: application/json
+Authorization: Bearer {{firebase_signin.response.body.idToken}}
+

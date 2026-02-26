@@ -8,13 +8,13 @@ import { Page } from '@contracts/types/page/Page';
 
 export class TransactionMapper {
   static toResponse(transaction: TransactionHistoryWithUserAndStaff): TransactionHistoryResponse {
-    const offerName =
-      transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { offerName: string }).offerName as string)
-        : null;
     const dollarAmount =
       transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { dollarAmount: number }).dollarAmount as number)
+        ? ((transaction.metadata as { amount: number }).amount as number)
+        : null;
+    const offerName =
+      transaction.type === 'REDEEM' && typeof transaction.metadata === 'object'
+        ? ((transaction.metadata as { offerName: string }).offerName as string)
         : null;
 
     return {
@@ -32,14 +32,8 @@ export class TransactionMapper {
         username: transaction.user.username,
         email: transaction.user.email,
       },
-      ...(transaction.type === 'EARN' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
-      ...(transaction.type === 'REDEEM' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
+      offerName: offerName,
+      dollarAmount: dollarAmount,
     };
   }
 
@@ -47,13 +41,13 @@ export class TransactionMapper {
     transaction: TransactionHistoryWithUserAndStaff,
     isStaff: boolean = false,
   ): PersonalTransactionHistoryResponse {
-    const offerName =
-      transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { offerName: string }).offerName as string)
-        : null;
     const dollarAmount =
       transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { dollarAmount: number }).dollarAmount as number)
+        ? ((transaction.metadata as { amount: number }).amount as number)
+        : null;
+    const offerName =
+      transaction.type === 'REDEEM' && typeof transaction.metadata === 'object'
+        ? ((transaction.metadata as { offerName: string }).offerName as string)
         : null;
 
     return {
@@ -61,15 +55,8 @@ export class TransactionMapper {
       points: transaction.points,
       type: transaction.type,
       createdAt: transaction.createdAt.toISOString(),
-      ...(transaction.type === 'EARN' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
-      ...(transaction.type === 'REDEEM' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
-
+      offerName: offerName,
+      dollarAmount: dollarAmount,
       ...(isStaff && {
         userCode: transaction.user.referenceCode,
       }),
@@ -82,6 +69,7 @@ export class TransactionMapper {
     isStaff: boolean = false,
   ): Cursor<PersonalTransactionHistoryResponse> {
     const lastTransactionId = transaction.length > 0 ? transaction[transaction.length - 1].id : null;
+    console.log(transaction[3]);
     return {
       data: transaction.map((transaction) => this.toPersonalHistoryResponse(transaction, isStaff)),
       cursor: {
@@ -92,13 +80,13 @@ export class TransactionMapper {
   }
 
   static toRowResponse(transaction: TransactionHistoryWithUserAndStaff): TransactionHistoryRowResponse {
-    const offerName =
-      transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { offerName: string }).offerName as string)
-        : null;
     const dollarAmount =
       transaction.type === 'EARN' && typeof transaction.metadata === 'object'
-        ? ((transaction.metadata as { dollarAmount: number }).dollarAmount as number)
+        ? ((transaction.metadata as { amount: number }).amount as number)
+        : null;
+    const offerName =
+      transaction.type === 'REDEEM' && typeof transaction.metadata === 'object'
+        ? ((transaction.metadata as { offerName: string }).offerName as string)
         : null;
 
     return {
@@ -118,14 +106,8 @@ export class TransactionMapper {
         email: transaction.user.email,
       },
 
-      ...(transaction.type === 'EARN' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
-      ...(transaction.type === 'REDEEM' && {
-        offerName: offerName,
-        dollarAmount: dollarAmount,
-      }),
+      offerName: offerName,
+      dollarAmount: dollarAmount,
     };
   }
 

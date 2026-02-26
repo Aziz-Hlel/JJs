@@ -28,7 +28,6 @@ class TransactionHistoryController {
   }
 
   async getPage(req: Request, res: Response) {
-    console.log('t5l');
     const schema = transactionHistoryPageQueryParamsSchema.parse(req.query);
     const transaction = await transactionHistoryService.getPage(schema);
     res.status(200).json(transaction);
