@@ -26,7 +26,7 @@ class PointsService {
       throw new NotFoundError('User not found');
     }
 
-    const pointsAmount = this.generatePointsAmount(request.amount);
+    const pointsAmount = this.generatePointsAmount(request.dollarAmount);
     const earnQuoteResponse = PointsMapper.toEarnQuoteResponse(user, pointsAmount);
     return earnQuoteResponse;
   }
