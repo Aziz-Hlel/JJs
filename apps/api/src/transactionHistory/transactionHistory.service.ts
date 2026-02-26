@@ -23,26 +23,26 @@ class TransactionHistoryService {
   //   return transactionResponse;
   // }
 
-  async getUserTransactionHistory(userId: string, params: CursorQueryParam) {
-    const userExists = await userRepo.isUserExists(userId);
-    if (!userExists) {
+  async getUserTransactionHistory(userUid: string, params: CursorQueryParam) {
+    const user = await userRepo.getUserByAuthId(userUid);
+    if (!user) {
       throw new NotFoundError('User does not exist');
     }
-    const { transactions, hasNextPage } = await transactionHistoryRepository.getUserHistory(userId, params);
+    const { transactions, hasNextPage } = await transactionHistoryRepository.getUserHistory(user.id, params);
     const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage);
     return transactionResponse;
   }
 
-  async getStaffTransactionHistory(staffId: string, params: CursorQueryParam) {
-    const staffExists = await userRepo.getUserById(staffId);
-    if (!staffExists) {
+  async getStaffTransactionHistory(staffUid: string, params: CursorQueryParam) {
+    const staff = await userRepo.getUserByAuthId(staffUid);
+    if (!staff) {
       throw new NotFoundError('Staff does not exist');
     }
-    const isStaff = staffExists.role === Role.STAFF;
+    const isStaff = staff.role === Role.STAFF;
     if (!isStaff) {
       throw new NotFoundError('User is not a staff');
     }
-    const { transactions, hasNextPage } = await transactionHistoryRepository.getStaffHistory(staffId, params);
+    const { transactions, hasNextPage } = await transactionHistoryRepository.getStaffHistory(staff.id, params);
     const transactionResponse = TransactionMapper.toPersonalHistoryResponses(transactions, hasNextPage, true);
     return transactionResponse;
   }

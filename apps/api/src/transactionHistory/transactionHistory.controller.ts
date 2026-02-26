@@ -15,14 +15,14 @@ class TransactionHistoryController {
 
   async getUserTransactionHistory(req: AuthenticatedRequest, res: Response) {
     const schema = cursorQueryParamSchema.parse(req.query);
-    const userId = req.user.claims.id;
+    const userId = req.user.uid;
     const transaction = await transactionHistoryService.getUserTransactionHistory(userId, schema);
     res.status(200).json(transaction);
   }
 
   async getStaffTransactionHistory(req: AuthenticatedRequest, res: Response) {
     const schema = cursorQueryParamSchema.parse(req.query);
-    const staffId = req.user.claims.id;
+    const staffId = req.user.uid;
     const transaction = await transactionHistoryService.getStaffTransactionHistory(staffId, schema);
     res.status(200).json(transaction);
   }
