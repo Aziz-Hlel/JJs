@@ -5,6 +5,8 @@ import { BadRequestError, ConflictError } from '@/err/customErrors';
 import { profileRepo } from '../repo/profile.repo';
 import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
 import { ProfileMapper } from '../mapper/profile.mapper';
+import { UpdateMyAccountRequest } from '@contracts/schemas/profile/updateMyAccountRequest';
+import UserMapper from '../mapper/user.mapper';
 
 class ProfileService {
   async create(token: DecodedIdTokenWithClaims, schema: CreateProfileRequest): Promise<UserProfileResponse> {
@@ -23,6 +25,20 @@ class ProfileService {
     const profile = await profileRepo.create(userId, schema);
 
     const userProfileResponse = ProfileMapper.toUserProfileResponse(profile, token);
+
+    return userProfileResponse;
+  }
+
+  async updateMyAccount(token: DecodedIdTokenWithClaims, schema: UpdateMyAccountRequest): Promise<UserProfileResponse> {
+    const user = await userRepo.getUserByAuthId(token.uid);
+
+    if (!user) {
+      throw new BadRequestError('User not found');
+    }
+
+    const profile = await userRepo.updateMyAccount(user.id, schema);
+
+    const userProfileResponse = UserMapper.toUserProfileResponse(profile, token.picture || null);
 
     return userProfileResponse;
   }

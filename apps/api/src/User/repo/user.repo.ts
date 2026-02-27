@@ -7,6 +7,7 @@ import { StrictDecodedIdToken } from '@/types/auth/StrictDecodedIdToken';
 import UserMapper, { UserCreateInputCustom } from '../mapper/user.mapper';
 import { Status } from '@/generated/prisma/enums';
 import { UpdateUserProfileRequest } from '@contracts/schemas/profile/updateUserProfileRequest';
+import { UpdateMyAccountRequest } from '@contracts/schemas/profile/updateMyAccountRequest';
 
 export class UserRepo {
   private includeProfile() {
@@ -164,6 +165,20 @@ export class UserRepo {
       },
     });
   }
+
+  async updateMyAccount(id: string, data: UpdateMyAccountRequest): Promise<UserWithProfile> {
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: {
+        username: data.username,
+      },
+      include: this.includeProfile(),
+    });
+    return updatedUser;
+  }
+
+
+  
 }
 
 export const userRepo = new UserRepo();

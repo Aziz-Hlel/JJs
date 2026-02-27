@@ -10,6 +10,7 @@ import { PermissionDeniedError } from '@/err/customErrors';
 import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
 import { updateUserProfileRequestSchema } from '@contracts/schemas/profile/updateUserProfileRequest';
 import { Page } from '@contracts/types/page/Page';
+import { updateMyAccountRequestSchema } from '@contracts/schemas/profile/updateMyAccountRequest';
 
 class UserController {
   async getUserPage(req: AuthenticatedRequest, res: Response<Page<UserProfileRowResponse>>) {
@@ -49,6 +50,13 @@ class UserController {
     res.status(204).send({ message: 'User deleted successfully' });
   }
 
+  async updateMyAccount(req: AuthenticatedRequest, res: Response<UserProfileResponse>) {
+    const parsedBody = updateMyAccountRequestSchema.parse(req.body);
+
+    const response = await userService.updateMyAccount(parsedBody, req.user);
+    res.status(200).json(response);
+  }
+
   async enableUser(req: AuthenticatedRequest, res: Response<SimpleApiResponse>) {
     const userId = req.params.id;
     const userRole = req.user.claims?.role;
@@ -65,6 +73,11 @@ class UserController {
     await userService.disableUser(userId, userRole);
 
     res.status(200).send({ message: 'User disabled successfully' });
+  }
+
+  async deleteMyAccount(req: AuthenticatedRequest, res: Response<SimpleApiResponse>) {
+    await userService.deleteMyAccount(req.user);
+    res.status(204).send({ message: 'User deleted successfully' });
   }
 }
 

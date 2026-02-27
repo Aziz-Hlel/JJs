@@ -22,6 +22,8 @@ import { logger } from '@/bootstrap/logger.init';
 import { RedisKeys } from '@/cache/keys/cache.keys';
 import { generateUserReferenceCode } from '../utils/generateUserReferenceCode';
 import { Page } from '@contracts/types/page/Page';
+import { UpdateMyAccountRequest } from '@contracts/schemas/profile/updateMyAccountRequest';
+import { DecodedIdTokenWithClaims } from '@/types/auth/DecodedIdTokenWithClaims';
 
 class UserService {
   async getUserPage(queryParams: UserPageQuery): Promise<Page<UserProfileRowResponse>> {
@@ -126,6 +128,20 @@ class UserService {
     return userProfileResponse;
   }
 
+  async updateMyAccount(schema: UpdateMyAccountRequest, token: DecodedIdTokenWithClaims): Promise<UserProfileResponse> {
+    const user = await userRepo.getUserByAuthId(token.uid);
+
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+
+    const updatedUser = await userRepo.updateMyAccount(user.id, schema);
+
+    const userProfileResponse = UserMapper.toUserProfileResponse(updatedUser, token.picture || null);
+
+    return userProfileResponse;
+  }
+
   async deleteUser(userToDeleteId: string, currentUserRole: Role): Promise<void> {
     const user = await userRepo.getUserById(userToDeleteId);
     if (!user) {
@@ -137,6 +153,16 @@ class UserService {
 
     await firebaseUserService.deleteUser(user.authId);
     await userRepo.deleteUser(userToDeleteId);
+  }
+
+  async deleteMyAccount(token: DecodedIdTokenWithClaims): Promise<void> {
+    const user = await userRepo.getUserByAuthId(token.uid);
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+
+    await firebaseUserService.deleteUser(user.authId);
+    await userRepo.deleteUser(user.id);
   }
 
   async disableUser(userId: string, currentUserRole: Role): Promise<void> {
