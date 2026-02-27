@@ -98,8 +98,8 @@ class FirebaseUserService {
 
   async deleteUser(authId: string): Promise<void> {
     try {
-      await this.firebaseSession.deleteUser(authId);
       await this.firebaseSession.revokeRefreshTokens(authId);
+      await this.firebaseSession.deleteUser(authId);
     } catch (error: unknown) {
       if (isFirebaseError(error)) handleFirebaseError(error);
 
