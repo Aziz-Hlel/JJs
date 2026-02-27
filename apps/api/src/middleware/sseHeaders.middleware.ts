@@ -11,7 +11,7 @@ const sseHeadersMiddleware = (req: Request, res: Response, next: NextFunction) =
     res.write(`: keep-alive\n\n`);
     console.log('heartbeat sent ❤️ 💕😍');
   }, 25000);
-  req.on('close', () => {
+  res.on('close', () => {
     clearInterval(heartbeat);
     console.log('heartbeat cleared 💔 😢');
   });
