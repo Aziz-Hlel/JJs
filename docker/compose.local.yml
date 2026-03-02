@@ -60,6 +60,13 @@ services:
 
     entrypoint: ['/bin/sh', '/init_minio.sh']
 
+  mailpit:
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports:
+      - '${SMTP_UI_PORT:?SMTP_UI_PORT is required}:8025' # Web UI
+      - '${SMTP_PORT:?SMTP_PORT is required}:1025'
+
 volumes:
   jj_db_local_volume:
   jj_redis_local_volume:

@@ -1,0 +1,38 @@
+
+
+@baseUrl = http://localhost:5000/api
+
+
+
+
+
+### Send Contact Us
+# @name SendContactUs
+POST {{baseUrl}}/email/contact-us
+Content-Type: application/json
+
+{
+    "email": "testContactUs@gamil.com",
+    "name": "testContactUs name",
+    "subject": "testContactUs subject",
+    "message": "testContactUs message"
+}
+
+
+### Send Reservation
+# @name SendReservation
+POST {{baseUrl}}/email/reservation
+Content-Type: application/json
+
+{
+    "firstName": "testReservation",
+    "lastName": "testReservation",
+    "email": "testReservation@gamil.com",
+    "phone": "testReservation phone",
+    "date": "testReservation date",
+    "time": "testReservation time",
+    "guests": 10,
+    "space": "SPORTS",
+    "event": "BIRTHDAY",
+    "message": "testReservation message"
+}
