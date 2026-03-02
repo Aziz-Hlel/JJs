@@ -10,6 +10,7 @@ import { transactionHistoryRoute } from '@/transactionHistory/transactionHistory
 import { pointsRouter } from '@/points/points.route';
 import { entertainmentRouter } from '@/entertaiment/entertainment.route';
 import { EmailRouter } from '@/email/email.route';
+import { MobileRouter } from '@/mobile/mobile.route';
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.use('/transaction-history', transactionHistoryRoute);
 router.use('/points', pointsRouter);
 router.use('/entertainment', entertainmentRouter);
 router.use('/email', EmailRouter);
+router.use('/mobile', MobileRouter);
 
 export default router;

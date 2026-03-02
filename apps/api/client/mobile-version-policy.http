@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:5000/api
+
+
+
+### Get Android Version Policy
+GET {{baseUrl}}/mobile/android/version-policy
+Content-Type: application/json
+
+
+### Get Ios Version Policy
+GET {{baseUrl}}/mobile/ios/version-policy
+Content-Type: application/json
