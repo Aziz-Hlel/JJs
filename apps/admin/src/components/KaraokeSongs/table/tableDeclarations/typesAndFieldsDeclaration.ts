@@ -1,19 +1,19 @@
 import {
-  entertainmentColumnFiltersKeys,
-  entertainmentDefaultQuery,
-  entertainmentSortableColumnKeys,
-  type EntertainmentRequiredTableQueryParams,
-  type EntertainmentTableRowType,
-} from '@contracts/schemas/Entertainment/EntertaimentPageQuery';
+  KaraokeSongColumnFiltersKeys,
+  KaraokeSongDefaultQuery,
+  KaraokeSongSortableColumnKeys,
+  type KaraokeSongRequiredTableQueryParams,
+  type KaraokeSongTableRowType,
+} from '@contracts/schemas/karaekoSong/KaraekoSongPageQuery';
 
-export type TableRowType = EntertainmentTableRowType;
+export type TableRowType = KaraokeSongTableRowType;
 
 export type TableRowKeys = keyof TableRowType;
 
-export type RequiredTableQueryParams = EntertainmentRequiredTableQueryParams;
+export type RequiredTableQueryParams = KaraokeSongRequiredTableQueryParams;
 
-export const columnFiltersKeys = entertainmentColumnFiltersKeys;
+export const columnFiltersKeys = KaraokeSongColumnFiltersKeys;
 
-export const sortableColumnKeys = entertainmentSortableColumnKeys;
+export const sortableColumnKeys = KaraokeSongSortableColumnKeys;
 
-export const defaultQuery = entertainmentDefaultQuery;
+export const defaultQuery = KaraokeSongDefaultQuery;

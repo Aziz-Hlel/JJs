@@ -3,7 +3,7 @@ import BreadcrumbHeader from '@/pages/Header';
 import { Button } from '../ui/button';
 import { useSelectedRow } from './context/selected-row-provider';
 import DialogContainer from './dialogs/DialogContainer';
-import KaraokeSongsTable from './EntertainmentTable';
+import KaraokeSongsTable from './KaraokeSongsTable';
 
 const KaraokeSongsIndex = () => {
   const { handleDialogChange } = useSelectedRow();
