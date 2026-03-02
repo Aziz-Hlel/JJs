@@ -5,11 +5,13 @@ import seed from '@/seeds';
 import { storageProviderTestConnection } from './test-connection/storageProvider.test.connection';
 import karaokeSongInit from '@/karaokeSong/KaraokeSong.init';
 import { connectPubSub } from './pubsub.init';
+import testEmailTransporterConnection from './test-connection/email.test.connection';
 
 const asyncBootstrapHandlers = async () => {
   await Promise.all([
     testFirebaseConnection(),
     testDbConnection(),
+    testEmailTransporterConnection(),
     connectRedis(),
     connectPubSub(),
     storageProviderTestConnection(),
