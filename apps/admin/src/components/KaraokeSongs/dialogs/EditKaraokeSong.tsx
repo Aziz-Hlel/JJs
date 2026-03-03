@@ -23,6 +23,7 @@ import {
   updatekaraekoSongSchema,
   type UpdatekaraekoSongRequest,
 } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+import { ApiError } from '@/Api/ApiError';
 
 const EditOffer = () => {
   const { handleCancel, currentRow } = useSelectedRow();
@@ -63,6 +64,10 @@ const EditOffer = () => {
       await mutateAsync({ id: currentRow.id, data });
       toast.success('Karaoke song updated successfully');
     } catch (error) {
+      if (error instanceof ApiError && error.status === 409) {
+        form.setError('title', { message: 'Title already exists' });
+        return;
+      }
       toast.error('Failed to update karaoke song');
     }
   };

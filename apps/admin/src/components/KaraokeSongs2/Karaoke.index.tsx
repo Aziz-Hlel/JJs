@@ -6,7 +6,7 @@ import KareokeCard from './KareokeCard';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import EditKaraoke from './EditKaraoke';
 import { useState } from 'react';
-import type { KaraokeSongResponse } from '@contracts/karaekoSong/KaraokeSongResponse';
+import type { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
 
 const KaraokeIndex = () => {
   const { data, isLoading } = useQuery({

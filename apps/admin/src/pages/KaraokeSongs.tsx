@@ -1,6 +1,10 @@
-import KaraokeIndex from '@/components/KaraokeSongs2/Karaoke.index';
-import React from 'react';
+import { SelectedRowProvider } from '@/components/KaraokeSongs/context/selected-row-provider';
+import KaraokeSongsIndex from '@/components/KaraokeSongs/KaraokeSongs.index';
 
-const KaraokeSongs = () => <KaraokeIndex />;
+const KaraokeSongs = () => (
+  <SelectedRowProvider>
+    <KaraokeSongsIndex />
+  </SelectedRowProvider>
+);
 
 export default KaraokeSongs;

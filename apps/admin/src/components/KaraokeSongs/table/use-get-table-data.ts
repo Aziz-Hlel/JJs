@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import type { TableRowType } from './tableDeclarations/typesAndFieldsDeclaration';
 import useQueryParams from './use-query-params';
 import type { Pageable } from '@contracts/types/page/Pageable';
-import entertainmentService from '@/Api/service/EntertainmentService';
+import KaraokeSongService from '@/Api/service/KaraokeSongService';
 
 const blankPagination: Pageable = {
   size: 0,
@@ -21,8 +21,8 @@ const useGetTableData = () => {
   };
 
   const { data, isFetching } = useQuery({
-    queryKey: ['entertainments', { ...queryParams }],
-    queryFn: async () => await entertainmentService.getPage(adjustedQueryParams),
+    queryKey: ['karaoke-songs', { ...queryParams }],
+    queryFn: async () => await KaraokeSongService.getPage(adjustedQueryParams),
     placeholderData: (previousData) => previousData,
   });
 

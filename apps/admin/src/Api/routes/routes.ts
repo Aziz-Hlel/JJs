@@ -30,6 +30,7 @@ const apiRoutes = {
   },
   karaokeSongs: {
     getAll: () => '/karaoke-songs' as const,
+    getPage: () => '/karaoke-songs/page' as const,
     create: () => '/karaoke-songs/' as const,
     update: (id: string) => `/karaoke-songs/${id}` as const,
     delete: (id: string) => `/karaoke-songs/${id}` as const,
