@@ -11,9 +11,9 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import entertainmentService from '@/Api/service/EntertainmentService';
+import KaraokeSongService from '@/Api/service/KaraokeSongService';
 
-const DeleteOffer = () => {
+const DeleteKaraokeSong = () => {
   const { handleCancel, openDialog, currentRow } = useSelectedRow();
 
   if (!currentRow) throw new Error('No row selected');
@@ -21,20 +21,20 @@ const DeleteOffer = () => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationKey: ['entertainments', 'delete'],
-    mutationFn: entertainmentService.delete,
+    mutationKey: ['karaoke-songs', 'delete'],
+    mutationFn: KaraokeSongService.delete,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['entertainments'], exact: false });
-      toast.success('Entertainment deleted successfully');
+      queryClient.invalidateQueries({ queryKey: ['karaoke-songs'], exact: false });
+      toast.success('Karaoke song deleted successfully');
       handleCancel();
     },
   });
 
-  const deleteOffer = async () => {
+  const deleteKaraokeSong = async () => {
     try {
       await mutateAsync(currentRow.id);
     } catch (error) {
-      toast.error('Failed to delete entertainment');
+      toast.error('Failed to delete karaoke song');
       handleCancel();
     }
   };
@@ -46,13 +46,13 @@ const DeleteOffer = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the entertainment &quot;{currentRow.title}
+              This action cannot be undone. This will permanently delete the karaoke song &quot;{currentRow.title}
               &quot; and remove its data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
-            <Button onClick={deleteOffer} className=" bg-red-600 hover:bg-red-500">
+            <Button onClick={deleteKaraokeSong} className=" bg-red-600 hover:bg-red-500">
               Delete
             </Button>
           </AlertDialogFooter>
@@ -62,4 +62,4 @@ const DeleteOffer = () => {
   );
 };
 
-export default DeleteOffer;
+export default DeleteKaraokeSong;

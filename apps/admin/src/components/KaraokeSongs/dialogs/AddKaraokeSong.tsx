@@ -11,43 +11,41 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
-import { Textarea } from '@/components/ui/textarea';
-import ImageUpload from '@/components/ui2/ImageUpload/comp/ImageUpload';
+import KaraokeSongService from '@/Api/service/KaraokeSongService';
 import {
-  createEntertainmentRequestSchema,
-  type CreateEntertainmentRequest,
-} from '@contracts/schemas/Entertainment/createEntertainmentRequest';
-import entertainmentService from '@/Api/service/EntertainmentService';
+  createkaraekoSongSchema,
+  type CreatekaraekoSongRequest,
+} from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
+import { Separator } from '@/components/ui/separator';
+import { ApiError } from '@/Api/ApiError';
 
-const AddEntertainment = () => {
+const AddKaraokeSong = () => {
   const { handleCancel, openDialog } = useSelectedRow();
   const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
-    mutationKey: ['entertainments', 'create'],
-    mutationFn: entertainmentService.create,
+    mutationKey: ['karaoke-songs', 'create'],
+    mutationFn: KaraokeSongService.create,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['entertainments'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['karaoke-songs'], exact: false });
       form.reset();
       handleCancel();
     },
   });
 
-  const defaultValues: CreateEntertainmentRequest = {
-    name: '',
-    description: '',
-    date: '',
-    thumbnailId: '',
+  const defaultValues: CreatekaraekoSongRequest = {
+    title: '',
+    artist: '',
+    album: '',
   };
 
-  const form = useForm<CreateEntertainmentRequest>({
-    resolver: zodResolver(createEntertainmentRequestSchema),
+  const form = useForm<CreatekaraekoSongRequest>({
+    resolver: zodResolver(createkaraekoSongSchema),
     defaultValues: defaultValues,
   });
 
@@ -58,104 +56,88 @@ const AddEntertainment = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<CreateEntertainmentRequest> = async (data) => {
+  const onSubmit: SubmitHandler<CreatekaraekoSongRequest> = async (data) => {
     try {
       await mutateAsync(data);
-      toast.success('Entertainment created successfully');
+      toast.success('Karaoke song created successfully');
     } catch (error) {
-      console.log(error);
-      // if (error instanceof ApiError && error.status === 409) {
-      //   form.setError('title', { message: 'Title already exists' });
-      //   return;
-      // }
-      toast.error('Failed to create entertainment');
+      if (error instanceof ApiError && error.status === 409) {
+        form.setError('title', { message: 'Title already exists' });
+        return;
+      }
+      toast.error('Failed to create karaoke song');
     }
   };
 
   const dialogIsOpen = openDialog === 'add';
 
-  console.log('form :', form.getValues());
-
-  const thumbnailErrors = [form.formState.errors.thumbnailId?.message];
-
-  const clearMediaErrors = () => {
-    form.clearErrors('thumbnailId');
-  };
-
-  const handleThumbnailUpload = (newMediaId: string | null) => {
-    form.setValue(
-      'thumbnailId',
-      newMediaId ?? '',
-      newMediaId ? { shouldDirty: true, shouldValidate: true } : undefined,
-    );
-  };
   return (
     <Dialog onOpenChange={onOpenChange} open={dialogIsOpen}>
-      <DialogContent className="sm:max-w-106.25 h-[calc(100dvh-4rem)] flex flex-col overflow-hidden  ">
+      <DialogContent className="sm:max-w-106.25  flex flex-col overflow-hidden  ">
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex flex-col h-full">
           <DialogHeader>
-            <DialogTitle>Create Entertainment</DialogTitle>
-            <DialogDescription>Fill the form below to create a new entertainment.</DialogDescription>
+            <DialogTitle className=" text-center">Update Karaoke Song</DialogTitle>
+            <DialogDescription className=" text-center">All fields marked with * are optional.</DialogDescription>
+            <Separator />
           </DialogHeader>
-          <div
-            className=" 
-              flex-1 min-h-0 overflow-y-auto pr-2  overscroll-contain scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent hover:scrollbar-thumb-neutral-400"
-          >
+          <div className="flex-1 min-h-0 overflow-y-auto pr-2 overscroll-contain scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent hover:scrollbar-thumb-neutral-400">
             <FieldGroup>
               <Controller
-                name="name"
+                name="title"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={`name-input`}>Name</FieldLabel>
-                    <Input {...field} id={`name-input`} aria-invalid={fieldState.invalid} placeholder="Name" />
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-                )}
-              />
-
-              <Controller
-                name="description"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={`description-input`}>Description</FieldLabel>
-                    <Textarea
-                      {...field}
-                      id={`description-input`}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Description"
-                    />
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-                )}
-              />
-
-              <Controller
-                name="date"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={`date-input`}>Date</FieldLabel>
+                    <FieldLabel htmlFor={`title-input`}>Song Title</FieldLabel>
                     <Input
                       {...field}
-                      id={`date-input`}
+                      id={`title-input`}
                       aria-invalid={fieldState.invalid}
-                      placeholder="Monday – Sunday / Starting from 8.30pm onwards"
+                      placeholder="Title"
+                      value={field.value ?? undefined}
                     />
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                    <FieldError errors={[fieldState.error]} />
                   </Field>
                 )}
               />
 
-              <ImageUpload
-                initMedia={null}
-                mediaErrors={thumbnailErrors}
-                clearMediaErrors={clearMediaErrors}
-                handleMediaUpload={handleThumbnailUpload}
+              <Controller
+                name="artist"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`artist-input`}>Artist Name *</FieldLabel>
+                    <Input
+                      {...field}
+                      id={`artist-input`}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Artist Name"
+                      value={field.value ?? undefined}
+                    />
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="album"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={`album-input`}>Album *</FieldLabel>
+                    <Input
+                      {...field}
+                      id={`album-input`}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Album"
+                      value={field.value ?? undefined}
+                    />
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
               />
             </FieldGroup>
           </div>
+
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline" onClick={handleCancel}>
@@ -172,4 +154,4 @@ const AddEntertainment = () => {
   );
 };
 
-export default AddEntertainment;
+export default AddKaraokeSong;

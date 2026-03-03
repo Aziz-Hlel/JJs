@@ -14,10 +14,10 @@ export const sendReservationRequestSchema = z.object({
   date: z.string().trim().min(1, 'Date is required').max(255, 'Date must be at most 255 characters long'),
   time: z.string().trim().min(1, 'Time is required').max(255, 'Time must be at most 255 characters long'),
   guests: z.number().positive().max(100, 'Guests must be at most 100'),
-  space: z.enum(EnumSpaces).nullable(),
-  event: z.enum(EnumEvents).nullable(),
+  space: z.enum(EnumSpaces).nullable().optional(),
+  event: z.enum(EnumEvents).nullable().optional(),
   isVip: z.boolean(),
-  message: z.string().trim().max(1000, 'Message must be at most 1000 characters long').nullable(),
+  message: z.string().trim().max(1000, 'Message must be at most 1000 characters long').nullable().optional(),
 });
 
 export type SendReservationRequest = z.infer<typeof sendReservationRequestSchema>;

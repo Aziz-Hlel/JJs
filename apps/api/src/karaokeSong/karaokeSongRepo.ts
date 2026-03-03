@@ -1,6 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
 import { logger } from '@/bootstrap/logger.init';
 import { Prisma } from '@/generated/prisma/client';
+import { KaraokeSongOrderByWithRelationInput, KaraokeSongWhereInput } from '@/generated/prisma/models';
 import { CreatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
 import { UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
 
@@ -112,6 +113,30 @@ class KaraokeSongRepo {
       logger.error(error, `Error deleting karaoke song with id ${id}:`);
       throw new Error('Failed to delete karaoke song');
     }
+  }
+
+  async getPage({
+    skip,
+    take,
+    where,
+    orderBy,
+  }: {
+    skip: number;
+    take: number;
+    where: KaraokeSongWhereInput;
+    orderBy: KaraokeSongOrderByWithRelationInput;
+  }) {
+    const karaokeSongs = prisma.karaokeSong.findMany({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
+    const karaokeSongsCount = prisma.karaokeSong.count({ where });
+
+    const [content, totalElements] = await Promise.all([karaokeSongs, karaokeSongsCount]);
+
+    return { content, totalElements };
   }
 }
 

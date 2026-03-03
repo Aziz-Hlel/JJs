@@ -32,7 +32,8 @@ Content-Type: application/json
     "date": "testReservation date",
     "time": "testReservation time",
     "guests": 10,
-    "space": "SPORTS",
+    "space": null,
     "event": "BIRTHDAY",
+    "isVip":true,
     "message": "testReservation message"
 }

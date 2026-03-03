@@ -41,9 +41,9 @@ const EditOffer = () => {
   });
 
   const defaultValues: UpdatekaraekoSongRequest = {
-    title: currentRow?.title,
-    artist: currentRow?.artist,
-    album: currentRow?.album,
+    title: currentRow.title,
+    artist: currentRow.artist,
+    album: currentRow.album,
   };
 
   const form = useForm<UpdatekaraekoSongRequest>({
@@ -60,7 +60,7 @@ const EditOffer = () => {
 
   const onSubmit: SubmitHandler<UpdatekaraekoSongRequest> = async (data) => {
     try {
-      await mutateAsync({ id: currentRow!.id, data });
+      await mutateAsync({ id: currentRow.id, data });
       toast.success('Karaoke song updated successfully');
     } catch (error) {
       toast.error('Failed to update karaoke song');

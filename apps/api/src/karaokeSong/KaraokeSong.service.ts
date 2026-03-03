@@ -33,7 +33,7 @@ class KaraokeSongService {
     return response;
   }
 
-  async updateSelectedKaraokeSongs() {}
+  async getPage()
 }
 
 export const karaokeSongService = new KaraokeSongService();
