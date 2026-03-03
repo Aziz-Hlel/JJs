@@ -24,10 +24,10 @@ class EmailUtils {
         <p><strong>Date:</strong> ${date}</p>
         <p><strong>Time:</strong> ${time}</p>
         <p><strong>Guests:</strong> ${guests}</p>
-        <p><strong>Space:</strong> ${space}</p>
-        <p><strong>Event:</strong> ${event}</p>
+        <p><strong>Space:</strong> ${space ?? 'No space selected'}</p>
+        <p><strong>Event:</strong> ${event ?? 'No event selected'}</p>
         <p><strong>VIP:</strong> ${isVip ? 'Yes' : 'No'}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Message:</strong> ${message ?? 'No message provided'}</p>
         `;
     return html;
   }

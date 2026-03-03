@@ -19,7 +19,7 @@ const asyncBootstrapHandlers = async () => {
   //
   await seed();
 
-  await karaokeSongInit();
+  // await karaokeSongInit();
 };
 
 export default asyncBootstrapHandlers;

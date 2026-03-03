@@ -103,6 +103,7 @@ class KaraokeSongRepo {
       throw new Error('Failed to fetch karaoke songs');
     }
   }
+  
 
   async delete(id: string) {
     try {

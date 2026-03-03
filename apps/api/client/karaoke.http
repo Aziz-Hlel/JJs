@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:5000/api
+
+
+###
+# @name getShuffle
+GET {{baseUrl}}/karaoke-songs/shuffle
+Content-Type: application/json

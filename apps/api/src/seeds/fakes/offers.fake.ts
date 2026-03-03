@@ -86,11 +86,7 @@ const createFakeOffer = (
   return fakeOffer;
 };
 
-const generateFakeOffer = () => {
-  return faker.image.url();
-};
 
-const fakeOffers = [];
 const seedOffers = async () => {
   const fakeOffers = fakeOffersData.map((offer) => createFakeOffer(null, offer));
   for (const offer of fakeOffers) {

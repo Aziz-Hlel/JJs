@@ -70,10 +70,8 @@ class EmailProvider {
         handleSES_Error(error, options.throwable);
       }
       if (ENV.NODE_ENV !== 'production' && error instanceof Error && isMailpitError(error)) {
-        console.log('t5l');
         handleMailpit_Error(error, options.throwable);
       }
-      console.log('xnxx');
       if (options.throwable) throw error;
     }
   }
