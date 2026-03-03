@@ -16,6 +16,7 @@ export const sendReservationRequestSchema = z.object({
   guests: z.number().positive().max(100, 'Guests must be at most 100'),
   space: z.enum(EnumSpaces).nullable(),
   event: z.enum(EnumEvents).nullable(),
+  isVip: z.boolean(),
   message: z.string().trim().max(1000, 'Message must be at most 1000 characters long').nullable(),
 });
 

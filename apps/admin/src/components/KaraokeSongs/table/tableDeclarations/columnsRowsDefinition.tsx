@@ -5,21 +5,18 @@ import HeaderContainer from '../ContainerComp/HeaderContainer';
 import RowContainer from '../ContainerComp/RowContainer';
 import type { TableRowType } from './typesAndFieldsDeclaration';
 import ActionsColumn from '../columns/ActionsColumn';
-import IsFeatured from '../EnumColumns/IsFeatured/IsFeatured';
 
 type ColumnDefCustom<T> = ColumnDef<T> & { accessorKey?: keyof T };
 
 const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
   {
     id: 'name',
-    accessorFn: (row: TableRowType) => ({
-      name: row.name,
-      isFeatured: row.isFeatured,
-    }),
+    accessorKey: 'title',
+
     header: ({ column }) => {
       return (
         <HeaderContainer onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          <span>Name </span>
+          <span>Title</span>
           {column.getIsSorted() === 'asc' && <ArrowUp />}
           {column.getIsSorted() === 'desc' && <ArrowUp className="rotate-180" />}
           {column.getIsSorted() === false && <ChevronsUpDown />}
@@ -27,17 +24,8 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       );
     },
     cell: ({ getValue }) => {
-      const { name, isFeatured } = getValue<{
-        name: string;
-        isFeatured: boolean;
-      }>();
-      return (
-        <RowContainer className="lowercase w-96 ">
-          <IsFeatured isFeatured={isFeatured} />
-          &nbsp;
-          {name}
-        </RowContainer>
-      );
+      const title = getValue<string>();
+      return <RowContainer className="lowercase w-96 ">{title}</RowContainer>;
     },
 
     enableSorting: true,
@@ -45,12 +33,12 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
     enableGlobalFilter: true,
   },
   {
-    id: 'description',
-    accessorKey: 'description',
+    id: 'artist',
+    accessorKey: 'artist',
     header: ({ column }) => {
       return (
         <HeaderContainer onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          <span>Description</span>
+          <span>Artist</span>
           {column.getIsSorted() === 'asc' && <ArrowUp />}
           {column.getIsSorted() === 'desc' && <ArrowUp className="rotate-180" />}
           {column.getIsSorted() === false && <ChevronsUpDown />}
@@ -58,8 +46,8 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       );
     },
     cell: ({ getValue }) => {
-      const description = getValue<string>();
-      return <RowContainer className=" w-96 truncate whitespace-nowrap ">{description}</RowContainer>;
+      const artist = getValue<string>();
+      return <RowContainer className=" w-96 truncate whitespace-nowrap ">{artist}</RowContainer>;
     },
 
     enableSorting: true,
@@ -67,12 +55,12 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
   },
 
   {
-    id: 'date',
-    accessorKey: 'date',
+    id: 'album',
+    accessorKey: 'album',
     header: ({ column }) => {
       return (
         <HeaderContainer onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          <span>Date</span>
+          <span>Album</span>
           {column.getIsSorted() === 'asc' && <ArrowUp />}
           {column.getIsSorted() === 'desc' && <ArrowUp className="rotate-180" />}
           {column.getIsSorted() === false && <ChevronsUpDown />}
@@ -80,8 +68,8 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       );
     },
     cell: ({ getValue }) => {
-      const dateString = getValue<string>();
-      return <RowContainer className=" w-full">{dateString}</RowContainer>;
+      const album = getValue<string>();
+      return <RowContainer className=" w-full">{album}</RowContainer>;
     },
 
     enableSorting: true,

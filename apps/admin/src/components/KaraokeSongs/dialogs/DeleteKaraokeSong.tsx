@@ -15,6 +15,9 @@ import entertainmentService from '@/Api/service/EntertainmentService';
 
 const DeleteOffer = () => {
   const { handleCancel, openDialog, currentRow } = useSelectedRow();
+
+  if (!currentRow) throw new Error('No row selected');
+
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
@@ -29,7 +32,7 @@ const DeleteOffer = () => {
 
   const deleteOffer = async () => {
     try {
-      await mutateAsync(currentRow?.id!);
+      await mutateAsync(currentRow.id);
     } catch (error) {
       toast.error('Failed to delete entertainment');
       handleCancel();
@@ -43,7 +46,7 @@ const DeleteOffer = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the entertainment &quot;{currentRow?.name}
+              This action cannot be undone. This will permanently delete the entertainment &quot;{currentRow.title}
               &quot; and remove its data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>

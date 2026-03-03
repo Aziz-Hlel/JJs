@@ -15,7 +15,7 @@ class EmailUtils {
   }
 
   createReservationHtml(payload: SendReservationRequest) {
-    const { firstName, lastName, email, phone, date, time, guests, space, event, message } = payload;
+    const { firstName, lastName, email, phone, date, time, guests, space, event, isVip, message } = payload;
     const html = `
         <h1>Reservation Request</h1>
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
@@ -26,6 +26,7 @@ class EmailUtils {
         <p><strong>Guests:</strong> ${guests}</p>
         <p><strong>Space:</strong> ${space}</p>
         <p><strong>Event:</strong> ${event}</p>
+        <p><strong>VIP:</strong> ${isVip ? 'Yes' : 'No'}</p>
         <p><strong>Message:</strong> ${message}</p>
         `;
     return html;

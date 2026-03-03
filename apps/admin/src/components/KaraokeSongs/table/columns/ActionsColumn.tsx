@@ -1,4 +1,4 @@
-import { EllipsisVertical, Trash2, SquarePen, Star } from 'lucide-react';
+import { EllipsisVertical, Trash2, SquarePen } from 'lucide-react';
 
 import React, { Fragment } from 'react';
 import type { TableRowType } from '../tableDeclarations/typesAndFieldsDeclaration';
@@ -16,7 +16,7 @@ import RowContainer from '../ContainerComp/RowContainer';
 import { Button } from '@/components/ui/button';
 
 type RowAction = {
-  key: 'edit' | 'delete' | 'feature';
+  key: 'edit' | 'delete';
   label: string;
   icon: React.ReactNode;
   isPermitted: boolean;
@@ -50,16 +50,7 @@ const ActionsColumn = ({ row }: { row: Row<TableRowType> }) => {
         handleDialogChange('edit');
       },
     },
-    {
-      key: 'feature',
-      label: row.original.isFeatured ? 'Unfeature' : 'Feature',
-      icon: <Star size={16} className="text-amber-500" />,
-      isPermitted: true,
-      onClick: () => {
-        setCurrentRow(row.original);
-        handleDialogChange('feature');
-      },
-    },
+
     {
       key: 'delete',
       label: 'Delete',
