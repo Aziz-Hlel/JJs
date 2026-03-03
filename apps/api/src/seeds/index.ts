@@ -1,4 +1,3 @@
-import { logger } from '@/bootstrap/logger.init';
 import ENV from '../config/ENV';
 import seedUsers from './fakes/users.fake';
 import { seedProdUsers } from './prod/users';

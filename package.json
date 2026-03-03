@@ -10,6 +10,7 @@
     "dev-api": "cd apps/api && pnpm dev",
     "dev-admin": "cd apps/admin && pnpm dev",
     "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/admin dev",
+    "docker:dev": "node scripts/docker-up.js dev",
     "test": ""
   },
   "lint-staged": {
@@ -23,6 +24,7 @@
   "packageManager": "pnpm@10.17.0",
   "devDependencies": {
     "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
     "husky": "^9.1.7",
     "prettier": "^3.7.4"
   },
