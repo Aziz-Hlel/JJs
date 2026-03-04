@@ -77,6 +77,7 @@ enum PointsTransactionType {
 model Profile {
   id          String  @id @default(uuid())
   phoneNumber String?
+  gender      String?
   address     String?
   avatar      String?
 

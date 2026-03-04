@@ -167,10 +167,22 @@ export class UserRepo {
   }
 
   async updateMyAccount(id: string, data: UpdateMyAccountRequest): Promise<UserWithProfile> {
+    const profileData = {
+      phoneNumber: data.phoneNumber,
+      gender: data.gender,
+      address: data.address,
+    };
+
     const updatedUser = await prisma.user.update({
       where: { id },
       data: {
         username: data.username,
+        profile: {
+          upsert: {
+            create: profileData,
+            update: profileData,
+          },
+        },
       },
       include: this.includeProfile(),
     });
@@ -178,7 +190,7 @@ export class UserRepo {
   }
 
 
-  
+
 }
 
 export const userRepo = new UserRepo();

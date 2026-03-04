@@ -65,7 +65,7 @@ const createFakeOffer = (
   const fakeOffer = {
     title: title,
     description: faker.lorem.paragraph(),
-    code: faker.number.int({ min: 10, max: 1000 }).toString(),
+    code: faker.number.int({ min: 100, max: 1000 }).toString(),
     points: faker.number.int({ min: 10, max: 1000 }),
     status: faker.helpers.arrayElement(Object.values(OfferStatus)),
     isFeatured: isFeatured,
