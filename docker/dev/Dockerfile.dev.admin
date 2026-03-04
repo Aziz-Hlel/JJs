@@ -5,6 +5,10 @@ ARG APP_PATH=apps/admin
 # Install pnpm globally
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
+WORKDIR /app/packages/contracts
+COPY ./packages/contracts/package.json ./
+RUN pnpm install
+
 WORKDIR /app/${APP_PATH}
 
 COPY ${APP_PATH}/package.json  ./

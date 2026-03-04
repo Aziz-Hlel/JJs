@@ -1,0 +1,40 @@
+FROM node:22.14.0-alpine AS builder
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
+
+WORKDIR /app/apps/api
+COPY apps/api/package.json ./
+COPY apps/api/prisma ./prisma
+# COPY apps/api/pnpm-lock.yaml ./
+COPY apps/api/prisma ./prisma
+
+RUN pnpm install 
+RUN pnpm prisma generate
+
+WORKDIR /app/packages/contracts
+COPY ./packages/contracts/package.json ./
+RUN pnpm install
+
+WORKDIR /app/apps/api
+COPY ./apps/api .
+
+RUN pnpm run build
+
+
+FROM node:22.14.0-alpine AS runner
+
+
+WORKDIR /app/apps/api
+
+COPY --from=builder /app/apps/api/node_modules ./node_modules
+COPY --from=builder ./app/apps/api/package.json ./
+# COPY --from=builder ./app/apps/api/pnpm-lock.yaml ./
+COPY --from=builder  ./app/apps/api/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=builder ./app/apps/api/public ./public
+COPY --from=builder ./app/apps/api/templates ./templates
+COPY --from=builder /app/apps/api/prisma ./prisma/
+COPY --from=builder /app/apps/api/dist ./dist/
+
+USER nodejs
+
+

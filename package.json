@@ -11,6 +11,7 @@
     "dev-admin": "cd apps/admin && pnpm dev",
     "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/admin dev",
     "docker:dev": "node scripts/docker-up.js dev",
+    "docker:stage": "node scripts/docker-up.js stage",
     "test": ""
   },
   "lint-staged": {
