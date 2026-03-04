@@ -34,7 +34,7 @@ export class TransactionMapper {
       },
       offerName: offerName,
       dollarAmount: dollarAmount,
-    };
+    } as any; // !
   }
 
   static toPersonalHistoryResponse(
@@ -60,7 +60,7 @@ export class TransactionMapper {
       ...(isStaff && {
         userCode: transaction.user.referenceCode,
       }),
-    };
+    } as any; // !
   }
 
   static toPersonalHistoryResponses(
@@ -108,7 +108,7 @@ export class TransactionMapper {
 
       offerName: offerName,
       dollarAmount: dollarAmount,
-    };
+    } as any; // !
   }
 
   static toRowsResponse(params: {
