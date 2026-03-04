@@ -8,8 +8,12 @@
     "start": "node dist/app.js",
     "lint": "eslint . --ext .ts",
     "format:fix": "prettier --write .",
-    "build": "tsc && tsc-alias -p tsconfig.json --resolve-full-paths",
+    "build": "tsc -p tsconfig.json",
     "dev": "tsx watch --clear-screen=false --include src --include ../../packages/contracts/src index.ts"
+  },
+  "_moduleAliases": {
+    "@": "dist/apps/api/src",
+    "@contracts": "dist/packages/contracts/src"
   },
   "keywords": [],
   "author": "",

@@ -37,7 +37,7 @@ services:
 
     ports:
       - '${API_PORT:?API_PORT is required}:${API_PORT}'
-
+    
     command: sh -c "node /app/apps/api/src/index.js"
 
     depends_on:

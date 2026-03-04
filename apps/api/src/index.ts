@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import ENV from './config/ENV';
 import { createExpressApp } from './app/app';
 import asyncBootstrapHandlers from './bootstrap/bootstraps';
