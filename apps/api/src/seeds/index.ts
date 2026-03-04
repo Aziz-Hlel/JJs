@@ -15,12 +15,12 @@ const seed = async () => {
   const prodUsersSeed = seedProdUsers();
 
   const productsSeed = seedProducts();
-  const offersSeed = seedOffers();
+  // const offersSeed = seedOffers();
   const entertaimentSeed = seedEntertainments();
   const karaokeSongSeed = seedKaraokeSongs();
 
   try {
-    await Promise.all([userSeed, prodUsersSeed, productsSeed, entertaimentSeed, offersSeed, karaokeSongSeed]);
+    await Promise.all([userSeed, prodUsersSeed, productsSeed, entertaimentSeed, karaokeSongSeed]);
   } catch (error) {
     console.error('❌ ERROR : Seeding failed.', error);
     throw error;

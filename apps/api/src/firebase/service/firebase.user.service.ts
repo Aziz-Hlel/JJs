@@ -5,7 +5,6 @@ import { firebaseSession } from '@/bootstrap/firebase.init';
 import { firebaseAuthService } from './firebase.auth.service';
 import { Role } from '@/generated/prisma/enums';
 import { SafeResponse } from '@/types/in/SafeResponse';
-import { BadRequestError } from '@/err/customErrors';
 
 class FirebaseUserService {
   private firebaseSession = firebaseSession;

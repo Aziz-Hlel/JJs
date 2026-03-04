@@ -17,9 +17,8 @@ class PointsController {
 
   async earnConfirm(req: AuthenticatedRequest, res: Response) {
     const schema = earnPointsRequestSchema.parse(req.body);
-    const user = req.user;
-    const staffUid = user.uid;
-    const redeemQuoteResponse = await pointsService.confirmEarnPoints({ ...schema, type: 'EARN' }, staffUid);
+    const staffId = req.user.claims.id;
+    const redeemQuoteResponse = await pointsService.confirmEarnPoints({ ...schema, type: 'EARN' }, staffId);
     res.status(200).json(redeemQuoteResponse);
   }
 
@@ -31,32 +30,29 @@ class PointsController {
 
   async redeemConfirm(req: AuthenticatedRequest, res: Response) {
     const schema = redeemPointsRequestSchema.parse(req.body);
-    const user = req.user;
-    const staffUid = user.uid;
-    const redeemQuoteResponse = await pointsService.confirmRedeemPoints({ ...schema, type: 'REDEEM' }, staffUid);
+    const staffId = req.user.claims.id;
+    const redeemQuoteResponse = await pointsService.confirmRedeemPoints({ ...schema, type: 'REDEEM' }, staffId);
     res.status(200).json(redeemQuoteResponse);
   }
 
   async streamPoints(req: AuthenticatedRequest, res: Response) {
-    const user = req.user;
-    const userAuthId = user.uid;
+    const userId = req.user.claims.id;
 
-    const points = await pointsService.getUserPoints(userAuthId);
+    const points = await pointsService.getUserPoints(userId);
     pointsSSE.writeResponse(res, { points });
 
-    if (!pointsConnections.has(userAuthId)) {
-      pointsConnections.set(userAuthId, new Set());
+    if (!pointsConnections.has(userId)) {
+      pointsConnections.set(userId, new Set());
     }
 
-    pointsConnections.get(userAuthId)!.add(res);
+    pointsConnections.get(userId)!.add(res);
     req.on('close', () => {
-      pointsConnections.get(userAuthId)?.delete(res);
+      pointsConnections.get(userId)?.delete(res);
     });
   }
 
   async getResult(req: AuthenticatedRequest, res: Response) {
-    const user = req.user;
-    const userId = user.uid;
+    const userId = req.user.claims.id;
 
     if (!transactionConnections.has(userId)) {
       transactionConnections.set(userId, new Set());

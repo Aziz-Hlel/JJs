@@ -43,7 +43,7 @@ class ProfileController {
 
     async deleteUserProfile(req: AuthenticatedRequest, res: Response<SimpleApiResponse>) {
         const userToDeleteId = req.params.id;
-        const userRole = req.user.claims?.role;
+        const userRole = req.user.claims.role;
 
         await profileService.deleteUser(userToDeleteId, userRole);
 

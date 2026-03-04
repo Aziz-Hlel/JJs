@@ -63,7 +63,7 @@ Authorization: Bearer {{firebase_signin.response.body.idToken}}
 
 {
     "userRefrenceCode": "101010",
-    "offerCode": "744"
+    "offerCode": "616"
 }
 
 

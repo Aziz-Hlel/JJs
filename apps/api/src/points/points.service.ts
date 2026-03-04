@@ -17,7 +17,7 @@ import { pointsRepo } from './points.repo';
 
 class PointsService {
   generatePointsAmount(amount: number) {
-    return amount * 10;
+    return amount * 1;
   }
 
   async generateEarnPointsQuote(request: EarnQuoteRequest): Promise<EarnQuoteResponse> {
@@ -51,7 +51,7 @@ class PointsService {
 
   async confirmEarnPoints(
     request: Extract<CreateTransactionHistoryRequest, { type: 'EARN' }>,
-    staffAuthId: string,
+    staffId: string,
   ): Promise<EarnPointsResponse> {
     const userId = request.userId;
     const user = await userRepo.getUserById(userId);
@@ -59,7 +59,7 @@ class PointsService {
       throw new NotFoundError('User not found');
     }
 
-    const staff = await userRepo.getUserByAuthId(staffAuthId);
+    const staff = await userRepo.getUserById(staffId);
     if (!staff) {
       throw new InternalServerError('Staff not found');
     }
@@ -90,13 +90,13 @@ class PointsService {
         });
       });
     } catch (error) {
-      logger.error({ error, request, staffAuthId }, 'Error confirming earn points transaction');
+      logger.error({ error, request, staffId }, 'Error confirming earn points transaction');
       throw new InternalServerError('Failed to confirm earn points transaction');
     }
 
-    await cachePubSub.publishUserPoints({ userId: user.authId, points: user.points + points });
+    await cachePubSub.publishUserPoints({ userId: user.id, points: user.points + points });
     await cachePubSub.publishTrasactionToUser({
-      userId: user.authId,
+      userId: user.id,
       points,
       transactionType: PointsTransactionType.EARN,
       offerName: null,
@@ -107,7 +107,7 @@ class PointsService {
 
   async confirmRedeemPoints(
     schema: Extract<CreateTransactionHistoryRequest, { type: 'REDEEM' }>,
-    staffAuthId: string,
+    staffId: string,
   ): Promise<RedeemResponse> {
     const user = await userRepo.getUserById(schema.userId);
     if (!user) {
@@ -124,7 +124,7 @@ class PointsService {
       throw new Error('User does not have enough points');
     }
 
-    const staff = await userRepo.getUserByAuthId(staffAuthId);
+    const staff = await userRepo.getUserById(staffId);
     if (!staff) {
       throw new InternalServerError('Staff not found');
     }
@@ -153,12 +153,12 @@ class PointsService {
         });
       });
     } catch (error) {
-      logger.error({ error, schema, staffAuthId }, 'Error redeeming points');
+      logger.error({ error, schema, staffId }, 'Error redeeming points');
       throw new InternalServerError('Failed to redeem points');
     }
-    await cachePubSub.publishUserPoints({ userId: user.authId, points: user.points - offer.points });
+    await cachePubSub.publishUserPoints({ userId: user.id, points: user.points - offer.points });
     await cachePubSub.publishTrasactionToUser({
-      userId: user.authId,
+      userId: user.id,
       points: offer.points,
       transactionType: PointsTransactionType.REDEEM,
       offerName: offer.title,
@@ -168,8 +168,8 @@ class PointsService {
     return redeemQuoteResponse;
   }
 
-  async getUserPoints(userAuthId: string) {
-    const result = await pointsRepo.getUserPoints(userAuthId);
+  async getUserPoints(userId: string) {
+    const result = await pointsRepo.getUserPoints(userId);
     if (!result) {
       throw new NotFoundError('User not found');
     }

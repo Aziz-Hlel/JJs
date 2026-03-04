@@ -10,7 +10,7 @@ export class ProfileMapper {
     if (!profile) return null;
     return {
       phoneNumber: profile.phoneNumber,
-      gender: profile.gender as ProfileResponse['gender'],
+      gender: profile.gender,
       address: profile.address,
       avatar: profile.avatar,
       createdAt: profile.createdAt.toISOString(),
@@ -25,12 +25,12 @@ export class ProfileMapper {
 
   static toProfileRowResponse(profile: Profile): ProfileResponse {
     return {
-      phoneNumber: profile?.phoneNumber || null,
-      gender: (profile?.gender as ProfileResponse['gender']) || null,
-      address: profile?.address || null,
-      avatar: profile?.avatar || null,
-      createdAt: profile?.createdAt.toISOString() || '',
-      updatedAt: profile?.updatedAt.toISOString() || '',
+      phoneNumber: profile.phoneNumber,
+      gender: profile.gender,
+      address: profile.address,
+      avatar: profile.avatar,
+      createdAt: profile.createdAt.toISOString(),
+      updatedAt: profile.updatedAt.toISOString(),
     };
   }
 }

@@ -1,10 +1,10 @@
 import { prisma } from '@/bootstrap/db.init';
 
 class PointsRepo {
-  async getUserPoints(userAuthId: string) {
+  async getUserPoints(userId: string) {
     const result = await prisma.user.findUnique({
       where: {
-        authId: userAuthId,
+        id: userId,
       },
       select: {
         points: true,

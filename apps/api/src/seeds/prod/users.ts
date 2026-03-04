@@ -1,4 +1,5 @@
 import { prisma } from '@/bootstrap/db.init';
+import { firebaseAuthService } from '@/firebase/service/firebase.auth.service';
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
 import { Role } from '@/generated/prisma/enums';
 import { faker } from '@faker-js/faker';
@@ -69,8 +70,14 @@ export const seedProdUsers = async () => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
-    await prisma.user.create({
+    const createdUser = await prisma.user.create({
       data,
+    });
+
+    await firebaseAuthService.setCustomUserClaims({
+      userId: createdUser.id,
+      userAuthId: createdUser.authId,
+      userRole: createdUser.role,
     });
   });
 };

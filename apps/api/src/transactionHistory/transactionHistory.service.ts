@@ -23,8 +23,8 @@ class TransactionHistoryService {
   //   return transactionResponse;
   // }
 
-  async getUserTransactionHistory(userUid: string, params: CursorQueryParam) {
-    const user = await userRepo.getUserByAuthId(userUid);
+  async getUserTransactionHistory(userId: string, params: CursorQueryParam) {
+    const user = await userRepo.getUserById(userId);
     if (!user) {
       throw new NotFoundError('User does not exist');
     }
@@ -33,8 +33,8 @@ class TransactionHistoryService {
     return transactionResponse;
   }
 
-  async getStaffTransactionHistory(staffUid: string, params: CursorQueryParam) {
-    const staff = await userRepo.getUserByAuthId(staffUid);
+  async getStaffTransactionHistory(staffId: string, params: CursorQueryParam) {
+    const staff = await userRepo.getUserById(staffId);
     if (!staff) {
       throw new NotFoundError('Staff does not exist');
     }
