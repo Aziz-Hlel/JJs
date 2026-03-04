@@ -6,6 +6,8 @@ import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
 import { Page } from '@contracts/types/page/Page';
 import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
 import { offersQueryParamsSchema } from '@contracts/schemas/offre/OfferPageQuery';
+import { BadRequestError } from '@/err/customErrors';
+import getParam from '@/User/utils/getParam';
 
 class OfferController {
   async create(req: Request, res: Response) {
@@ -17,7 +19,8 @@ class OfferController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = getParam(req, 'id');
+
     const parsedSchema = updateOfferRequestSchema.parse(req.body);
 
     const offerResponse = await offerService.update(id, parsedSchema);
@@ -31,7 +34,7 @@ class OfferController {
   }
 
   async getById(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = getParam(req, 'id');
 
     const offerResponse = await offerService.getById(id);
     res.status(200).json(offerResponse);
@@ -43,14 +46,15 @@ class OfferController {
   }
 
   async delete(req: Request, res: Response<SimpleApiResponse>) {
-    const { id } = req.params;
+    const id = getParam(req, 'id');
     await offerService.delete(id);
 
     res.status(200).json({ message: 'Offer deleted successfully' });
   }
 
   async toggleFeatured(req: Request, res: Response) {
-    const { id } = req.params;
+    const id = getParam(req, 'id');
+    
     const updatedOffer = await offerService.toggleFeatured(id);
     res.status(200).json(updatedOffer);
   }
