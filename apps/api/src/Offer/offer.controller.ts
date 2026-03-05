@@ -1,13 +1,10 @@
-import { createOfferRequestSchema } from '@contracts/schemas/offre/createOfferRequest';
-import { Request, Response } from 'express';
-import { offerService } from './offer.service';
-import { updateOfferRequestSchema } from '@contracts/schemas/offre/updateOfferRequest';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
+import { Request, Response } from 'express';                                            
+import { offerService } from './offer.service';                                         
+import { updateOfferRequestSchema } from '@contracts/schemas/offre/updateOfferRequest'; 
+import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';         
+import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';           
+import getParam from '@/User/utils/getParam';                                           
 import { Page } from '@contracts/types/page/Page';
-import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
-import { offersQueryParamsSchema } from '@contracts/schemas/offre/OfferPageQuery';
-import { BadRequestError } from '@/err/customErrors';
-import getParam from '@/User/utils/getParam';
 
 class OfferController {
   async create(req: Request, res: Response) {

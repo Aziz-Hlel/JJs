@@ -4,19 +4,24 @@ import { TransactionHistoryRowResponse } from './transactionHistoryRowResponse';
 
 export type TransactionHistoryTableRowType = TransactionHistoryRowResponse;
 
-export type RootKeys = keyof TransactionHistoryTableRowType;
-export type TableRowKeys = RootKeys;
+export type TransactionHistoryRootKeys = keyof TransactionHistoryTableRowType;
+export type TransactionHistoryTableRowKeys = TransactionHistoryRootKeys;
 
-export const transactionHistoryColumnFiltersKeys = new Set(['type']) satisfies Set<TableRowKeys>;
+export const transactionHistoryColumnFiltersKeys = new Set(['type']) satisfies Set<TransactionHistoryTableRowKeys>;
 export const transactionHistorySortableColumnKeys = [
   // 'offerName',
   // 'offerPrice',
   'points',
   'type',
   'createdAt',
-] as const satisfies TableRowKeys[];
+] as const satisfies TransactionHistoryTableRowKeys[];
 
-export const transactionHistoryPageQuerySortFields: RootKeys[] = ['createdAt', 'offerName', 'points', 'type'];
+export const transactionHistoryPageQuerySortFields: TransactionHistoryRootKeys[] = [
+  'createdAt',
+  'offerName',
+  'points',
+  'type',
+];
 
 const csvEnumArray = <T extends string[]>(values: T) =>
   z
@@ -39,10 +44,10 @@ export const transactionHistoryPageQueryParamsSchema = z.object({
   // Filters
   type: csvEnumArray(Object.values(PointsTransactionType)).catch([]),
 });
-export type TableQueryParams = z.infer<typeof transactionHistoryPageQueryParamsSchema>;
-export type TransactionHistoryRequiredTableQueryParams = TableQueryParams;
+export type TransactionHistoryTableQueryParams = z.infer<typeof transactionHistoryPageQueryParamsSchema>;
+export type TransactionHistoryRequiredTableQueryParams = TransactionHistoryTableQueryParams;
 
-export const transactionHistoryDefaultQuery : TransactionHistoryRequiredTableQueryParams = {
+export const transactionHistoryDefaultQuery: TransactionHistoryRequiredTableQueryParams = {
   page: 1,
   size: 10,
   sort: 'createdAt',

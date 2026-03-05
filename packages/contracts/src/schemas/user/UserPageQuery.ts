@@ -3,15 +3,15 @@ import { Role, Status } from '../../types/enums/enums';
 import { UserProfileRowResponse } from './UserRowResponse';
 import { Prettify } from '../../utils/Prettify';
 
-export type TableRowType = UserProfileRowResponse;
-export type NestedObject = Prettify<NonNullable<TableRowType['profile']>>;
-export type RootKeys = keyof TableRowType;
-export type ProfileKeys = keyof NestedObject;
-export type TableRowKeys = RootKeys | ProfileKeys;
+export type UserTableRowType = UserProfileRowResponse;
+export type UserNestedObject = Prettify<NonNullable<UserTableRowType['profile']>>;
+export type UserRootKeys = keyof UserTableRowType;
+export type UserProfileKeys = keyof UserNestedObject;
+export type UserTableRowKeys = UserRootKeys | UserProfileKeys;
 
-export const columnFiltersKeys: Set<TableRowKeys> = new Set(['status', 'role'] as const);
+export const columnFiltersKeys: Set<UserTableRowKeys> = new Set(['status', 'role'] as const);
 
-export const rootLevelSortableFields: RootKeys[] = [
+export const rootLevelSortableFields: UserRootKeys[] = [
   'email',
   'username',
   'status',
@@ -22,9 +22,9 @@ export const rootLevelSortableFields: RootKeys[] = [
   'createdAt',
 ] as const;
 
-export const profileLevelSortableFields: ProfileKeys[] = ['phoneNumber', 'address'] as const;
+export const profileLevelSortableFields: UserProfileKeys[] = ['phoneNumber', 'address'] as const;
 
-export const sortableColumnKeys: TableRowKeys[] = rootLevelSortableFields.concat(profileLevelSortableFields as any);
+export const sortableColumnKeys: UserTableRowKeys[] = rootLevelSortableFields.concat(profileLevelSortableFields as any);
 
 const csvEnumArray = <T extends string[]>(values: T) =>
   z
@@ -48,8 +48,8 @@ export const queryParamsSchema = z.object({
   role: csvEnumArray(Object.values(Role)).catch([]),
   status: csvEnumArray(Object.values(Status)).catch([]),
 });
-export type TableQueryParams = z.infer<typeof queryParamsSchema>;
-export type UsersRequiredTableQueryParams = TableQueryParams;
+export type UserTableQueryParams = z.infer<typeof queryParamsSchema>;
+export type UsersRequiredTableQueryParams = UserTableQueryParams;
 
 export const usersDefaultQuery: UsersRequiredTableQueryParams = {
   page: 1,

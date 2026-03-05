@@ -4,10 +4,10 @@ import { OfferRowResponse } from './OfferRowResponse';
 
 export type OfferTableRowType = OfferRowResponse;
 
-export type RootKeys = keyof OfferTableRowType;
-export type TableRowKeys = RootKeys;
+export type OfferRootKeys = keyof OfferTableRowType;
+export type OfferTableRowKeys = OfferRootKeys;
 
-export const offerColumnFiltersKeys = new Set(['status']) satisfies Set<TableRowKeys>;
+export const offerColumnFiltersKeys = new Set(['status']) satisfies Set<OfferTableRowKeys>;
 export const offerSortableColumnKeys = [
   'code',
   'title',
@@ -15,9 +15,9 @@ export const offerSortableColumnKeys = [
   'points',
   'createdAt',
   'updatedAt',
-] as const satisfies TableRowKeys[];
+] as const satisfies OfferTableRowKeys[];
 
-export const OfferPageQuerySortFields: RootKeys[] = ['createdAt', 'title', 'points', 'code'];
+export const OfferPageQuerySortFields: OfferRootKeys[] = ['createdAt', 'title', 'points', 'code'];
 
 const csvEnumArray = <T extends string[]>(values: T) =>
   z
@@ -40,10 +40,10 @@ export const offersQueryParamsSchema = z.object({
   // Filters
   status: csvEnumArray(Object.values(OfferStatus)).catch([]),
 });
-export type TableQueryParams = z.infer<typeof offersQueryParamsSchema>;
-export type OfferRequiredTableQueryParams = TableQueryParams;
+export type OfferTableQueryParams = z.infer<typeof offersQueryParamsSchema>;
+export type OfferRequiredTableQueryParams = OfferTableQueryParams;
 
-export const offerDefaultQuery : OfferRequiredTableQueryParams = {
+export const offerDefaultQuery: OfferRequiredTableQueryParams = {
   page: 1,
   size: 10,
   sort: 'updatedAt',

@@ -3,12 +3,12 @@ import { KaraokeSongTableRowResponse } from './KaraokeSongTableRowResponse';
 
 export type KaraokeSongTableRowType = KaraokeSongTableRowResponse;
 
-export type RootKeys = keyof KaraokeSongTableRowType;
-export type TableRowKeys = RootKeys;
+export type KaraokeSongRootKeys = keyof KaraokeSongTableRowType;
+export type KaraokeSongTableRowKeys = KaraokeSongRootKeys;
 
-export const KaraokeSongColumnFiltersKeys: Set<TableRowKeys> = new Set([] as const);
+export const KaraokeSongColumnFiltersKeys: Set<KaraokeSongTableRowKeys> = new Set([] as const);
 
-export const KaraokeSongSortableColumnKeys: TableRowKeys[] = [
+export const KaraokeSongSortableColumnKeys: KaraokeSongTableRowKeys[] = [
   'title',
   'artist',
   'album',
@@ -24,8 +24,8 @@ export const KaraokeSongQueryParamsSchema = z.object({
   search: z.string().trim().catch(''),
 });
 
-export type TableQueryParams = z.infer<typeof KaraokeSongQueryParamsSchema>;
-export type KaraokeSongRequiredTableQueryParams = TableQueryParams;
+export type KaraokeSongTableQueryParams = z.infer<typeof KaraokeSongQueryParamsSchema>;
+export type KaraokeSongRequiredTableQueryParams = KaraokeSongTableQueryParams;
 
 export const KaraokeSongDefaultQuery: KaraokeSongRequiredTableQueryParams = {
   page: 1,

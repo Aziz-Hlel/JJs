@@ -3,9 +3,9 @@ import { UserOrderByWithRelationInput, UserWhereInput } from '../../generated/pr
 import { prisma } from '../../bootstrap/db.init';
 import UserMapper from '../mapper/user.mapper';
 import {
-  ProfileKeys,
+  UserProfileKeys,
   profileLevelSortableFields,
-  RootKeys,
+  UserRootKeys,
   rootLevelSortableFields,
   UserPageQuery,
 } from '@contracts/schemas/user/UserPageQuery';
@@ -60,10 +60,10 @@ class ProfileService {
 
     const orderBy: UserOrderByWithRelationInput = {};
 
-    if (rootLevelSortableFields.includes(queryParams.sort as RootKeys)) {
+    if (rootLevelSortableFields.includes(queryParams.sort as UserRootKeys)) {
       orderBy[queryParams.sort as keyof UserOrderByWithRelationInput] = queryParams.order;
     }
-    if (profileLevelSortableFields.includes(queryParams.sort as ProfileKeys)) {
+    if (profileLevelSortableFields.includes(queryParams.sort as UserProfileKeys)) {
       orderBy['profile'] = {
         [queryParams.sort]: queryParams.order,
       };

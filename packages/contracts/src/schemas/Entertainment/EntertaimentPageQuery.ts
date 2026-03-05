@@ -3,19 +3,19 @@ import { EntertainmentResponse } from './EntertainmentResponse';
 
 export type EntertainmentTableRowType = EntertainmentResponse;
 
-export type RootKeys = keyof EntertainmentTableRowType;
-export type TableRowKeys = RootKeys;
+export type EntertainmentRootKeys = keyof EntertainmentTableRowType;
+export type EntertainmentTableRowKeys = EntertainmentRootKeys;
 
-export const entertainmentColumnFiltersKeys: Set<TableRowKeys> = new Set(['isFeatured'] as const);
+export const entertainmentColumnFiltersKeys: Set<EntertainmentTableRowKeys> = new Set(['isFeatured'] as const);
 
-export const entertainmentSortableColumnKeys: TableRowKeys[] = [
+export const entertainmentSortableColumnKeys: EntertainmentTableRowKeys[] = [
   'name',
   'description',
   'createdAt',
   'updatedAt',
 ] as const;
 
-export const EntertainmentPageQuerySortFields: RootKeys[] = ['createdAt', 'name'];
+export const EntertainmentPageQuerySortFields: EntertainmentRootKeys[] = ['createdAt', 'name'];
 
 export const entertainmentQueryParamsSchema = z.object({
   page: z.coerce.number().int().positive().catch(1),
@@ -24,8 +24,8 @@ export const entertainmentQueryParamsSchema = z.object({
   order: z.enum(['asc', 'desc']).catch('desc'),
   search: z.string().trim().catch(''),
 });
-export type TableQueryParams = z.infer<typeof entertainmentQueryParamsSchema>;
-export type EntertainmentRequiredTableQueryParams = TableQueryParams;
+export type EntertainmentTableQueryParams = z.infer<typeof entertainmentQueryParamsSchema>;
+export type EntertainmentRequiredTableQueryParams = EntertainmentTableQueryParams;
 
 export const entertainmentDefaultQuery: EntertainmentRequiredTableQueryParams = {
   page: 1,
