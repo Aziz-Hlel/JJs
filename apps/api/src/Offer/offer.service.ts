@@ -1,12 +1,12 @@
-import { CreateOfferRequest } from '@contracts/schemas/offre/createOfferRequest';
+import { CreateOfferRequest } from '@repo/contracts/schemas/offre/createOfferRequest';
 import { generateOfferReferenceCode } from './offer.utils';
 import { offerRepository } from './offer.repo';
 import { OfferMapper } from './offer.mapper';
-import { UpdateOfferRequest } from '@contracts/schemas/offre/updateOfferRequest';
-import { OfferPageQuery } from '@contracts/schemas/offre/OfferPageQuery';
+import { UpdateOfferRequest } from '@repo/contracts/schemas/offre/updateOfferRequest';
+import { OfferPageQuery } from '@repo/contracts/schemas/offre/OfferPageQuery';
 import { OfferOrderByWithRelationInput, OfferWhereInput } from '@/generated/prisma/models';
-import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
-import { Page } from '@contracts/types/page/Page';
+import { OfferRowResponse } from '@repo/contracts/schemas/offre/OfferRowResponse';
+import { Page } from '@repo/contracts/types/page/Page';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
 import { OfferStatus } from '@/generated/prisma/enums';
 

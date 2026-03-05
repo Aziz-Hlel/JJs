@@ -1,8 +1,8 @@
 import { mediaService } from '@/media/media.service';
 import { OfferWithThumbnail } from '@/types/getPayload';
 import { UserWithProfile } from '@/User/types';
-import { EarnQuoteResponse } from '@contracts/schemas/points/EarnQuoteResponse';
-import { RedeemResponse } from '@contracts/schemas/points/RedeemResponse';
+import { EarnQuoteResponse } from '@repo/contracts/schemas/points/EarnQuoteResponse';
+import { RedeemResponse } from '@repo/contracts/schemas/points/RedeemResponse';
 
 export class PointsMapper {
   static toEarnQuoteResponse(user: UserWithProfile, points: number): EarnQuoteResponse {
@@ -22,7 +22,7 @@ export class PointsMapper {
     const offerThumbnail = mediaService.getMediaKeyAndUrl(offer.thumbnail);
 
     return {
-      success:true,
+      success: true,
       user: {
         id: user.id,
         referenceCode: user.referenceCode,

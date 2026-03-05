@@ -1,4 +1,4 @@
-import { UserProfileRowResponse } from '@contracts/schemas/user/UserRowResponse';
+import { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
 import { UserOrderByWithRelationInput, UserWhereInput } from '../../generated/prisma/models';
 import { prisma } from '../../bootstrap/db.init';
 import UserMapper from '../mapper/user.mapper';
@@ -8,21 +8,21 @@ import {
   RootKeys,
   rootLevelSortableFields,
   UserPageQuery,
-} from '@contracts/schemas/user/UserPageQuery';
+} from '@repo/contracts/schemas/user/UserPageQuery';
 import { cacheService } from '@/cache/service/cache.service';
-import { CreateUserProfileRequest } from '@contracts/schemas/profile/createUserProfileRequest';
+import { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
 import { userRepo } from '../repo/user.repo';
-import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
 import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
 import { Role } from '@/generated/prisma/enums';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
-import { UpdateUserProfileRequest } from '@contracts/schemas/profile/updateUserProfileRequest';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
 import { logger } from '@/bootstrap/logger.init';
 import { RedisKeys } from '@/cache/keys/cache.keys';
 import { generateUserReferenceCode } from '../utils/generateUserReferenceCode';
-import { Page } from '@contracts/types/page/Page';
-import { UpdateMyAccountRequest } from '@contracts/schemas/profile/updateMyAccountRequest';
+import { Page } from '@repo/contracts/types/page/Page';
+import { UpdateMyAccountRequest } from '@repo/contracts/schemas/profile/updateMyAccountRequest';
 import { DecodedIdTokenWithClaims } from '@/types/auth/DecodedIdTokenWithClaims';
 
 class ProfileService {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { VersionPolicyResponse } from '@contracts/schemas/mobile/versionPolicyResponse';
+import { VersionPolicyResponse } from '@repo/contracts/schemas/mobile/versionPolicyResponse';
 import { mobileService } from './mobile.service';
 
 class MobileController {

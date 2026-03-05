@@ -1,8 +1,8 @@
-import { createEntertainmentRequestSchema } from '@contracts/schemas/Entertainment/createEntertainmentRequest';
+import { createEntertainmentRequestSchema } from '@repo/contracts/schemas/Entertainment/createEntertainmentRequest';
 import { entertainmentService } from './entertainment.service';
-import { updateEntertainmentRequestSchema } from '@contracts/schemas/Entertainment/UpdateEntertainmentRequest';
+import { updateEntertainmentRequestSchema } from '@repo/contracts/schemas/Entertainment/UpdateEntertainmentRequest';
 import { Request, Response } from 'express';
-import { entertainmentQueryParamsSchema } from '@contracts/schemas/Entertainment/EntertaimentPageQuery';
+import { entertainmentQueryParamsSchema } from '@repo/contracts/schemas/Entertainment/EntertaimentPageQuery';
 import { BadRequestError } from '@/err/customErrors';
 import getParam from '@/User/utils/getParam';
 

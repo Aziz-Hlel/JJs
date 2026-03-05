@@ -2,8 +2,8 @@ import { prisma } from '@/bootstrap/db.init';
 import { logger } from '@/bootstrap/logger.init';
 import { Prisma } from '@/generated/prisma/client';
 import { KaraokeSongOrderByWithRelationInput, KaraokeSongWhereInput } from '@/generated/prisma/models';
-import { CreatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
-import { UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+import { CreatekaraekoSongRequest } from '@repo/contracts/schemas/karaekoSong/createkaraekoSongRequest';
+import { UpdatekaraekoSongRequest } from '@repo/contracts/schemas/karaekoSong/updatekaraekoSongRequest';
 
 class KaraokeSongRepo {
   async getByTitle(title: string) {
@@ -103,7 +103,6 @@ class KaraokeSongRepo {
       throw new Error('Failed to fetch karaoke songs');
     }
   }
-  
 
   async delete(id: string) {
     try {

@@ -1,10 +1,10 @@
-import { CreatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
+import { CreatekaraekoSongRequest } from '@repo/contracts/schemas/karaekoSong/createkaraekoSongRequest';
 import { karaokeSongRepo } from './karaokeSongRepo';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
 import { KaraokeSongMapper } from './KaraokeSong.mapper';
-import { UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
-import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
-import { KaraokeSongPageQuery } from '@contracts/schemas/karaekoSong/KaraekoSongPageQuery';
+import { UpdatekaraekoSongRequest } from '@repo/contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+import { KaraokeSongResponse } from '@repo/contracts/schemas/karaekoSong/KaraokeSongResponse';
+import { KaraokeSongPageQuery } from '@repo/contracts/schemas/karaekoSong/KaraekoSongPageQuery';
 import { KaraokeSongOrderByWithRelationInput, KaraokeSongWhereInput } from '@/generated/prisma/models';
 
 class KaraokeSongService {

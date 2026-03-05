@@ -7,3 +7,13 @@
 **/build
 
 **/generated
+
+scripts/
+seed/
+docker/
+config/
+.*/
+.git/
+.gitignore
+.dockerignore
+

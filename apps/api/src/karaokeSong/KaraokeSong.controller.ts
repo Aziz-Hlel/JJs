@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { karaokeSongService } from './KaraokeSong.service';
-import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
-import { KaraokeSongQueryParamsSchema } from '@contracts/schemas/karaekoSong/KaraekoSongPageQuery';
-import { createkaraekoSongSchema } from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
+import { KaraokeSongResponse } from '@repo/contracts/schemas/karaekoSong/KaraokeSongResponse';
+import { KaraokeSongQueryParamsSchema } from '@repo/contracts/schemas/karaekoSong/KaraekoSongPageQuery';
+import { createkaraekoSongSchema } from '@repo/contracts/schemas/karaekoSong/createkaraekoSongRequest';
+import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
 import { BadRequestError } from '@/err/customErrors';
 import getParam from '@/User/utils/getParam';
 

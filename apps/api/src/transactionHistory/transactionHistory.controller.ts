@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { transactionHistoryService } from './transactionHistory.service';
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
-import { createTransactionHistoryRequestSchema } from '@contracts/schemas/transactionHistory/createTransactionHistoryRequest';
-import { cursorQueryParamSchema } from '@contracts/types/cursor/cursorQueryParam';
-import { transactionHistoryPageQueryParamsSchema } from '@contracts/schemas/transactionHistory/transactionHistoryPageQuery';
+import { createTransactionHistoryRequestSchema } from '@repo/contracts/schemas/transactionHistory/createTransactionHistoryRequest';
+import { cursorQueryParamSchema } from '@repo/contracts/types/cursor/cursorQueryParam';
+import { transactionHistoryPageQueryParamsSchema } from '@repo/contracts/schemas/transactionHistory/transactionHistoryPageQuery';
 
 class TransactionHistoryController {
   // async createTransactionHistory(req: AuthenticatedRequest, res: Response) {

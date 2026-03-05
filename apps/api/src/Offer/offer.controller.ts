@@ -1,13 +1,13 @@
-import { createOfferRequestSchema } from '@contracts/schemas/offre/createOfferRequest';
+import { createOfferRequestSchema } from '@repo/contracts/schemas/offre/createOfferRequest';
 import { Request, Response } from 'express';
 import { offerService } from './offer.service';
-import { updateOfferRequestSchema } from '@contracts/schemas/offre/updateOfferRequest';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
-import { Page } from '@contracts/types/page/Page';
-import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
-import { offersQueryParamsSchema } from '@contracts/schemas/offre/OfferPageQuery';
+import { updateOfferRequestSchema } from '@repo/contracts/schemas/offre/updateOfferRequest';
+import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
+import { Page } from '@repo/contracts/types/page/Page';
+import { OfferRowResponse } from '@repo/contracts/schemas/offre/OfferRowResponse';
 import { BadRequestError } from '@/err/customErrors';
 import getParam from '@/User/utils/getParam';
+import { offersQueryParamsSchema } from '@repo/contracts/schemas/offre/OfferPageQuery';
 
 class OfferController {
   async create(req: Request, res: Response) {
@@ -54,7 +54,7 @@ class OfferController {
 
   async toggleFeatured(req: Request, res: Response) {
     const id = getParam(req, 'id');
-    
+
     const updatedOffer = await offerService.toggleFeatured(id);
     res.status(200).json(updatedOffer);
   }

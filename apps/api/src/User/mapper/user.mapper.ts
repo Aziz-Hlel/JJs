@@ -3,14 +3,18 @@ import { Role } from '../../generated/prisma/browser';
 import { GenericEntityCreateInput } from '../../types/prisma/GenericEntityUtilityTypes';
 import { User } from '../../generated/prisma/client';
 import { StrictDecodedIdToken } from '../../types/auth/StrictDecodedIdToken';
-import { UserResponse } from '@contracts/schemas/user/UserResponse';
-import { ProfileRowResponse, UserProfileRowResponse, UserRowResponse } from '@contracts/schemas/user/UserRowResponse';
+import { UserResponse } from '@repo/contracts/schemas/user/UserResponse';
+import {
+  ProfileRowResponse,
+  UserProfileRowResponse,
+  UserRowResponse,
+} from '@repo/contracts/schemas/user/UserRowResponse';
 import { UserWithProfile } from '../types';
 import { ProfileMapper } from './profile.mapper';
-import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
-import { Page } from '@contracts/types/page/Page';
-import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
-import { Providers, ProvidersMapping } from '@contracts/map/ProvidersMapping';
+import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
+import { Page } from '@repo/contracts/types/page/Page';
+import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
+import { Providers, ProvidersMapping } from '@repo/contracts/map/ProvidersMapping';
 
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 

@@ -5,8 +5,8 @@ import {
   TransactionHistoryWhereInput,
 } from '@/generated/prisma/models';
 import { Tx } from '@/User/types';
-import { CreateTransactionHistoryRequest } from '@contracts/schemas/transactionHistory/createTransactionHistoryRequest';
-import { CursorQueryParam } from '@contracts/types/cursor/cursorQueryParam';
+import { CreateTransactionHistoryRequest } from '@repo/contracts/schemas/transactionHistory/createTransactionHistoryRequest';
+import { CursorQueryParam } from '@repo/contracts/types/cursor/cursorQueryParam';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export type Tr = { points: number; staffId: string } & (

@@ -1,5 +1,5 @@
-import { SendContactUsRequest } from '@contracts/schemas/email/sendContactUsRequest';
-import { SendReservationRequest } from '@contracts/schemas/email/sendReservationRequest';
+import { SendContactUsRequest } from '@repo/contracts/schemas/email/sendContactUsRequest';
+import { SendReservationRequest } from '@repo/contracts/schemas/email/sendReservationRequest';
 
 class EmailUtils {
   createContactUsHtml(payload: SendContactUsRequest) {

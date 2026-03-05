@@ -1,4 +1,4 @@
-import { PresignedUrlGenerator } from '@contracts/schemas/storage/PresignedUrl';
+import { PresignedUrlGenerator } from '@repo/contracts/schemas/storage/PresignedUrl';
 import { IStorageProvider } from './interface/storage.interface';
 import { createStorageProvider } from './provider/storage.provider';
 import path from 'path';
@@ -34,7 +34,7 @@ export class StorageService implements IStorageProvider {
       console.error('❌ ERROR : Storage Provider connection failed.');
       throw error;
     }
-  } 
+  }
 }
 
 export const storageService = new StorageService();

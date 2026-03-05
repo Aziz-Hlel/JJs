@@ -4,8 +4,8 @@ import {
   EntertainmentOrderByWithRelationInput,
   EntertainmentWhereInput,
 } from '@/generated/prisma/models';
-import { CreateEntertainmentRequest } from '@contracts/schemas/Entertainment/createEntertainmentRequest';
-import { UpdateEntertainmentRequest } from '@contracts/schemas/Entertainment/UpdateEntertainmentRequest';
+import { CreateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/createEntertainmentRequest';
+import { UpdateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/UpdateEntertainmentRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 class EntertainmentRepository {

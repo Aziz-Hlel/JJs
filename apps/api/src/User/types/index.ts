@@ -1,6 +1,6 @@
 import { PrismaClient } from '@/generated/prisma/client';
 import { ProfileGetPayload, UserGetPayload } from '@/generated/prisma/models';
-import { Prettify } from '@contracts/utils/Prettify';
+import { Prettify } from '@repo/contracts/utils/Prettify';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export type UserWithProfile = Prettify<UserGetPayload<{ include: { profile: true } }>>;

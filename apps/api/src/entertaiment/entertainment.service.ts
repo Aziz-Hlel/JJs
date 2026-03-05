@@ -1,9 +1,9 @@
-import { CreateEntertainmentRequest } from '@contracts/schemas/Entertainment/createEntertainmentRequest';
+import { CreateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/createEntertainmentRequest';
 import { entertainmentRepository } from './entertainment.repo';
 import { EntertainmentMapper } from './entertainment.mapper';
-import { UpdateEntertainmentRequest } from '@contracts/schemas/Entertainment/UpdateEntertainmentRequest';
+import { UpdateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/UpdateEntertainmentRequest';
 import { NotFoundError } from '@/err/customErrors';
-import { EntertainmentPageQuery } from '@contracts/schemas/Entertainment/EntertaimentPageQuery';
+import { EntertainmentPageQuery } from '@repo/contracts/schemas/Entertainment/EntertaimentPageQuery';
 import { EntertainmentOrderByWithRelationInput, EntertainmentWhereInput } from '@/generated/prisma/models';
 
 class EntertainmentService {

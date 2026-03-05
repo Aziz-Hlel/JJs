@@ -2,24 +2,21 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/app.js",
+    "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
     "format:fix": "prettier --write .",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc && tsc-alias -p tsconfig.json --resolve-full-paths",
     "dev": "tsx watch --clear-screen=false --include src --include ../../packages/contracts/src index.ts"
-  },
-  "_moduleAliases": {
-    "@": "dist/apps/api/src",
-    "@contracts": "dist/packages/contracts/src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
+    "@repo/contracts": "workspace:*",
     "@aws-sdk/client-s3": "^3.962.0",
     "@aws-sdk/s3-request-presigner": "^3.962.0",
     "@prisma/adapter-pg": "^7.1.0",

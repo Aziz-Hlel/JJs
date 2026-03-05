@@ -1,16 +1,16 @@
 import { Response } from 'express';
 import { AuthenticatedRequest } from '../../types/auth/AuthenticatedRequest';
 import { profileService } from '../Service/profile.service';
-import { UserProfileRowResponse } from '@contracts/schemas/user/UserRowResponse';
-import { queryParamsSchema } from '@contracts/schemas/user/UserPageQuery';
-import { createUserProfileRequestSchema } from '@contracts/schemas/profile/createUserProfileRequest';
-import { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
+import { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
+import { queryParamsSchema } from '@repo/contracts/schemas/user/UserPageQuery';
+import { createUserProfileRequestSchema } from '@repo/contracts/schemas/profile/createUserProfileRequest';
+import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { BadRequestError, PermissionDeniedError } from '@/err/customErrors';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
-import { updateUserProfileRequestSchema } from '@contracts/schemas/profile/updateUserProfileRequest';
-import { Page } from '@contracts/types/page/Page';
-import { updateMyAccountRequestSchema } from '@contracts/schemas/profile/updateMyAccountRequest';
+import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
+import { updateUserProfileRequestSchema } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
+import { Page } from '@repo/contracts/types/page/Page';
+import { updateMyAccountRequestSchema } from '@repo/contracts/schemas/profile/updateMyAccountRequest';
 import getParam from '../utils/getParam';
 
 class ProfileController {

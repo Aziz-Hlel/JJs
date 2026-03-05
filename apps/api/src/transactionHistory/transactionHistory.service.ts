@@ -2,9 +2,9 @@ import { transactionHistoryRepository } from './transactionHistory.repo';
 import { TransactionMapper } from './transactionHistory.mapper';
 import { userRepo } from '@/User/repo/user.repo';
 import { NotFoundError } from '@/err/customErrors';
-import { CursorQueryParam } from '@contracts/types/cursor/cursorQueryParam';
+import { CursorQueryParam } from '@repo/contracts/types/cursor/cursorQueryParam';
 import { Role } from '@/generated/prisma/enums';
-import { TransactionHistoryPageQuery } from '@contracts/schemas/transactionHistory/transactionHistoryPageQuery';
+import { TransactionHistoryPageQuery } from '@repo/contracts/schemas/transactionHistory/transactionHistoryPageQuery';
 import { TransactionHistoryOrderByWithRelationInput, TransactionHistoryWhereInput } from '@/generated/prisma/models';
 
 class TransactionHistoryService {

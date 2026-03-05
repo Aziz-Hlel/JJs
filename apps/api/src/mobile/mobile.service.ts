@@ -1,5 +1,5 @@
 import ENV from '@/config/ENV';
-import { VersionPolicyResponse } from '@contracts/schemas/mobile/versionPolicyResponse';
+import { VersionPolicyResponse } from '@repo/contracts/schemas/mobile/versionPolicyResponse';
 
 class MobileService {
   async getAppVersion(platform: 'ios' | 'android'): Promise<VersionPolicyResponse> {

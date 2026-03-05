@@ -1,10 +1,10 @@
 import { Offer } from '@/generated/prisma/client';
 import { mediaService } from '@/media/media.service';
 import { OfferWithThumbnail } from '@/types/getPayload';
-import { OfferResponse } from '@contracts/schemas/offre/offerResponse';
-import { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
-import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
-import { Page } from '@contracts/types/page/Page';
+import { OfferResponse } from '@repo/contracts/schemas/offre/offerResponse';
+import { OfferRowResponse } from '@repo/contracts/schemas/offre/OfferRowResponse';
+import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
+import { Page } from '@repo/contracts/types/page/Page';
 
 export class OfferMapper {
   static toResponse(offer: OfferWithThumbnail): OfferResponse {

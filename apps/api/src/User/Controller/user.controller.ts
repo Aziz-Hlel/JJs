@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { AuthenticatedRequest } from '../../types/auth/AuthenticatedRequest';
 import { userService } from '../Service/user.service';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
+import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
 import getParam from '../utils/getParam';
 
 class UserController {

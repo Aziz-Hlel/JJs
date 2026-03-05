@@ -6,14 +6,25 @@
   "scripts": {
     "prepare": "husky",
     "format:fix": "prettier --write .",
+    "prisma:generate": "pnpm --filter ./apps/api exec prisma generate",
     "local": "node scripts/docker-up.js local",
     "dev-api": "cd apps/api && pnpm dev",
     "dev-admin": "cd apps/admin && pnpm dev",
+    "build": "tsc -b",
+    "start": "pnpm -r --filter ./apps/api start",
     "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/admin dev",
     "docker:dev": "node scripts/docker-up.js dev",
     "docker:stage": "node scripts/docker-up.js stage",
     "test": ""
   },
+  "references": [
+    {
+      "path": "./packages/contracts"
+    },
+    {
+      "path": "./apps/api"
+    }
+  ],
   "lint-staged": {
     "*": [
       "prettier --write --ignore-unknown"
@@ -27,7 +38,8 @@
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "husky": "^9.1.7",
-    "prettier": "^3.7.4"
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "lint-staged": "^16.2.7"

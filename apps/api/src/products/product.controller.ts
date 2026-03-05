@@ -1,11 +1,11 @@
-import { createProductRequestSchema } from '@contracts/schemas/product/createProductRequest';
+import { createProductRequestSchema } from '@repo/contracts/schemas/product/createProductRequest';
 import { productService } from './product.service';
 import { Request, Response } from 'express';
-import { ProductResponse } from '@contracts/schemas/product/productResponse';
-import { updateProductRequestSchema } from '@contracts/schemas/product/updateProductRequest';
-import { SimpleApiResponse } from '@contracts/types/api/SimpleApiResponse.dto';
-import { productsQueryParamsSchema } from '@contracts/schemas/product/ProductPageQuery';
-import { Page } from '@contracts/types/page/Page';
+import { ProductResponse } from '@repo/contracts/schemas/product/productResponse';
+import { updateProductRequestSchema } from '@repo/contracts/schemas/product/updateProductRequest';
+import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
+import { productsQueryParamsSchema } from '@repo/contracts/schemas/product/ProductPageQuery';
+import { Page } from '@repo/contracts/types/page/Page';
 import getParam from '@/User/utils/getParam';
 
 class ProductController {

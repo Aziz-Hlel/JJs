@@ -1,7 +1,7 @@
 import { userRepo } from '../repo/user.repo';
 import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
 import { Role } from '@/generated/prisma/enums';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
 
 class UserService {

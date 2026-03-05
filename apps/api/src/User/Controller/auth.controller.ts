@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { authService as authService } from '../Service/auth.service';
 import { AuthenticatedRequest } from '../../types/auth/AuthenticatedRequest';
-import { CreateUserSchema } from '@contracts/schemas/user/CreateUserDto';
-import { RegisterUserNoProviderSchema } from '@contracts/schemas/user/RegisterUserNoProvider';
-import { CreateUserWithProviderSchema } from '@contracts/schemas/user/CreateUserWithProviderRequest';
+import { CreateUserSchema } from '@repo/contracts/schemas/user/CreateUserDto';
+import { RegisterUserNoProviderSchema } from '@repo/contracts/schemas/user/RegisterUserNoProvider';
+import { CreateUserWithProviderSchema } from '@repo/contracts/schemas/user/CreateUserWithProviderRequest';
 
 class AuthController {
   async register(req: Request, res: Response) {
@@ -36,6 +36,5 @@ class AuthController {
     res.status(200).json(user);
   }
 }
-
 
 export const authController = new AuthController();

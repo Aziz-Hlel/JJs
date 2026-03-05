@@ -2,12 +2,12 @@ import { UserInclude } from '@/generated/prisma/models';
 import { prisma } from '../../bootstrap/db.init';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 import { Tx, UserWithProfile } from '../types';
-import { CreateUserProfileRequest } from '@contracts/schemas/profile/createUserProfileRequest';
+import { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
 import { StrictDecodedIdToken } from '@/types/auth/StrictDecodedIdToken';
 import UserMapper, { UserCreateInputCustom } from '../mapper/user.mapper';
 import { Status } from '@/generated/prisma/enums';
-import { UpdateUserProfileRequest } from '@contracts/schemas/profile/updateUserProfileRequest';
-import { UpdateMyAccountRequest } from '@contracts/schemas/profile/updateMyAccountRequest';
+import { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
+import { UpdateMyAccountRequest } from '@repo/contracts/schemas/profile/updateMyAccountRequest';
 
 export class UserRepo {
   private includeProfile() {
@@ -188,9 +188,6 @@ export class UserRepo {
     });
     return updatedUser;
   }
-
-
-
 }
 
 export const userRepo = new UserRepo();

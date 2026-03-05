@@ -1,8 +1,8 @@
 import { mediaService } from '@/media/media.service';
 import { EntertainmentWithThumbnail } from '@/types/getPayload';
-import { EntertainmentResponse } from '@contracts/schemas/Entertainment/EntertainmentResponse';
-import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
-import { Page } from '@contracts/types/page/Page';
+import { EntertainmentResponse } from '@repo/contracts/schemas/Entertainment/EntertainmentResponse';
+import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
+import { Page } from '@repo/contracts/types/page/Page';
 
 export class EntertainmentMapper {
   static toResponse(entertainment: EntertainmentWithThumbnail): EntertainmentResponse {

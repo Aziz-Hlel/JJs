@@ -1,7 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
 import { OfferInclude, OfferOrderByWithRelationInput, OfferWhereInput } from '@/generated/prisma/models';
-import { CreateOfferRequest } from '@contracts/schemas/offre/createOfferRequest';
-import { UpdateOfferRequest } from '@contracts/schemas/offre/updateOfferRequest';
+import { CreateOfferRequest } from '@repo/contracts/schemas/offre/createOfferRequest';
+import { UpdateOfferRequest } from '@repo/contracts/schemas/offre/updateOfferRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 class OfferRepository {

@@ -1,10 +1,10 @@
-import { redeemQuoteRequestSchema } from '@contracts/schemas/points/RedeemQuoteRequest';
+import { redeemQuoteRequestSchema } from '@repo/contracts/schemas/points/RedeemQuoteRequest';
 import { Request, Response } from 'express';
 import { pointsService } from './points.service';
-import { earnPointsRequestSchema } from '@contracts/schemas/points/EarnPointsRequest';
+import { earnPointsRequestSchema } from '@repo/contracts/schemas/points/EarnPointsRequest';
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
-import { redeemPointsRequestSchema } from '@contracts/schemas/points/RedeemPointsRequest';
-import { earnQuoteRequest } from '@contracts/schemas/points/EarnQuoteRequest';
+import { redeemPointsRequestSchema } from '@repo/contracts/schemas/points/RedeemPointsRequest';
+import { earnQuoteRequest } from '@repo/contracts/schemas/points/EarnQuoteRequest';
 import { pointsConnections, transactionConnections } from '@/bootstrap/pubsub.init';
 import { pointsSSE } from './points.sse';
 

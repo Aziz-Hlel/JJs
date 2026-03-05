@@ -1,10 +1,10 @@
 import { TransactionHistoryWithUserAndStaff } from '@/types/getPayload';
-import { PersonalTransactionHistoryResponse } from '@contracts/schemas/transactionHistory/PersonalTransactionHistoryResponse';
-import { TransactionHistoryResponse } from '@contracts/schemas/transactionHistory/TransactionHistoryResponse';
-import { TransactionHistoryRowResponse } from '@contracts/schemas/transactionHistory/transactionHistoryRowResponse';
-import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
-import { Cursor } from '@contracts/types/cursor/Cursor';
-import { Page } from '@contracts/types/page/Page';
+import { PersonalTransactionHistoryResponse } from '@repo/contracts/schemas/transactionHistory/PersonalTransactionHistoryResponse';
+import { TransactionHistoryResponse } from '@repo/contracts/schemas/transactionHistory/TransactionHistoryResponse';
+import { TransactionHistoryRowResponse } from '@repo/contracts/schemas/transactionHistory/transactionHistoryRowResponse';
+import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
+import { Cursor } from '@repo/contracts/types/cursor/Cursor';
+import { Page } from '@repo/contracts/types/page/Page';
 
 export class TransactionMapper {
   static toResponse(transaction: TransactionHistoryWithUserAndStaff): TransactionHistoryResponse {

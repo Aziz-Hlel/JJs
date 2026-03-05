@@ -1,7 +1,7 @@
 import { KaraokeSong } from '@/generated/prisma/client';
-import { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
-import { DefaultSearchParams } from '@contracts/types/api/DefaultSeachParams';
-import { Page } from '@contracts/types/page/Page';
+import { KaraokeSongResponse } from '@repo/contracts/schemas/karaekoSong/KaraokeSongResponse';
+import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
+import { Page } from '@repo/contracts/types/page/Page';
 
 export class KaraokeSongMapper {
   static toResponseDto(karaokeSong: KaraokeSong): KaraokeSongResponse {

@@ -1,54 +1,45 @@
-FROM node:22.14.0-alpine AS builder
-RUN corepack enable
-RUN corepack prepare pnpm@latest --activate
+FROM node:22.14.0-alpine
 
+# Install pnpm globally
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
+ARG DB_HOST
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_NAME
+ARG DB_PORT
+
+WORKDIR /app
+COPY ./package.json ./
+COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-workspace.yaml ./
+COPY ./tsconfig.json ./
+COPY ./tsconfig.base.json ./
 
 WORKDIR /app/packages/contracts
 COPY ./packages/contracts/package.json ./
+COPY ./packages/contracts/tsconfig.json ./
+
+WORKDIR /app/apps/api
+COPY apps/api/package.json  ./
+COPY apps/api/prisma ./prisma
+COPY apps/api/tsconfig.json ./
+COPY apps/api/prisma.config.ts ./
+
+
+WORKDIR /app
 RUN pnpm install
+RUN pnpm prisma:generate
 
+COPY apps/api/src ./apps/api/src
+COPY packages/contracts/src ./packages/contracts/src
 
-WORKDIR /app/apps/api
-COPY apps/api/package.json ./
-COPY apps/api/prisma ./prisma
-# COPY apps/api/pnpm-lock.yaml ./
-COPY apps/api/prisma ./prisma
-
-RUN pnpm install 
-RUN pnpm prisma generate
-RUN pnpm build 
-
+RUN pnpm build
 
 WORKDIR /app/apps/api
-COPY ./apps/api .
 
-WORKDIR /app/packages/contracts
-COPY ./packages/contracts .
+RUN pnpm build
 
-WORKDIR /app/apps/api
-RUN pnpm build 
+WORKDIR /app/apps/api/dist
 
-
-FROM node:22.14.0-alpine AS runner
-
-
-
-COPY --from=builder /app/apps/api/dist ./app/
-
-RUN corepack enable
-RUN corepack prepare pnpm@latest --activate
-
-
-WORKDIR /app/apps/api
-COPY --from=builder /app/apps/api/node_modules ./node_modules
-COPY --from=builder ./app/apps/api/package.json ./
-# COPY --from=builder ./app/apps/api/pnpm-lock.yaml ./
-# COPY --from=builder  ./app/apps/api/pnpm-workspace.yaml ./pnpm-workspace.yaml
-# COPY --from=builder ./app/apps/api/public ./public
-# COPY --from=builder ./app/apps/api/templates ./templates
-COPY --from=builder /app/apps/api/prisma ./prisma/
-
-# USER nodejs
-
-
+CMD [ "node", "index.js" ]
