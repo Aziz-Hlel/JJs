@@ -1,6 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import BreadcrumbHeader from '@/pages/Header';
-import DialogContainer from './dialogs/DialogContainer';
 import TransactionHistoryTable from './TransactionHistoryTable';
 
 const TransactionHistoryIndex = () => {
@@ -15,7 +14,6 @@ const TransactionHistoryIndex = () => {
           </CardHeader>
           <CardContent>
             <TransactionHistoryTable />
-            <DialogContainer />
           </CardContent>
         </Card>
       </div>

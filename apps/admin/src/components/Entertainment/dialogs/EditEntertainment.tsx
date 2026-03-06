@@ -23,7 +23,7 @@ import entertainmentService from '@/Api/service/EntertainmentService';
 import {
   updateEntertainmentRequestSchema,
   type UpdateEntertainmentRequest,
-} from '@contracts/schemas/Entertainment/UpdateEntertainmentRequest';
+} from '@repo/contracts/schemas/Entertainment/UpdateEntertainmentRequest';
 
 const EditOffer = () => {
   const { handleCancel, currentRow, openDialog } = useSelectedRow();

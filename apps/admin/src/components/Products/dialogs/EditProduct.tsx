@@ -18,7 +18,10 @@ import { Input } from '@/components/ui/input';
 import { Spinner } from '@/components/ui/spinner';
 import { Separator } from '@/components/ui/separator';
 import productService from '@/Api/service/productService';
-import { updateProductRequestSchema, type UpdateProductRequest } from '@contracts/schemas/product/updateProductRequest';
+import {
+  updateProductRequestSchema,
+  type UpdateProductRequest,
+} from '@repo/contracts/schemas/product/updateProductRequest';
 import { Textarea } from '@/components/ui/textarea';
 import InputNumberForm from '@/components/ui2/InputNumberForm/InputNumberForm';
 import SelectForm from '@/components/ui2/SelectForm/SelectForm';

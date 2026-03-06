@@ -19,9 +19,9 @@ import { Spinner } from '@/components/ui/spinner';
 import { Textarea } from '@/components/ui/textarea';
 import InputNumberForm from '@/components/ui2/InputNumberForm/InputNumberForm';
 import ImageUpload from '@/components/ui2/ImageUpload/comp/ImageUpload';
-import { updateOfferRequestSchema, type UpdateOfferRequest } from '@contracts/schemas/offre/updateOfferRequest';
+import { updateOfferRequestSchema, type UpdateOfferRequest } from '@repo/contracts/schemas/offre/updateOfferRequest';
 import offerService from '@/Api/service/offerService';
-import { OfferStatus } from '@contracts/types/enums/enums';
+import { OfferStatus } from '@repo/contracts/types/enums/enums';
 import offerStatusTextMapping from '@/EnumTextMapping/offerStatusTextMapping';
 import SelectForm from '@/components/ui2/SelectForm/SelectForm';
 

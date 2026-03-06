@@ -1,6 +1,6 @@
 import z from 'zod';
 import { OfferStatus } from '../../types/enums/enums';
-import { OfferRowResponse } from './OfferRowResponse';
+import type { OfferRowResponse } from './OfferRowResponse';
 
 export type OfferTableRowType = OfferRowResponse;
 

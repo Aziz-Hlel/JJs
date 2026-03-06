@@ -20,7 +20,7 @@ import KaraokeSongService from '@/Api/service/KaraokeSongService';
 import {
   createkaraekoSongSchema,
   type CreatekaraekoSongRequest,
-} from '@contracts/schemas/karaekoSong/createkaraekoSongRequest';
+} from '@repo/contracts/schemas/karaekoSong/createkaraekoSongRequest';
 import { Separator } from '@/components/ui/separator';
 import { ApiError } from '@/Api/ApiError';
 

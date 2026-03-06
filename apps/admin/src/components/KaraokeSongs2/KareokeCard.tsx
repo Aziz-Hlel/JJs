@@ -1,9 +1,17 @@
-import type { KaraokeSongResponse } from '@contracts/karaekoSong/KaraokeSongResponse';
+import type { KaraokeSongResponse } from '@repo/contracts/schemas/karaekoSong/KaraokeSongResponse';
 import { Card, CardContent, CardDescription, CardTitle } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { MicVocal, SquarePen } from 'lucide-react';
 
-const KareokeCard = ({ song, index, onClick }: { song: KaraokeSongResponse; index: number; onClick: (karaekoSong: KaraokeSongResponse) => void }) => {
+const KareokeCard = ({
+  song,
+  index,
+  onClick,
+}: {
+  song: KaraokeSongResponse;
+  index: number;
+  onClick: (karaekoSong: KaraokeSongResponse) => void;
+}) => {
   return (
     <Card className="group cursor-pointer w-48" onClick={() => onClick(song)}>
       <CardContent className=" flex flex-col justify-center space-y-4 ">

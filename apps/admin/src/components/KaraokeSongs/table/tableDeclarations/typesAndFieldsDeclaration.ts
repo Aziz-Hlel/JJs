@@ -4,7 +4,7 @@ import {
   KaraokeSongSortableColumnKeys,
   type KaraokeSongRequiredTableQueryParams,
   type KaraokeSongTableRowType,
-} from '@contracts/schemas/karaekoSong/KaraekoSongPageQuery';
+} from '@repo/contracts/schemas/karaekoSong/KaraekoSongPageQuery';
 
 export type TableRowType = KaraokeSongTableRowType;
 

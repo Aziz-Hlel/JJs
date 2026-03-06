@@ -22,7 +22,7 @@ import ImageUpload from '@/components/ui2/ImageUpload/comp/ImageUpload';
 import {
   createEntertainmentRequestSchema,
   type CreateEntertainmentRequest,
-} from '@contracts/schemas/Entertainment/createEntertainmentRequest';
+} from '@repo/contracts/schemas/Entertainment/createEntertainmentRequest';
 import entertainmentService from '@/Api/service/EntertainmentService';
 
 const AddEntertainment = () => {

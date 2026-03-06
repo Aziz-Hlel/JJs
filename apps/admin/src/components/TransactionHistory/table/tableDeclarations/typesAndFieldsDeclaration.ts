@@ -2,15 +2,16 @@ import {
   transactionHistoryColumnFiltersKeys,
   transactionHistoryDefaultQuery,
   transactionHistorySortableColumnKeys,
+  type TransactionHistoryRequiredTableQueryParams,
   type TransactionHistoryTableRowType,
-} from '@contracts/schemas/transactionHistory/transactionHistoryPageQuery';
-import type { Prettify } from '@contracts/utils/Prettify';
+} from '@repo/contracts/schemas/transactionHistory/transactionHistoryPageQuery';
+import type { Prettify } from '@repo/contracts/utils/Prettify';
 
 export type TableRowType = TransactionHistoryTableRowType;
 export type NestedObject = Prettify<NonNullable<TableRowType['staff']>>;
 export type TableRowKeys = keyof TableRowType | keyof NestedObject;
 
-export type RequiredTableQueryParams = TransactionHistoryTableRowType;
+export type RequiredTableQueryParams = TransactionHistoryRequiredTableQueryParams;
 
 export const columnFiltersKeys = transactionHistoryColumnFiltersKeys;
 

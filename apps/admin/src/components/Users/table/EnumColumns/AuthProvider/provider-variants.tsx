@@ -1,4 +1,4 @@
-import type { ProviderType } from '@contracts/map/ProvidersMapping';
+import type { ProviderType } from '@repo/contracts/map/ProvidersMapping';
 import type { JSX } from 'react';
 
 const googleSvg = (
@@ -174,7 +174,7 @@ export const AUTH_PROVIDER_VARIANTS: Record<ProviderType, AuthProviderVariant> =
     label: 'Apple',
     Svg: appleSvg,
   },
-  password: {
+  email: {
     label: 'Email/Password',
     Svg: passwordSvg,
   },

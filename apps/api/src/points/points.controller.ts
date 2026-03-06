@@ -15,7 +15,7 @@ class PointsController {
     res.status(200).json(redeemQuoteResponse);
   }
 
-  async earnConfirm(req: AuthenticatedRequest, res: Response) {
+  async earnConfirm(req: AuthenticatedRequest, res: Response) {                                     
     const schema = earnPointsRequestSchema.parse(req.body);
     const staffId = req.user.claims.id;
     const redeemQuoteResponse = await pointsService.confirmEarnPoints({ ...schema, type: 'EARN' }, staffId);

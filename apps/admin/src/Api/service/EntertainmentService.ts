@@ -1,9 +1,9 @@
-import type { CreateEntertainmentRequest } from '@contracts/schemas/Entertainment/createEntertainmentRequest';
+import type { CreateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/createEntertainmentRequest';
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
-import type { UpdateEntertainmentRequest } from '@contracts/schemas/Entertainment/UpdateEntertainmentRequest';
-import type { Page } from '@contracts/types/page/Page';
-import type { EntertainmentResponse } from '@contracts/schemas/Entertainment/EntertainmentResponse';
+import type { UpdateEntertainmentRequest } from '@repo/contracts/schemas/Entertainment/UpdateEntertainmentRequest';
+import type { Page } from '@repo/contracts/types/page/Page';
+import type { EntertainmentResponse } from '@repo/contracts/schemas/Entertainment/EntertainmentResponse';
 
 const entertainmentService = {
   getPage: async (queryParams: { [k: string]: string | number | Array<string> }) =>

@@ -1,4 +1,4 @@
-import type { ProductStatus } from '@contracts/types/enums/enums';
+import type { ProductStatus } from '@repo/contracts/types/enums/enums';
 
 const ProductTextMapping: Record<ProductStatus, string> = {
   AVAILABLE: 'Available',

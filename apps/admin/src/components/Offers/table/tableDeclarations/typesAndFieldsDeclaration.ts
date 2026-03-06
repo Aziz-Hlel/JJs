@@ -4,7 +4,7 @@ import {
   offerSortableColumnKeys,
   type OfferRequiredTableQueryParams,
   type OfferTableRowType,
-} from '@contracts/schemas/offre/OfferPageQuery';
+} from '@repo/contracts/schemas/offre/OfferPageQuery';
 
 export type TableRowType = OfferTableRowType;
 // export type NestedObject = Prettify<NonNullable<TableRowType['profile']>>;

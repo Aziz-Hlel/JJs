@@ -1,4 +1,4 @@
-import { CursorInfo } from './cursorInfo';
+import type { CursorInfo } from './cursorInfo';
 
 export type Cursor<T> = {
   data: T[];

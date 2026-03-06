@@ -27,7 +27,7 @@ import {
   createUserProfileRequestSchema,
   type CreateUserProfileRequest,
   type CreateUserProfileSchemaOutput,
-} from '@contracts/schemas/profile/createUserProfileRequest';
+} from '@repo/contracts/schemas/profile/createUserProfileRequest';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
@@ -35,7 +35,7 @@ import userService from '@/Api/service/userService';
 import { toast } from 'sonner';
 import { ApiError } from '@/Api/ApiError';
 import RolesTextMapping from '@/EnumTextMapping/RolesTextMapping';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { useUser } from '@/context/UserContext';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 

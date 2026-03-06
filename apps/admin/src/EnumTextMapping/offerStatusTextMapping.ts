@@ -1,4 +1,4 @@
-import type { OfferStatus } from "@contracts/types/enums/enums";
+import type { OfferStatus } from "@repo/contracts/types/enums/enums";
 
 
 const offerStatusTextMapping: Record<OfferStatus, string> = {

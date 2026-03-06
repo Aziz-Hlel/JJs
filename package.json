@@ -17,14 +17,7 @@
     "docker:stage": "node scripts/docker-up.js stage",
     "test": ""
   },
-  "references": [
-    {
-      "path": "./packages/contracts"
-    },
-    {
-      "path": "./apps/api"
-    }
-  ],
+
   "lint-staged": {
     "*": [
       "prettier --write --ignore-unknown"

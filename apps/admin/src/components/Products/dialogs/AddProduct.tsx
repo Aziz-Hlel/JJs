@@ -18,8 +18,11 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 import { ApiError } from '@/Api/ApiError';
-import { createProductRequestSchema, type CreateProductRequest } from '@contracts/schemas/product/createProductRequest';
-import { ProductStatus } from '@contracts/types/enums/enums';
+import {
+  createProductRequestSchema,
+  type CreateProductRequest,
+} from '@repo/contracts/schemas/product/createProductRequest';
+import { ProductStatus } from '@repo/contracts/types/enums/enums';
 import productService from '@/Api/service/productService';
 import { Textarea } from '@/components/ui/textarea';
 import ProductTextMapping from '@/EnumTextMapping/ProductTextMapping';

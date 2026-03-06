@@ -27,17 +27,11 @@ export default ({ mode }: { mode: string }) => {
     plugins: [
       react(),
       tailwindcss(),
-      visualizer({
-        open: true, // automatically opens the report in browser
-        filename: 'dist/stats.html', // explicit output location
-        gzipSize: true, // show gzip size (useful for actual deploy size)
-        brotliSize: true, // show brotli size (useful for CDN/server compression)
-      }),
     ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
-        '@contracts': path.resolve(__dirname, '../../packages/contracts/src'),
+        '@repo/contracts': path.resolve(process.cwd(), '../../packages/contracts/src'),
       },
     },
 
@@ -45,6 +39,12 @@ export default ({ mode }: { mode: string }) => {
       port: getPort(mode),
       strictPort: true,
       host: '0.0.0.0', // for docker
+    },
+    build: {
+      ssr: false,
+      rollupOptions: {
+        external: [],
+      },
     },
   });
 };

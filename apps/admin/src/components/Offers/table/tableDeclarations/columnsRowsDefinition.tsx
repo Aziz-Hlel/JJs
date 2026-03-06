@@ -7,7 +7,6 @@ import RowContainer from '../ContainerComp/RowContainer';
 import type { TableRowType } from './typesAndFieldsDeclaration';
 import ActionsColumn from '../columns/ActionsColumn';
 import IsFeatured from '../EnumColumns/IsFeatured/IsFeatured';
-import { LongText } from '../long-text';
 
 type ColumnDefCustom<T> = ColumnDef<T> & { accessorKey?: keyof T };
 

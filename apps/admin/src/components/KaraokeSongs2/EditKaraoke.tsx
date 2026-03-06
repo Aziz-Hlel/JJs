@@ -7,7 +7,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,  
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -17,8 +17,11 @@ import { Button } from '../ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '../ui/field';
 import { Input } from '../ui/input';
 import { Spinner } from '../ui/spinner';
-import { updatekaraekoSongSchema, type UpdatekaraekoSongRequest } from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
-import type { KaraokeSongResponse } from '@contracts/schemas/karaekoSong/KaraokeSongResponse';
+import {
+  updatekaraekoSongSchema,
+  type UpdatekaraekoSongRequest,
+} from '@repo/contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+import type { KaraokeSongResponse } from '@repo/contracts/schemas/karaekoSong/KaraokeSongResponse';
 
 interface EditKaraokeProps {
   selectedKaraoke: KaraokeSongResponse | null;

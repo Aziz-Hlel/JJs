@@ -14,7 +14,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import RowContainer from '../ContainerComp/RowContainer';
 import { Button } from '@/components/ui/button';
-import { OfferStatus } from '@contracts/types/enums/enums';
+import { OfferStatus } from '@repo/contracts/types/enums/enums';
 
 type RowAction = {
   key: 'edit' | 'delete' | 'feature';

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { jwtTokenManager } from '@/Api/token/JwtTokenManager.class';
-import type { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
 import { authService } from '@/Api/service/authService';
 import type { FirebaseSignInRequestDto } from '@/types22/auth/SignInRequestDto';
 

@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
-import type { UserProfileResponse } from '@contracts/schemas/profile/UserProfileResponse';
+import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
 import { useAuthStore } from '@/store/useAuthStore';
 
 const UserSessionContext = createContext<UserProfileResponse | undefined>(undefined);

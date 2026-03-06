@@ -4,7 +4,7 @@ import {
   entertainmentSortableColumnKeys,
   type EntertainmentRequiredTableQueryParams,
   type EntertainmentTableRowType,
-} from '@contracts/schemas/Entertainment/EntertaimentPageQuery';
+} from '@repo/contracts/schemas/Entertainment/EntertaimentPageQuery';
 
 export type TableRowType = EntertainmentTableRowType;
 

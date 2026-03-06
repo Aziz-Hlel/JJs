@@ -1,5 +1,5 @@
 import z from 'zod';
-import { EntertainmentResponse } from './EntertainmentResponse';
+import type { EntertainmentResponse } from './EntertainmentResponse';
 
 export type EntertainmentTableRowType = EntertainmentResponse;
 

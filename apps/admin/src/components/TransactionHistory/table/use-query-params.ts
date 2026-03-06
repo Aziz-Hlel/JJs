@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import { transactionHistoryPageQueryParamsSchema } from '@contracts/schemas/transactionHistory/transactionHistoryPageQuery';
+import { transactionHistoryPageQueryParamsSchema } from '@repo/contracts/schemas/transactionHistory/transactionHistoryPageQuery';
 
 const useQueryParams = () => {
   const [searchParams] = useSearchParams();

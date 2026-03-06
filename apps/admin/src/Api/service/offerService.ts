@@ -1,9 +1,9 @@
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
-import type { Page } from '@contracts/types/page/Page';
-import type { OfferRowResponse } from '@contracts/schemas/offre/OfferRowResponse';
-import type { CreateOfferRequest } from '@contracts/schemas/offre/createOfferRequest';
-import type { UpdateOfferRequest } from '@contracts/schemas/offre/updateOfferRequest';
+import type { Page } from '@repo/contracts/types/page/Page';
+import type { OfferRowResponse } from '@repo/contracts/schemas/offre/OfferRowResponse';
+import type { CreateOfferRequest } from '@repo/contracts/schemas/offre/createOfferRequest';
+import type { UpdateOfferRequest } from '@repo/contracts/schemas/offre/updateOfferRequest';
 
 const offerService = {
   getPage: async (queryParams: { [k: string]: string | number | Array<string> }): Promise<Page<OfferRowResponse>> =>

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import { queryParamsSchema } from '@contracts/schemas/user/UserPageQuery';
+import { queryParamsSchema } from '@repo/contracts/schemas/user/UserPageQuery';
 
 const useQueryParams = () => {
   const [searchParams] = useSearchParams();

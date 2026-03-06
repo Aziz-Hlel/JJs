@@ -1,4 +1,19 @@
 services:
+  reverse-proxy:
+    build:
+      context: ${PROJECT_ROOT}
+      dockerfile: ./docker/stage/Dockerfile.stage.caddy
+      args:
+        VITE_NODE_ENV: ${NODE_ENV}
+        VITE_API_URL: ${API_URL}
+
+    ports:
+      - ${WEB_PORT}:3000
+      - ${ADMIN_PORT}:3001
+    
+    # command: 'sleep infinity'
+  
+
   api:
     build:
       context: ${PROJECT_ROOT}
@@ -35,11 +50,10 @@ services:
       SMTP_USER: ${SMTP_USER}
       SMTP_PASS: ${SMTP_PASS}
 
-    ports:
-      - '${API_PORT:?API_PORT is required}:${API_PORT}'
-
     # command: 'sleep infinity'
-
+    ports:
+      - ${API_PORT}:${API_PORT}
+      
     depends_on:
       - db
       - redis

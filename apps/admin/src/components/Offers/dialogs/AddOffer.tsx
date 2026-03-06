@@ -21,7 +21,7 @@ import { ApiError } from '@/Api/ApiError';
 import { Textarea } from '@/components/ui/textarea';
 import ImageUpload from '@/components/ui2/ImageUpload/comp/ImageUpload';
 import InputNumberForm from '@/components/ui2/InputNumberForm/InputNumberForm';
-import { createOfferRequestSchema, type CreateOfferRequest } from '@contracts/schemas/offre/createOfferRequest';
+import { createOfferRequestSchema, type CreateOfferRequest } from '@repo/contracts/schemas/offre/createOfferRequest';
 import offerService from '@/Api/service/offerService';
 
 const AddOffer = () => {

@@ -3,7 +3,7 @@ import { CircleMinus, EllipsisVertical, Trash2, UserPen } from 'lucide-react';
 import React, { Fragment } from 'react';
 import type { TableRowType } from '../tableDeclarations/typesAndFieldsDeclaration';
 import type { Row } from '@tanstack/react-table';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { useUser } from '@/context/UserContext';
 import { useSelectedRow } from '../../context/selected-row-provider';
 import {

@@ -1,5 +1,5 @@
 import z from 'zod';
-import { KaraokeSongTableRowResponse } from './KaraokeSongTableRowResponse';
+import type { KaraokeSongTableRowResponse } from './KaraokeSongTableRowResponse';
 
 export type KaraokeSongTableRowType = KaraokeSongTableRowResponse;
 

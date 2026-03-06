@@ -1,9 +1,15 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    // "module": "ESNext",
+    // "moduleResolution": "Bundler",
+
     "composite": true,
     "declaration": true,
     "declarationMap": true,
+    // "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": false,
+    "tsBuildInfoFile": "./dist/tsconfig.node.tsbuildinfo",
     "outDir": "dist",
     "rootDir": "src"
   },

@@ -22,7 +22,7 @@ import KaraokeSongService from '@/Api/service/KaraokeSongService';
 import {
   updatekaraekoSongSchema,
   type UpdatekaraekoSongRequest,
-} from '@contracts/schemas/karaekoSong/updatekaraekoSongRequest';
+} from '@repo/contracts/schemas/karaekoSong/updatekaraekoSongRequest';
 import { ApiError } from '@/Api/ApiError';
 
 const EditOffer = () => {

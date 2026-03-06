@@ -1,4 +1,4 @@
-import { TransactionHistoryResponse } from "./TransactionHistoryResponse";
+import type { TransactionHistoryResponse } from "./TransactionHistoryResponse";
 
 
 export type TransactionHistoryRowResponse= TransactionHistoryResponse

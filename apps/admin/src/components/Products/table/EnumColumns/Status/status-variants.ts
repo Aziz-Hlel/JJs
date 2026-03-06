@@ -1,5 +1,5 @@
 import { CheckCircleIcon, AlertCircleIcon, BanIcon } from 'lucide-react';
-import type { ProductStatus } from '@contracts/types/enums/enums';
+import type { ProductStatus } from '@repo/contracts/types/enums/enums';
 
 export type StatusVariant = {
   className: string;

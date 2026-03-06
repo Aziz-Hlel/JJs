@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import { offersQueryParamsSchema } from '@contracts/schemas/offre/OfferPageQuery';
+import { offersQueryParamsSchema } from '@repo/contracts/schemas/offre/OfferPageQuery';
 
 const useQueryParams = () => {
   const [searchParams] = useSearchParams();

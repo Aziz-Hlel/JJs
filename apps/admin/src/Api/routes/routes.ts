@@ -22,6 +22,9 @@ const apiRoutes = {
     disableUser: (id: string) => `/users/${id}/disable/` as const,
     enableUser: (id: string) => `/users/${id}/enable/` as const,
   },
+  profile: {
+    getPage: () => '/profile' as const,
+  },
   products: {
     getProducts: () => '/products' as const,
     createProduct: () => '/products/' as const,

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { TableRowType } from './tableDeclarations/typesAndFieldsDeclaration';
 import useQueryParams from './use-query-params';
-import type { Pageable } from '@contracts/types/page/Pageable';
+import type { Pageable } from '@repo/contracts/types/page/Pageable';
 import KaraokeSongService from '@/Api/service/KaraokeSongService';
 
 const blankPagination: Pageable = {

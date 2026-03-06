@@ -1,5 +1,5 @@
-import type { UserProfileRowResponse } from '@contracts/schemas/user/UserRowResponse';
-import type { Prettify } from '@contracts/utils/Prettify';
+import type { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
+import type { Prettify } from '@repo/contracts/utils/Prettify';
 
 export type TableRowType = UserProfileRowResponse;
 export type NestedObject = Prettify<NonNullable<TableRowType['profile']>>;

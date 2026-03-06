@@ -1,5 +1,5 @@
 import { OfferStatus } from '../../types/enums/enums';
-import { MediaResponse } from '../media/MediaResponse';
+import type { MediaResponse } from '../media/MediaResponse';
 
 export type OfferRowResponse = {
   id: string;

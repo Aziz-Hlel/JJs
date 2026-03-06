@@ -1,4 +1,4 @@
-import { UserEarnQuoteResponse } from '../user/UserEarnQuoteResponse';
+import type { UserEarnQuoteResponse } from '../user/UserEarnQuoteResponse';
 
 export type EarnQuoteResponse = {
   points: number;

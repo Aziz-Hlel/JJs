@@ -1,17 +1,17 @@
 import dayjs from '@/utils/dayjsConfig';
-import type { ColumnDef, Header } from '@tanstack/react-table';
+import type { ColumnDef } from '@tanstack/react-table';
 import { ArrowUp, ChevronsUpDown } from 'lucide-react';
 import HeaderContainer from '../ContainerComp/HeaderContainer';
 import RowContainer from '../ContainerComp/RowContainer';
 import type { TableRowType } from './typesAndFieldsDeclaration';
-import type { PointsTransactionType } from '@contracts/types/enums/enums';
+import type { PointsTransactionType } from '@repo/contracts/types/enums/enums';
 import TransactionTypeComponent from '../EnumColumns/TransactionType/TransactionTypeComponent';
 
-type ColumnDefCustom<T> = ColumnDef<T> & {
-  accessorKey?: keyof T;
-  accessorFn?: (row: T) => unknown;
-  header: Header<T, unknown>;
-};
+// type ColumnDefCustom<T> = ColumnDef<T> & {
+//   accessorKey?: keyof T;
+//   accessorFn?: (row: T) => unknown;
+//   header: Header<T, unknown>;
+// };
 
 const columnsRowsDefinition: ColumnDef<TableRowType>[] = [
   {

@@ -1,6 +1,6 @@
 import z from 'zod';
 import { PointsTransactionType } from '../../types/enums/enums';
-import { TransactionHistoryRowResponse } from './transactionHistoryRowResponse';
+import type { TransactionHistoryRowResponse } from './transactionHistoryRowResponse';
 
 export type TransactionHistoryTableRowType = TransactionHistoryRowResponse;
 

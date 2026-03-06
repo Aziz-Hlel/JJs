@@ -5,7 +5,7 @@ import userService from '@/Api/service/userService';
 import {
   updateUserProfileRequestSchema,
   type UpdateUserProfileRequest,
-} from '@contracts/schemas/profile/updateUserProfileRequest';
+} from '@repo/contracts/schemas/profile/updateUserProfileRequest';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -24,7 +24,7 @@ import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { Spinner } from '@/components/ui/spinner';
 import RolesTextMapping from '@/EnumTextMapping/RolesTextMapping';
-import PERMISSION_SCORE from '@contracts/utils/PermissionScore';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import {
   Select,
   SelectContent,
@@ -39,6 +39,8 @@ import { Separator } from '@/components/ui/separator';
 
 const EditUser = () => {
   const { handleCancel, currentRow, openDialog } = useSelectedRow();
+  if (!currentRow) throw new Error('No user selected');
+
   const queryClient = useQueryClient();
 
   const { userRole: role } = useUser();
@@ -53,13 +55,13 @@ const EditUser = () => {
   });
 
   const defaultValues: UpdateUserProfileRequest = {
-    username: currentRow!.username,
-    email: currentRow!.email,
-    role: currentRow!.role,
-    status: currentRow!.status,
+    username: currentRow.username,
+    email: currentRow.email ?? 'REDACTED',
+    role: currentRow.role,
+    status: currentRow.status,
     profile: {
-      phoneNumber: currentRow!.profile?.phoneNumber ?? null,
-      address: currentRow!.profile?.address ?? null,
+      phoneNumber: currentRow.profile?.phoneNumber ?? null,
+      address: currentRow.profile?.address ?? null,
     },
   };
 
@@ -77,7 +79,7 @@ const EditUser = () => {
 
   const onSubmit: SubmitHandler<UpdateUserProfileRequest> = async (data) => {
     try {
-      await mutateAsync({ id: currentRow!.id, payload: data });
+      await mutateAsync({ id: currentRow.id, payload: data });
       toast.success('User updated successfully');
     } catch (error) {
       toast.error('Failed to update user');

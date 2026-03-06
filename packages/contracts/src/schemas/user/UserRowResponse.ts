@@ -1,5 +1,5 @@
-import { Role, Status } from '../../types/enums/enums';
-import { Prettify } from '../../utils/Prettify';
+import type { Role, Status } from '../../types/enums/enums';
+import type { Prettify } from '../../utils/Prettify';
 
 export type UserRowResponse = {
   id: string;
