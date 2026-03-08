@@ -1,0 +1,85 @@
+/*==========================
+    About / Style-1 
+===========================*/
+.about__image-info {
+  @apply flex text-white;
+
+  .about-content {
+    @apply w-full min-h-screen grid grid-cols-12 gap-0 text-white;
+
+    &__image {
+      @apply hidden lg:block relative col-span-3 xl:col-span-6 overflow-hidden;
+    }
+
+    &__info {
+      @apply relative col-span-12 lg:col-span-9 xl:col-span-6
+			px-4 sm:px-10 md:px-10
+			flex flex-wrap flex-col items-start justify-center 
+		 xl:max-w-md	2xl:max-w-4xl mx-auto
+			text-white;
+    }
+
+    &__description {
+      @apply pb-2 text-white;
+    }
+  }
+}
+
+/*==========================
+    About Us / Style-2 
+===========================*/
+
+.about-s2 {
+  &__container-fluid {
+    @apply relative w-full text-white;
+  }
+
+  &__content {
+    @apply relative w-full grid grid-cols-12 gap-4 text-white;
+  }
+
+  &__image {
+    @apply col-span-3 hidden lg:block;
+    img {
+      @apply w-full h-full object-cover object-center;
+    }
+  }
+
+  &__text {
+    @apply col-span-12 sm:col-span-10 sm:col-start-2 
+		lg:col-span-6 
+		px-6 py-16 xl:px-20 xl:py-24 
+		text-center text-white;
+
+    .section-title {
+      @apply mb-0 text-white;
+    }
+  }
+}
+
+/*==========================
+    Text Cols 
+===========================*/
+
+.text-cols {
+  @apply py-16 lg:py-24 text-white;
+
+  &__container {
+    @apply relative !container mx-auto px-4 md:px-0 text-white;
+  }
+
+  &__content {
+    @apply relative w-full grid grid-cols-2 gap-0 
+		md:gap-8 lg:gap-10 
+		px-0 md:px-10 lg:px-20 
+		text-white;
+  }
+
+  &__col {
+    @apply col-span-2 md:col-span-1 text-white;
+
+    p:last-of-type {
+      @apply mb-0;
+    }
+  }
+}

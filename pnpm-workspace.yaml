@@ -8,3 +8,5 @@ onlyBuiltDependencies:
   - esbuild
   - prisma
   - protobufjs
+  - sharp
+  - unrs-resolver

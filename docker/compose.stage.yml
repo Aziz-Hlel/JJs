@@ -8,11 +8,20 @@ services:
         VITE_API_URL: ${API_URL}
 
     ports:
-      - ${WEB_PORT}:3000
-      - ${ADMIN_PORT}:3001
+      - ${PROXY_WEB_PORT}:3000
+      - ${PROXY_ADMIN_PORT}:3001
     
     # command: 'sleep infinity'
   
+  web:
+    build:
+      context: ${PROJECT_ROOT}
+      dockerfile: docker/stage/Dockerfile.stage.web
+    environment:
+      PORT: ${WEB_PORT}
+    ports:
+      - ${WEB_PORT}:${WEB_PORT}
+    # command: 'sleep infinity'
 
   api:
     build:
@@ -21,7 +30,7 @@ services:
 
     environment:
       NODE_ENV: ${NODE_ENV}
-      API_PORT: ${API_PORT}
+      API_PORT: ${API_DOCKER_PORT}
       ALLOWED_ORIGIN_PATTERNS: ${ALLOWED_ORIGIN_PATTERNS}
       FIREBASE_CERT: ${FIREBASE_CERT}
 
@@ -38,7 +47,7 @@ services:
       REDIS_PORT: ${REDIS_PORT}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
 
-      MINIO_Region: ${MINIO_Region}
+      MINIO_REGION: ${MINIO_REGION}
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
       MINIO_BUCKET: ${MINIO_BUCKET}
@@ -52,7 +61,7 @@ services:
 
     # command: 'sleep infinity'
     ports:
-      - ${API_PORT}:${API_PORT}
+      - ${API_PORT}:${API_DOCKER_PORT}
       
     depends_on:
       - db
@@ -80,6 +89,7 @@ services:
   minio:
     image: quay.io/minio/minio:latest
     ports:
+      - ${MINIO_PORT}:${MINIO_PORT}
       - '${MINIO_UI_PORT:?MINIO_UI_PORT is required}:9001' # Web UI
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}

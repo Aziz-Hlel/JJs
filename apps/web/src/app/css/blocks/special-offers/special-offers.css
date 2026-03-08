@@ -1,0 +1,52 @@
+/*==========================
+    Special Offers
+===========================*/
+.special-offers {
+  @apply block relative w-full h-fit max-h-[800px];
+
+  @media (max-width: 767px) {
+    max-height: none;
+    height: auto !important; /* On laisse le contenu décider de la hauteur */
+  }
+
+  &__container {
+    /* Réduction du padding vertical sur mobile pour coller au footer */
+    @apply container mx-auto pt-8 pb-0 md:py-16 xl:py-28;
+  }
+}
+
+.special-offers__slider {
+  @apply block relative w-full h-fit;
+
+  @media (max-width: 767px) {
+    height: auto !important; /* Supprime le 100vh */
+  }
+
+  &__wrapper {
+    /* Sur Desktop on garde la grande hauteur, sur mobile on réduit */
+    @apply flex flex-col items-center justify-center relative w-full h-[600px] md:h-[800px];
+
+    @media (max-width: 767px) {
+      height: 300px !important; /* Hauteur fixe raisonnable pour mobile */
+      min-height: 300px !important;
+    }
+  }
+
+  &__image {
+    @apply absolute inset-0 w-full h-full z-10;
+
+    @media (max-width: 767px) {
+      width: 100vw;
+      height: 300px !important; /* Doit correspondre au wrapper */
+    }
+
+    img {
+      @apply block relative w-full h-full z-[2];
+      object-fit: cover;
+
+      @media (max-width: 767px) {
+        height: 300px !important;
+      }
+    }
+  }
+}

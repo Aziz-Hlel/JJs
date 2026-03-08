@@ -7,6 +7,7 @@ export function createStorageProvider(): IStorageProvider {
   switch (ENV.NODE_ENV) {
     case 'dev':
     case 'test':
+    case 'stage':
       return new MinioService({
         MINIO_Region: ENV.MINIO_REGION,
         MINIO_PORT: ENV.MINIO_PORT,
@@ -16,7 +17,6 @@ export function createStorageProvider(): IStorageProvider {
       });
 
     case 'production':
-    case 'stage':
       return new AwsStorageService();
   }
 }
