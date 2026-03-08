@@ -1,7 +1,7 @@
 import { ContactUsFormValues } from '@/app/blocks/contact/ContactUsFrom';
 
 export async function sendContactMessage(data: ContactUsFormValues) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/email/contact-us`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

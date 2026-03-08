@@ -6,6 +6,7 @@ import z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { sendContactMessage } from '@/services/contact.service';
+import { toast } from 'sonner';
 
 export const sendContactUsRequestSchema = z.object({
     name: z
@@ -46,7 +47,7 @@ const ContactUsFrom = () => {
 
     const onSubmit = async (data: ContactUsFormValues) => {
         try {
-            const res = await sendContactMessage(data);
+            await sendContactMessage(data);
             toast.success("Message sent successfully");
             reset();
         } catch (error) {

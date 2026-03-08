@@ -8,7 +8,6 @@
 
 **/generated
 
-scripts/
 seed/
 docker/
 config/

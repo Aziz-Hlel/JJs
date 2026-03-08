@@ -1,13 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { InfoGeneralData } from "./hooks/data-general";
-import Header from "./components/common/header/Header";
-import Topbar from "./components/common/topbar/Topbar";
 import Footer from "./components/common/footer/Footer";
-import Topbar2 from "./components/common/topbar/Topbar2";
 import Header2 from "./components/common/header/Header2";
 import { ScrollToTop } from "./hooks2/ScrollToTop";
+import { Toaster } from "@/components/ui/sonner"
 
 export default function LayoutProvider({
   children,
@@ -21,6 +18,7 @@ export default function LayoutProvider({
   return (
     <>
       <ScrollToTop />
+      <Toaster />
       {!shouldHideHeaderFooter && (
         <>
           <Header2 />

@@ -1,13 +1,7 @@
 import { HeroInnerContactData } from "@/app/hooks/data-contact";
 import HeroInnerBlock from "@/app/components/common/hero-inner/Hero-inner";
-import ContactBlock from "@/app/blocks/Booking/contact";
-import LocationsBlock from "@/app/blocks/locations/locations";
 
-// data
-import { contactData } from "@/app/hooks/data-contact";
-import { locationsData } from "@/app/hooks/data-contact";
-import ContactForm from "@/app/blocks/Booking/BookingForm";
-import { HeroInnerAboutData } from "@/app/hooks/data";
+import BookingForm from "@/app/blocks/Booking/BookingForm";
 
 const BookingPage = () => {
   return (
@@ -23,7 +17,7 @@ const BookingPage = () => {
         ]}
       />
       {/* / Hero Inner - Block */}
-      <ContactForm />
+      <BookingForm />
       {/* Contact Block */}
       {/* <ContactBlock {...contactData} /> */}
       {/* / Contact Block */}

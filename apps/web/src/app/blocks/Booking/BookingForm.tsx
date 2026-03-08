@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import sendBookingRequest from "@/services/booking.service";
+import { toast } from "sonner";
 
 /* -------------------- CONFIGURATION DES LIEUX -------------------- */
 const PLACES_DATA = {
@@ -20,21 +22,42 @@ const PLACES_DATA = {
   },
   vip_lounge: { label: "Salon VIP", image: "/ourImages/reservation/vip1.png" },
 };
+const EnumSpaces = {
+  SPORTS: 'SPORTS',
+  WHISKEY: 'WHISKEY',
+  MAIN: 'MAIN',
+  VIP: 'VIP',
+} as const;
+
+export const EnumEvents = {
+  BIRTHDAY: 'BIRTHDAY',
+  ANNIVERSARY: 'ANNIVERSARY',
+  DATE: 'DATE',
+  CELEBRATION: 'CELEBRATION',
+  BUSINESS: 'BUSINESS',
+  OTHER: 'OTHER',
+} as const;
 
 /* -------------------- SCHEMA DE VALIDATION -------------------- */
 const reservationSchema = z.object({
-  firstName: z.string().min(2, "Requis"),
-  lastName: z.string().min(2, "Requis"),
-  email: z.string().email("Email invalide"),
-  phoneNumber: z.string().min(8, "Numéro trop court"),
-  place: z.string().min(1, "Choisissez un lieu"),
-  guests: z.string().min(1, "Nombre requis"),
-  date: z.string().min(1, "Date requise"),
-  time: z.string().min(1, "Heure requise"),
+  firstName: z
+    .string()
+    .trim()
+    .min(1, 'First name is required')
+    .max(255, 'First name must be at most 255 characters long'),
+  lastName: z.string().trim().min(1, 'Last name is required').max(255, 'Last name must be at most 255 characters long'),
+  email: z.email(),
+  phone: z.string().trim().min(1, 'Phone is required').max(255, 'Phone must be at most 255 characters long'),
+  date: z.string().trim().min(1, 'Date is required').max(255, 'Date must be at most 255 characters long'),
+  time: z.string().trim().min(1, 'Time is required').max(255, 'Time must be at most 255 characters long'),
+  guests: z.number().positive().max(100, 'Guests must be at most 100'),
+  space: z.enum(EnumSpaces).nullable().optional(),
+  event: z.enum(EnumEvents).nullable().optional(),
   isVip: z.boolean(),
+  message: z.string().trim().max(1000, 'Message must be at most 1000 characters long').nullable().optional(),
 });
 
-type ReservationFormData = z.infer<typeof reservationSchema>;
+export type ReservationFormData = z.infer<typeof reservationSchema>;
 
 const BookingForm = () => {
   const {
@@ -42,33 +65,44 @@ const BookingForm = () => {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ReservationFormData>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
-      phoneNumber: "",
-      place: "terrasse",
-      guests: "2",
+      phone: "",
       date: "",
       time: "20:00",
+      guests: 2,
+      space: "MAIN",
+      event: null,
       isVip: false,
+      message: "",
     },
   });
 
   const isVip = watch("isVip");
-  const selectedPlace = watch("place");
+  const selectedEvent = watch("event");
 
   // Logique d'image dynamique
   const currentImage = isVip
     ? "/ourImages/reservation/vip1.png"
-    : PLACES_DATA[selectedPlace as keyof typeof PLACES_DATA]?.image ||
-      "/ourImages/reservation/contact1.jpg";
+    : PLACES_DATA[selectedEvent as keyof typeof PLACES_DATA]?.image ||
+    "/ourImages/reservation/contact1.jpg";
 
-  const onSubmit: SubmitHandler<ReservationFormData> = (data) => {
-    console.log("Données envoyées :", data);
+  const onSubmit: SubmitHandler<ReservationFormData> = async (data) => {
+    try {
+      await sendBookingRequest(data);
+      toast.success("Reservation request sent successfully", {
+        description: "We will get back to you as soon as possible",
+      });
+    } catch (error) {
+      toast.error("Failed to send reservation request", {
+        description: "Please try again later",
+      });
+    }
   };
 
   return (
@@ -134,9 +168,9 @@ const BookingForm = () => {
                 />
                 <CustomInput
                   label="Phone Number"
-                  name="phoneNumber"
+                  name="phone"
                   control={control}
-                  error={errors.phoneNumber}
+                  error={errors.phone}
                   isVip={isVip}
                 />
               </div>
@@ -148,11 +182,12 @@ const BookingForm = () => {
                     Select Place
                   </label>
                   <Controller
-                    name="place"
+                    name="space"
                     control={control}
                     render={({ field }) => (
                       <select
                         {...field}
+                        value={field.value ?? undefined}
                         className={cn(
                           "h-12 bg-white/5 border rounded-lg px-4 outline-none",
                           isVip
@@ -160,6 +195,7 @@ const BookingForm = () => {
                             : "border-white/10",
                         )}
                       >
+                        <option value={undefined}></option>
                         {Object.entries(PLACES_DATA).map(([key, val]) => (
                           <option
                             key={key}
@@ -203,6 +239,64 @@ const BookingForm = () => {
                 />
               </div>
 
+              <div>
+                <Controller
+                  name="event"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold opacity-60">
+                        Select Event
+                      </label>
+                      <select
+                        {...field}
+                        value={field.value ?? undefined}
+                        className={cn(
+                          "h-12 bg-white/5 border rounded-lg px-4 outline-none",
+                          isVip
+                            ? "border-[#d4af37]/30 focus:border-[#d4af37]"
+                            : "border-white/10",
+                        )}
+                      >
+                        <option className="bg-neutral-900" value={undefined}>   </option>
+                        {Object.entries(EnumEvents).map(([key, val]) => (
+                          <option
+                            key={key}
+                            value={key}
+                            className="bg-neutral-900"
+                          >
+                            {val.toLowerCase()}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                />
+              </div>
+
+              <div>
+                <Controller
+                  name="message"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold opacity-60">
+                        Message
+                      </label>
+                      <textarea
+                        {...field}
+                        value={field.value ?? undefined}
+                        className={cn(
+                          "h-24 bg-white/5 border rounded-lg px-4 outline-none",
+                          isVip
+                            ? "border-[#d4af37]/30 focus:border-[#d4af37]"
+                            : "border-white/10",
+                        )}
+                      ></textarea>
+                    </div>
+                  )}
+                />
+              </div>
               {/* VIP TOGGLE BUTTON */}
               <button
                 type="button"
@@ -219,6 +313,7 @@ const BookingForm = () => {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className={cn(
                   "w-full py-4 rounded-xl font-bold uppercase tracking-[0.2em] transition-all",
                   "text-[10px] sm:text-xs md:text-sm", // Texte très petit sur mobile, s'agrandit progressivement
@@ -227,7 +322,7 @@ const BookingForm = () => {
                     : "bg-white text-black hover:bg-neutral-200",
                 )}
               >
-                Confirm Reservation
+                {isSubmitting ? "Submitting..." : "Confirm Reservation"}
               </button>
             </form>
           </div>
@@ -246,7 +341,7 @@ const BookingForm = () => {
                 You are booking for:
               </p>
               <h3 className="text-2xl font-serif text-[#d4af37]">
-                {PLACES_DATA[selectedPlace as keyof typeof PLACES_DATA]?.label}
+                {selectedEvent ? PLACES_DATA[selectedEvent as keyof typeof PLACES_DATA]?.label : ""}
               </h3>
             </div>
           </div>

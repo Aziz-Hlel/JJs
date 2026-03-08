@@ -1,0 +1,48 @@
+FROM node:22.14.0-alpine AS admin_build
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /app
+COPY ./package.json ./
+# COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-workspace.yaml ./
+COPY ./tsconfig.json ./
+COPY ./tsconfig.base.json ./
+
+WORKDIR /app/packages/contracts
+COPY ./packages/contracts/package.json ./
+COPY ./packages/contracts/tsconfig.json ./
+
+WORKDIR /app/apps/admin
+COPY apps/admin/package.json  ./
+COPY apps/admin/tsconfig.json ./
+COPY apps/admin/tsconfig.node.json ./
+COPY apps/admin/tsconfig.app.json ./
+COPY apps/admin/vite.config.ts ./
+
+
+RUN pnpm install
+
+WORKDIR /app/packages/contracts
+COPY ./packages/contracts/src ./src
+
+WORKDIR /app
+RUN pnpm build
+
+ARG VITE_NODE_ENV
+ARG VITE_API_URL
+
+WORKDIR /app/apps/admin
+COPY ./apps/admin .
+ENV CI=true
+ENV SHELL=/bin/sh
+RUN pnpm build
+
+
+
+
+FROM caddy:2.6.2-alpine
+
+COPY --from=admin_build /app/apps/admin/dist /srv/admin
+
+COPY ./proxy/Caddyfile.stage /etc/caddy/Caddyfile

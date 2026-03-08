@@ -22,19 +22,19 @@ router.get(
 );
 
 router.get(
-  '/:productId',
+  '/:id',
   asyncHandler((req: Request, res: Response) => productController.getById(req, res)),
 );
 
 router.put(
-  '/:productId',
+  '/:id',
   requireAuth,
   requireRole(Role.ADMIN),
   asyncHandler((req: Request, res: Response) => productController.update(req, res)),
 );
 
 router.delete(
-  '/:productId',
+  '/:id',
   requireAuth,
   requireRole(Role.ADMIN),
   asyncHandler((req: Request, res: Response) => productController.delete(req, res)),

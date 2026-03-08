@@ -1,25 +1,32 @@
 FROM node:22.14.0-alpine
 
-ARG APP_PATH=apps/admin
-
 # Install pnpm globally
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
+WORKDIR /app
+COPY ./package.json ./
+# COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-workspace.yaml ./
+COPY ./tsconfig.json ./
+COPY ./tsconfig.base.json ./
+
+
 WORKDIR /app/packages/contracts
 COPY ./packages/contracts/package.json ./
+COPY ./packages/contracts/tsconfig.json ./
 RUN pnpm install
 
-WORKDIR /app/${APP_PATH}
+WORKDIR /app/apps/admin
+COPY apps/admin/package.json  ./
+COPY apps/admin/tsconfig.json  ./
+# RUN pnpm install
+# COPY apps/admin .
 
-COPY ${APP_PATH}/package.json  ./
+# WORKDIR /app
+# COPY ./packages/ ./packages/
 
-RUN pnpm install
+# WORKDIR /app/apps/admin
+# CMD ["pnpm", "run", "dev"]
 
-COPY ${APP_PATH} .
 
-WORKDIR /app
-COPY ./packages/ ./packages/
 
-WORKDIR /app/${APP_PATH}
-
-CMD ["pnpm", "run", "dev"]

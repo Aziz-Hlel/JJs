@@ -1,5 +1,7 @@
 FROM node:22.14.0-alpine
 
+ARG APP_PATH=apps/web
+
 # Install pnpm globally
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
@@ -16,18 +18,11 @@ COPY ./packages/contracts/package.json ./
 COPY ./packages/contracts/tsconfig.json ./
 RUN pnpm install
 
-
-ARG APP_PATH=apps/api
-
 WORKDIR /app/${APP_PATH}
 
 COPY ${APP_PATH}/package.json  ./
 
 RUN pnpm install
-
-COPY ${APP_PATH}/prisma ./prisma
-
-RUN pnpm prisma generate
 
 COPY ${APP_PATH} .
 

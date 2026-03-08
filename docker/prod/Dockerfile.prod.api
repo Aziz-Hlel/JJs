@@ -10,30 +10,30 @@ COPY ./pnpm-workspace.yaml ./
 COPY ./tsconfig.json ./
 COPY ./tsconfig.base.json ./
 
-
 WORKDIR /app/packages/contracts
 COPY ./packages/contracts/package.json ./
 COPY ./packages/contracts/tsconfig.json ./
-RUN pnpm install
 
+WORKDIR /app/apps/api
+COPY apps/api/package.json  ./
+COPY apps/api/prisma ./prisma
+COPY apps/api/tsconfig.json ./
+COPY apps/api/prisma.config.ts ./
 
-ARG APP_PATH=apps/api
-
-WORKDIR /app/${APP_PATH}
-
-COPY ${APP_PATH}/package.json  ./
-
-RUN pnpm install
-
-COPY ${APP_PATH}/prisma ./prisma
-
-RUN pnpm prisma generate
-
-COPY ${APP_PATH} .
 
 WORKDIR /app
-COPY ./packages/ ./packages/
+RUN pnpm install
+RUN pnpm prisma:generate
 
-WORKDIR /app/${APP_PATH}
+COPY apps/api/src ./apps/api/src
+COPY packages/contracts/src ./packages/contracts/src
 
-CMD ["pnpm", "run", "dev"]
+RUN pnpm build
+
+WORKDIR /app/apps/api
+
+RUN pnpm build
+
+WORKDIR /app/apps/api/dist
+
+CMD [ "node", "index.js" ]

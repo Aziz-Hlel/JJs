@@ -25,7 +25,7 @@ class ProductController {
   }
 
   async update<T extends Request>(req: T, res: Response<ProductResponse>) {
-    const productId = getParam(req, 'productId');
+    const productId = getParam(req, 'id');
     const parsedSchema = updateProductRequestSchema.parse(req.body);
     const productResponse = await productService.update(productId, parsedSchema);
 
