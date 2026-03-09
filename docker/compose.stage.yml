@@ -21,9 +21,8 @@ services:
         NEXT_PUBLIC_API_URL: ${API_URL}
 
     environment:
-      PORT: ${WEB_PORT}
-    ports:
-      - ${WEB_PORT}:${WEB_PORT}
+      PORT: 3000
+
     # command: 'sleep infinity'
 
   api:
@@ -63,9 +62,6 @@ services:
       SMTP_PASS: ${SMTP_PASS}
 
     # command: 'sleep infinity'
-    ports:
-      - ${API_PORT}:${API_DOCKER_PORT}
-
     depends_on:
       - db
       - redis
