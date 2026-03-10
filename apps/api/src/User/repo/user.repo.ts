@@ -3,7 +3,6 @@ import { prisma } from '../../bootstrap/db.init';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 import { Tx, UserWithProfile } from '../types';
 import { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
-import { StrictDecodedIdToken } from '@/types/auth/StrictDecodedIdToken';
 import UserMapper, { UserCreateInputCustom } from '../mapper/user.mapper';
 import { Status } from '@/generated/prisma/enums';
 import { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
@@ -48,8 +47,9 @@ export class UserRepo {
   async createUser(user: UserCreateInputCustom): Promise<UserWithProfile> {
     const createdUser = await prisma.user.create({
       data: user,
+      include: this.includeProfile(),
     });
-    return { ...createdUser, profile: null };
+    return createdUser;
   }
 
   async getUserByAuthId(authId: string): Promise<UserWithProfile | null> {
@@ -170,7 +170,6 @@ export class UserRepo {
     const profileData = {
       phoneNumber: data.phoneNumber,
       gender: data.gender,
-      address: data.address,
     };
 
     const updatedUser = await prisma.user.update({

@@ -15,19 +15,31 @@ import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfile
 import { Page } from '@repo/contracts/types/page/Page';
 import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
 import { Providers, ProvidersMapping } from '@repo/contracts/map/ProvidersMapping';
+import { RegisterUserNoProviderDto } from '@repo/contracts/schemas/user/RegisterUserNoProvider';
 
 export type UserCreateInputCustom = GenericEntityCreateInput<UserCreateInput>;
 
 class UserMapper {
-  static toUserCreateInputWithUsername(decodedToken: StrictDecodedIdToken, referenceCode: string, username: string) {
+  static toUserProfileRegister(
+    decodedToken: StrictDecodedIdToken,
+    referenceCode: string,
+    schema: RegisterUserNoProviderDto,
+  ) {
     const user: UserCreateInputCustom = {
       authId: decodedToken.uid,
       email: decodedToken.email as string,
-      username: username,
+      username: schema.username,
       referenceCode: referenceCode,
       provider: decodedToken.firebase.sign_in_provider,
       role: Role.USER,
       isEmailVerified: decodedToken.email_verified ?? false,
+      profile: {
+        create: {
+          phoneNumber: schema.profile.phoneNumber,
+          gender: schema.profile.gender,
+          address: null,
+        },
+      },
     };
     return user;
   }

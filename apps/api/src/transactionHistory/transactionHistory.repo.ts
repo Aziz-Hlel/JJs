@@ -47,7 +47,7 @@ class TransactionHistoryRepository {
   async getUserHistory(userId: string, params: CursorQueryParam) {
     const transactions = await prisma.transactionHistory.findMany({
       where: { userId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
       skip: params.cursor ? 1 : 0,
       take: params.limit + 1,
       include: this.includeUserAndStaff(),
@@ -63,7 +63,7 @@ class TransactionHistoryRepository {
   async getStaffHistory(staffId: string, params: CursorQueryParam) {
     const transactions = await prisma.transactionHistory.findMany({
       where: { staffId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
       skip: params.cursor ? 1 : 0,
       take: params.limit + 1,
       include: this.includeUserAndStaff(),
