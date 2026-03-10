@@ -35,8 +35,8 @@ class UserMapper {
       isEmailVerified: decodedToken.email_verified ?? false,
       profile: {
         create: {
-          phoneNumber: schema.profile.phoneNumber,
-          gender: schema.profile.gender,
+          phoneNumber: schema.profile?.phoneNumber ?? null,
+          gender: schema.profile?.gender ?? null,
           address: null,
         },
       },
