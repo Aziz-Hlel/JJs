@@ -17,6 +17,7 @@ export class ProfileMapper {
       updatedAt: profile.updatedAt.toISOString(),
     };
   }
+
   static toUserProfileResponse(profile: ProfileWithUser, firebaseToken: DecodedIdTokenWithClaims): UserProfileResponse {
     const userResponse = UserMapper.toUserResponse(profile.user, firebaseToken.picture);
     const profileResponse = this.toProfile(profile);

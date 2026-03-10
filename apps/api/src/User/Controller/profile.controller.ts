@@ -64,7 +64,7 @@ class ProfileController {
 
   async deleteMyAccount(req: AuthenticatedRequest, res: Response<SimpleApiResponse>) {
     await profileService.deleteMyAccount(req.user);
-    res.status(204).send({ message: 'User deleted successfully' });
+    res.status(200).send({ message: 'User deleted successfully' });
   }
 }
 
