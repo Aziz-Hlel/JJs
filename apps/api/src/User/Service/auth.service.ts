@@ -33,9 +33,7 @@ class AuthService {
       userRole: newUser.role,
     });
 
-    const userWithNoProfile = { ...newUser, profile: null };
-
-    return UserMapper.toUserProfileResponse(userWithNoProfile, decodedToken.picture || null);
+    return UserMapper.toUserProfileResponse(newUser, decodedToken.picture || null);
   }
 
   async authenticateWithPassword(tokenId: string): Promise<UserProfileResponse> {
