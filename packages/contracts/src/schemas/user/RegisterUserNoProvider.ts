@@ -1,5 +1,5 @@
-import { Gender } from '@repo/contracts/types/enums/enums';
 import z from 'zod';
+import { Gender } from '../../types/enums/enums';
 
 export const RegisterUserNoProviderSchema = z.object({
   idToken: z.string({ error: 'tokenId is required' }).nonempty({ error: 'tokenId cannot be empty' }),

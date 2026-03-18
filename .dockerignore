@@ -16,5 +16,4 @@ config/
 .gitignore
 .dockerignore
 
-**/pnpm-lock.yaml
 ./backup
