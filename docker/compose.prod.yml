@@ -1,17 +1,12 @@
 services:
   reverse-proxy:
+    container_name: jj-reverse-proxy
     build:
       context: ${PROJECT_ROOT}
       dockerfile: ./docker/stage/Dockerfile.stage.caddy
       args:
         VITE_NODE_ENV: ${NODE_ENV}
         VITE_API_URL: ${API_URL}
-
-    ports:
-      - ${PROXY_WEB_PORT}:3000
-      - ${PROXY_ADMIN_PORT}:3001
-
-    # command: 'sleep infinity'
 
     networks:
       - default
@@ -125,4 +120,4 @@ volumes:
 
 networks:
   default:
-    name: jjs-network
+    name: jj-network
