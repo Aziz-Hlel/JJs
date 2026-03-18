@@ -62,7 +62,7 @@ services:
       SMTP_USER: ${SMTP_USER}
       SMTP_PASS: ${SMTP_PASS}
 
-    command: 'pnpm start:api'
+    command: 'sleep infinity'
     depends_on:
       - db
       - redis
