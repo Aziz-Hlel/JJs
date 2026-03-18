@@ -3,7 +3,7 @@ import ENV from './ENV';
 
 export function configureCors() {
   return cors({
-    origin: new RegExp(ENV.ALLOWED_ORIGIN_PATTERNS || '.*'),
+    origin: ENV.NODE_ENV === 'production' ? ENV.ALLOWED_ORIGIN_PATTERNS : '*',
 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
