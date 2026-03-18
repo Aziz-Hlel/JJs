@@ -12,7 +12,7 @@
     "dev:web": "pnpm --filter web dev",
     "dev:api": "pnpm --filter api dev",
     "dev:admin": "pnpm --filter admin dev",
-    "dev": "pnpm -r --parallel --filter api --filter admin --filter web dev",
+    "dev": "pnpm docker:local && pnpm -r --parallel --filter api --filter admin --filter web dev",
     "docker:dev": "node scripts/docker-up.js dev",
     "docker:stage": "node scripts/docker-up.js stage",
     "docker:prod": "node scripts/docker-up.js prod ",
