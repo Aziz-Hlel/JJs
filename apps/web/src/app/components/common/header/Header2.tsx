@@ -50,9 +50,10 @@ const Header2: React.FC = () => {
       >
         <div
           className={cn(
-            'px-6 transition-all duration-700 ease-in-out bg-black/90 backdrop-blur-md',
+            'px-6 transition-all duration-700 ease-in-out   md:backdrop-blur-0',
             // py-5 sur mobile pour donner de l'espace au logo qui descend
-            bgTransparent ? ' py-5 md:py-8' : ' shadow-2xl py-4 md:py-5',
+            bgTransparent ? ' py-5 md:py-8' : ' shadow-2xl py-4 md:py-5 bg-black/90',
+            isMenuVisible ? 'backdrop-blur-md bg-black/90' : '',
           )}
         >
           <div className="max-w-[1600px] mx-auto">
