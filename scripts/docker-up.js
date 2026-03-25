@@ -64,18 +64,28 @@ env.PROJECT_ROOT = ROOT;
 console.log(env);
 // Logs
 console.log(`${YELLOW}🚀 Starting Docker in ${envArg.toUpperCase()} Env...${NC}`);
-
+console.log(envArg === 'prod2' ? 'docker-compose' : 'docker', [
+  envArg === 'prod2' ? '' : 'compose',
+  '-f',
+  DOCKER_COMPOSE_MAP[envArg],
+  'up',
+  '--build',
+]);
 // Run Docker Compose
-spawnSync(envArg === 'prod2' ? 'docker-compose' : 'docker', [envArg === 'prod2' ? '' : 'compose', '-f', DOCKER_COMPOSE_MAP[envArg], 'up', '--build'], {
-  stdio: 'inherit',
-  env: {
-    ...process.env,
-    ...loadEnv(ENV_ROOT),
-    ...loadEnv(ENV_MAP[envArg]),
-    ...loadEnv(ENV_LOCAL),
-    PROJECT_ROOT: ROOT,
+spawnSync(
+  envArg === 'prod2' ? 'docker-compose' : 'docker',
+  [envArg === 'prod2' ? '' : 'compose', '-f', DOCKER_COMPOSE_MAP[envArg], 'up', '--build'],
+  {
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      ...loadEnv(ENV_ROOT),
+      ...loadEnv(ENV_MAP[envArg]),
+      ...loadEnv(ENV_LOCAL),
+      PROJECT_ROOT: ROOT,
+    },
   },
-});
+);
 
 console.log(`${GREEN}✅ Done!${NC}`);
 
