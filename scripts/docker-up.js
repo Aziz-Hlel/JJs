@@ -17,7 +17,7 @@ if (!envArg) {
   process.exit(1);
 }
 
-if (!['local', 'dev', 'stage', 'prod'].includes(envArg)) {
+if (!['local', 'dev', 'stage', 'prod', 'prod2'].includes(envArg)) {
   console.error(`Invalid environment: ${envArg}`);
   console.error('Available environments: local, dev, stage, prod');
   process.exit(1);
