@@ -77,7 +77,7 @@ const command = isV2 ? 'docker' : 'docker-compose';
 
 const args = [...(isV2 ? ['compose'] : []), '-f', DOCKER_COMPOSE_MAP[envArg], 'up', '--build'];
 
-spawnSync(command, args, { stdio: 'inherit', env: mergedEnv });
+spawnSync(command, args, { stdio: 'inherit', env });
 
 console.log(`${GREEN}✅ Done!${NC}`);
 
