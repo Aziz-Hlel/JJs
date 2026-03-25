@@ -35,6 +35,7 @@ const ENV_MAP = {
   dev: join(ROOT, 'config', '.env.dev'),
   stage: join(ROOT, 'config', '.env.stage'),
   prod: join(ROOT, 'config', '.env.prod'),
+  prod2: join(ROOT, 'config', '.env.prod'),
 };
 
 const DOCKER_COMPOSE_MAP = {
@@ -42,6 +43,7 @@ const DOCKER_COMPOSE_MAP = {
   dev: join(DOCKER_ROOT, 'compose.dev.yml'),
   stage: join(DOCKER_ROOT, 'compose.stage.yml'),
   prod: join(DOCKER_ROOT, 'compose.prod.yml'),
+  prod2: join(DOCKER_ROOT, 'compose.prod.yml'),
 };
 
 // Ensure env files exist
@@ -64,7 +66,7 @@ console.log(env);
 console.log(`${YELLOW}🚀 Starting Docker in ${envArg.toUpperCase()} Env...${NC}`);
 
 // Run Docker Compose
-spawnSync('docker', ['compose', '-f', DOCKER_COMPOSE_MAP[envArg], 'up', '--build'], {
+spawnSync(envArg === 'prod2' ? 'docker-compose' : 'docker', [envArg === 'prod2' ? '' : 'compose', '-f', DOCKER_COMPOSE_MAP[envArg], 'up', '--build'], {
   stdio: 'inherit',
   env: {
     ...process.env,
