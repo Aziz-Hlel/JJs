@@ -7,7 +7,9 @@ services:
       args:
         VITE_NODE_ENV: ${NODE_ENV}
         VITE_API_URL: ${API_URL}
-
+    ports:
+      - "3010:3000"
+      - "3011:3001"
     networks:
       - default
 
