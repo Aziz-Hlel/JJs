@@ -69,9 +69,20 @@ const Header2: React.FC = () => {
                 <ul className="flex items-center gap-6 lg:gap-10">
                   {leftItems.map((item) => (
                     <li key={item.title}>
-                      <Link href={item.link} className={navLinkClass}>
-                        {item.title}
-                      </Link>
+                      {item.title !== 'Menu' ? (
+                        <Link href={item.link} className={navLinkClass}>
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <Link
+                          href="/menu/JJ_Menu.pdf"
+                          className={navLinkClass}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -89,9 +100,15 @@ const Header2: React.FC = () => {
                 <ul className="flex items-center gap-6 lg:gap-10">
                   {rightItems.map((item) => (
                     <li key={item.title}>
-                      <Link href={item.link} className={navLinkClass}>
-                        {item.title}
-                      </Link>
+                      {item.title === 'MENU' ? (
+                        <Link href={item.link} className={navLinkClass}>
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <a href="/menu/Teres_menu.pdf" target="_blank" rel="noopener noreferrer">
+                          {item.title}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
