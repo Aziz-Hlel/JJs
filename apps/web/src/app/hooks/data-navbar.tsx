@@ -7,67 +7,67 @@ export const itemsNavbar = [
   // },
   {
     id: 3,
-    title: "About",
-    link: "/about-us",
+    title: 'About',
+    link: '/about-us',
   },
   {
     id: 2,
-    title: "Menu",
-    link: "/menu",
+    title: 'Menu',
+    link: '/menu/JJ_Menu.pdf',
   },
 
   {
     id: 6,
-    title: "Gallery",
-    link: "/gallery",
+    title: 'Gallery',
+    link: '/gallery',
   },
   {
     id: 7,
-    title: "Our Story",
-    link: "/history2",
+    title: 'Our Story',
+    link: '/history2',
   },
   {
     id: 4,
-    title: "Entertainment",
-    link: "/events",
+    title: 'Entertainment',
+    link: '/events',
     children: [
       {
         id: 9,
-        title: "One Event",
-        link: "/events/one",
+        title: 'One Event',
+        link: '/events/one',
       },
       {
         id: 31,
-        title: "About Us",
-        link: "/about-us",
+        title: 'About Us',
+        link: '/about-us',
       },
       {
         id: 32,
-        title: "Chefs",
-        link: "/chefs",
+        title: 'Chefs',
+        link: '/chefs',
       },
       {
         id: 33,
-        title: "History",
-        link: "/history",
+        title: 'History',
+        link: '/history',
       },
       {
         id: 34,
-        title: "Services",
-        link: "/services",
+        title: 'Services',
+        link: '/services',
       },
     ],
   },
 
   {
     id: 8,
-    title: "Contact",
-    link: "/contact-us",
+    title: 'Contact',
+    link: '/contact-us',
   },
 
   {
     id: 9,
-    title: "Booking",
-    link: "/booking",
+    title: 'Booking',
+    link: '/booking',
   },
 ];
