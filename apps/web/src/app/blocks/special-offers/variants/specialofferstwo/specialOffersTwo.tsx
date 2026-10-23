@@ -1,21 +1,14 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import {
-  EffectFade,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from "swiper/modules";
-import BlockTitle from "@/app/components/common/block-title/block-title";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+'use client';
+import BlockTitle from '@/app/components/common/block-title/block-title';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import { useState } from 'react';
+import { A11y, EffectFade, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Interface
-import { SpecialOffersBlockProps } from "@/app/types/common.types";
-import { specialOffersData } from "@/app/hooks/data-special-offers";
+import { specialOffersData } from '@/app/data/data-special-offers';
+import { SpecialOffersBlockProps } from '@/app/types/common.types';
 
 const SpecialOffersTwoBlock = ({
   subtitle = specialOffersData.subtitle,
@@ -40,13 +33,10 @@ const SpecialOffersTwoBlock = ({
   }
 
   return (
-    <section
-      id="special-offers-two"
-      className={cn(`special-offers-two bg-background`, className)}
-    >
+    <section id="special-offers-two" className={cn(`special-offers-two bg-background`, className)}>
       <div className="special-offers-two__container">
         {/* Info title */}
-        <BlockTitle subtitle={subtitle} title={title ?? ""} phrase={phrase} />
+        <BlockTitle subtitle={subtitle} title={title ?? ''} phrase={phrase} />
         {/* Info title */}
 
         {/* Slider Special Offers */}
@@ -57,7 +47,7 @@ const SpecialOffersTwoBlock = ({
             768: { slidesPerView: 1 },
             1024: { slidesPerView: 1 },
           }}
-          effect={"fade"}
+          effect={'fade'}
           navigation={true}
           modules={[EffectFade, Navigation, A11y]}
           loop={false}
@@ -70,22 +60,14 @@ const SpecialOffersTwoBlock = ({
           }}
         >
           {items.map((item, index) => (
-            <SwiperSlide
-              key={item.id}
-              className={index === activeSlide ? "swiper-slide-active" : ""}
-            >
+            <SwiperSlide key={item.id} className={index === activeSlide ? 'swiper-slide-active' : ''}>
               <div className="special-offers-two__slider__item">
                 <div className="special-offers-two__slider__image">
-                  <Image
-                    src={item.image}
-                    alt={item.altText}
-                    layout="fill"
-                    objectFit="cover"
-                  />
+                  <Image src={item.image} alt={item.altText} layout="fill" objectFit="cover" />
                 </div>
 
                 <div
-                  className={cn("special-offers-two__slider__info", {
+                  className={cn('special-offers-two__slider__info', {
                     active: index === activeSlide,
                   })}
                 >
@@ -94,16 +76,11 @@ const SpecialOffersTwoBlock = ({
                     {item.title} <span>{item.price}</span>
                   </h3>
 
-                  <p className="special-offers-two__slider__primary">
-                    {item.description_primary}
-                  </p>
-                  <p className="special-offers-two__slider__secondary">
-                    {item.description_secondary}
-                  </p>
+                  <p className="special-offers-two__slider__primary">{item.description_primary}</p>
+                  <p className="special-offers-two__slider__secondary">{item.description_secondary}</p>
 
                   <p className="text-gray-500">
-                    *All prices are in Bahrain Dinar, inclusive of 5% Government
-                    Levy & 10% VAT
+                    *All prices are in Bahrain Dinar, inclusive of 5% Government Levy & 10% VAT
                   </p>
                 </div>
               </div>

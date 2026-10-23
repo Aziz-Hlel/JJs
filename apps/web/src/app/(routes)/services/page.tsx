@@ -1,18 +1,18 @@
-import HeroInnerBlock from "@/app/components/common/hero-inner/Hero-inner";
-import { HeroInnerServicesData } from "@/app/hooks/data";
+import HeroInnerBlock from '@/app/components/common/hero-inner/Hero-inner';
+import { HeroInnerServicesData } from '@/app/data/data';
 
-import ContactBlock from "@/app/blocks/Booking/contact";
-import IllustrationsListTwo from "@/app/blocks/services/variants/servicesListTwo/ServicesListTwo";
-import { TestimonialsBlock } from "@/app/blocks/testimonials/";
-import { GalleryBasic } from "@/app/blocks/gallery";
-import { EventsBlock } from "@/app/blocks/events";
+import ContactBlock from '@/app/blocks/Booking/contact';
+import { EventsBlock } from '@/app/blocks/events';
+import { GalleryBasic } from '@/app/blocks/gallery';
+import IllustrationsListTwo from '@/app/blocks/services/variants/servicesListTwo/ServicesListTwo';
+import { TestimonialsBlock } from '@/app/blocks/testimonials/';
 
 // Data
-import { testimonialsData } from "@/app/hooks/data-testimonials";
-import { ServiceCardListData } from "@/app/hooks/data-services";
-import { contactData } from "@/app/hooks/data-contact";
-import { galleryData } from "@/app/hooks/data-gallery";
-import { eventsBlockData } from "@/app/hooks/data-events";
+import { contactData } from '@/app/data/data-contact';
+import { eventsBlockData } from '@/app/data/data-events';
+import { galleryData } from '@/app/data/data-gallery';
+import { ServiceCardListData } from '@/app/data/data-services';
+import { testimonialsData } from '@/app/data/data-testimonials';
 
 const ServicesPage = () => {
   return (

@@ -1,5 +1,5 @@
-import StatusPage from "@/app/components/common/status-page/StatusPage";
-import { notFoundPageData } from "@/app/hooks/data-status-page";
+import StatusPage from '@/app/components/common/status-page/StatusPage';
+import { notFoundPageData } from '@/app/data/data-status-page';
 
 /**
  * Not Found page (404).
@@ -9,7 +9,7 @@ import { notFoundPageData } from "@/app/hooks/data-status-page";
  * @returns {React.ReactElement} The rendered 404 page.
  */
 const NotFoundPage = () => {
-	return <StatusPage {...notFoundPageData} />;
+  return <StatusPage {...notFoundPageData} />;
 };
 
-export default NotFoundPage; 
+export default NotFoundPage;

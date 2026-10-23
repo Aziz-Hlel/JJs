@@ -1,16 +1,14 @@
-import { AboutModern, AboutTwoCols } from "@/app/blocks/about";
-import ContactBlock from "@/app/blocks/Booking/contact";
-import { TeamTwoBlock } from "@/app/blocks/team";
-import TestimonialsBlock from "@/app/blocks/testimonials/variants/testimonials";
-import HeroInnerBlock from "@/app/components/common/hero-inner/Hero-inner";
-import { HeroInnerChefsData } from "@/app/hooks/data";
-import { GalleryBasic } from "@/app/blocks/gallery";
+import { GalleryBasic } from '@/app/blocks/gallery';
+import { TeamTwoBlock } from '@/app/blocks/team';
+import TestimonialsBlock from '@/app/blocks/testimonials/variants/testimonials';
+import HeroInnerBlock from '@/app/components/common/hero-inner/Hero-inner';
+import { HeroInnerChefsData } from '@/app/data/data';
+import { galleryData } from '@/app/data/data-gallery';
+import { testimonialsData } from '@/app/data/data-testimonials';
 
 {
   /* Data */
 }
-import { testimonialsData } from "@/app/hooks/data-testimonials";
-import { galleryData } from "@/app/hooks/data-gallery";
 
 const ChefsPage = () => {
   return (

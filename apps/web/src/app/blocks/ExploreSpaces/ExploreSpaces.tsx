@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import BlockTitle from "@/app/components/common/block-title/block-title";
-import { teamBlockData } from "@/app/hooks/data-team";
+import BlockTitle from '@/app/components/common/block-title/block-title';
+import { teamBlockData } from '@/app/data/data-team';
 
 const spaces = [
   {
-    title: "Live Sports Bar",
-    subtitle: "SPORTS BAR",
+    title: 'Live Sports Bar',
+    subtitle: 'SPORTS BAR',
     description:
-      "With over 25 HD screens showing sports from around the world, catch all the action live in our dedicated sports bar.",
-    image: "/ourImages/band/sport.jpg",
+      'With over 25 HD screens showing sports from around the world, catch all the action live in our dedicated sports bar.',
+    image: '/ourImages/band/sport.jpg',
   },
   {
-    title: "Main Bar & Restaurant",
-    subtitle: "MAIN BAR",
+    title: 'Main Bar & Restaurant',
+    subtitle: 'MAIN BAR',
     description:
-      "Experience one of the oldest bars in north Dublin city. Our main bar and restaurant offers casual seating and dining throughout the day.",
-    image: "/ourImages/band/pub.jpg",
+      'Experience one of the oldest bars in north Dublin city. Our main bar and restaurant offers casual seating and dining throughout the day.',
+    image: '/ourImages/band/pub.jpg',
   },
   {
-    title: "Whiskey Bar & Lounge",
-    subtitle: "WHISKEY BAR",
+    title: 'Whiskey Bar & Lounge',
+    subtitle: 'WHISKEY BAR',
     description:
-      "Our basement whiskey bar is a unique subterranean space serving the finest whiskeys and cocktails in an intimate setting.",
-    image: "/ourImages/band/whisky.webp",
+      'Our basement whiskey bar is a unique subterranean space serving the finest whiskeys and cocktails in an intimate setting.',
+    image: '/ourImages/band/whisky.webp',
   },
 ];
 
@@ -90,18 +90,8 @@ const ExploreSpaces = () => {
             className="text-gold/80 hover:text-gold transition-all duration-300 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium"
           >
             Explore Full Venue
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
         </div>

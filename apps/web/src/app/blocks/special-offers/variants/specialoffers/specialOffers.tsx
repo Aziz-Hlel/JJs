@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
-import Image from "next/image";
-import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
+import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-import { SpecialOffersBlockProps } from "@/app/types/common.types";
-import { specialOffersData } from "@/app/hooks/data-special-offers";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { specialOffersData } from '@/app/data/data-special-offers';
+import { SpecialOffersBlockProps } from '@/app/types/common.types';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const SpecialOffersBlock = ({
   items = specialOffersData.items,
@@ -31,24 +31,18 @@ const SpecialOffersBlock = ({
 
   return (
     <div
-      className={cn(
-        "bg-black py-20 text-white min-h-[70vh] flex flex-col justify-center overflow-hidden",
-        className,
-      )}
+      className={cn('bg-black py-20 text-white min-h-[70vh] flex flex-col justify-center overflow-hidden', className)}
     >
       {/* --- HEADER --- */}
       <div className="container mx-auto px-4 mb-12 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-xl font-serif italic mb-4 text-[#e7d8c3]">
-            Special Selection
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <h2 className="text-xl font-serif italic mb-4 text-[#e7d8c3]">Special Selection</h2>
           <div className="w-20 h-1 bg-[#b08243] mx-auto opacity-50 mb-8"></div>
 
-          <Link href="/menu" className="px-8 py-3 bg-[#b08243] text-white rounded-full text-xs font-bold tracking-widest uppercase hover:bg-[#c5934f] transition-colors shadow-lg">
+          <Link
+            href="/menu"
+            className="px-8 py-3 bg-[#b08243] text-white rounded-full text-xs font-bold tracking-widest uppercase hover:bg-[#c5934f] transition-colors shadow-lg"
+          >
             View Full Menu
           </Link>
         </motion.div>
@@ -93,13 +87,13 @@ const SpecialOffersBlock = ({
                     // Les images de côté sont bien plus petites (0.75)
                     scale: isActive ? 0.95 : 0.75,
                     opacity: isActive ? 1 : 0.4,
-                    filter: isActive ? "grayscale(0%)" : "grayscale(40%)",
+                    filter: isActive ? 'grayscale(0%)' : 'grayscale(40%)',
                   }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
                   <Image
                     src={item.image}
-                    alt={item.title || "Special Offer"}
+                    alt={item.title || 'Special Offer'}
                     fill
                     className="object-cover"
                     quality={90}

@@ -1,7 +1,7 @@
-import React from "react";
-import ContactInfo from "./ContactInfo";
-import { TopbarProps } from "@/app/types/common.types";
-import { InfoGeneralData } from "@/app/hooks/data-general";
+import { InfoGeneralData } from '@/app/data/data-general';
+import { TopbarProps } from '@/app/types/common.types';
+import React from 'react';
+import ContactInfo from './ContactInfo';
 
 /**
  * Renders the top bar of the website, displaying contact information.
@@ -10,15 +10,7 @@ import { InfoGeneralData } from "@/app/hooks/data-general";
  * @param {TopbarProps} props The props for the component, containing contact details.
  * @returns {React.ReactElement | null} The rendered top bar or null if essential data is missing.
  */
-const Topbar2: React.FC<TopbarProps> = ({
-  address,
-  city,
-  zip,
-  country,
-  mapUrl,
-  phone,
-  email,
-}) => {
+const Topbar2: React.FC<TopbarProps> = ({ address, city, zip, country, mapUrl, phone, email }) => {
   // Early return if phone or email is not provided.
   if (!phone || !email) {
     return null;

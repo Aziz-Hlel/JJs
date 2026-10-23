@@ -1,8 +1,7 @@
-"use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import HeroInnerBlock from "../common/hero-inner/Hero-inner";
-import { HeroInnerHistoryData } from "@/app/hooks/data";
+'use client';
+import { HeroInnerHistoryData } from '@/app/data/data';
+import { motion } from 'framer-motion';
+import HeroInnerBlock from '../common/hero-inner/Hero-inner';
 
 const EntertainmentPage = () => {
   return (
@@ -16,9 +15,7 @@ const EntertainmentPage = () => {
       </div>
 
       <footer className="py-20 text-center border-t border-[#D4AF37]/10">
-        <p className="font-serif italic text-[#F5F5DC]/40 text-xs md:text-sm">
-          Authentic Irish Hospitality Since 1908
-        </p>
+        <p className="font-serif italic text-[#F5F5DC]/40 text-xs md:text-sm">Authentic Irish Hospitality Since 1908</p>
       </footer>
     </div>
   );
@@ -27,12 +24,12 @@ const EntertainmentPage = () => {
 const HeroSection = () => {
   return (
     <HeroInnerBlock
-      title={"Entertainment"}
-      image={"/hero/gallery-14a.jpg"}
+      title={'Entertainment'}
+      image={'/hero/gallery-14a.jpg'}
       altText={HeroInnerHistoryData.altText}
       breadcrumbs={[
-        { id: 1, title: "Home", link: "/" },
-        { id: 2, title: "Entertainment", link: "/entertainment" },
+        { id: 1, title: 'Home', link: '/' },
+        { id: 2, title: 'Entertainment', link: '/entertainment' },
       ]}
     />
   );
@@ -52,17 +49,11 @@ const LiveMusicSection = () => {
         >
           <div className="absolute -top-6 -left-6 w-full h-full border border-[#D4AF37]/20 hidden lg:block" />
           <div className="relative aspect-[16/10] overflow-hidden grayscale-[0.3] rounded-sm">
-            <img
-              src="/ourImages/awards/madessen.png"
-              className="w-full h-full object-cover"
-              alt="Live Music"
-            />
+            <img src="/ourImages/awards/madessen.png" className="w-full h-full object-cover" alt="Live Music" />
           </div>
           {/* Badge Mobile caché ou réduit */}
           <div className="absolute -bottom-6 -right-4 lg:-bottom-10 lg:-right-10 bg-[#D4AF37] p-6 lg:p-10 shadow-xl">
-            <p className="font-serif text-[#0F1C1C] text-xl lg:text-3xl italic leading-none">
-              Live
-            </p>
+            <p className="font-serif text-[#0F1C1C] text-xl lg:text-3xl italic leading-none">Live</p>
             <p className="text-[#0F1C1C] text-[8px] lg:text-[10px] font-bold tracking-widest uppercase mt-1 lg:mt-2 text-right">
               Every Night
             </p>
@@ -76,21 +67,17 @@ const LiveMusicSection = () => {
           </h2>
           <div className="space-y-6 lg:space-y-8">
             <div>
-              <h3 className="text-[#D4AF37] text-[5px]  mb-3">
-                The Schedule
-              </h3>
+              <h3 className="text-[#D4AF37] text-[5px]  mb-3">The Schedule</h3>
               <p className="text-lg lg:text-xl font-light">
-                Monday – Sunday <span className="text-[#D4AF37] mx-1">/</span>{" "}
+                Monday – Sunday <span className="text-[#D4AF37] mx-1">/</span>{' '}
                 <span className="italic text-[#F5F5DC]/60">from 8.30pm</span>
               </p>
             </div>
             <div className="pt-6 lg:pt-8 border-t border-[#D4AF37]/10 max-w-md mx-auto lg:mx-0">
-              <h4 className="font-serif text-xl lg:text-2xl mb-3 lg:mb-4 italic">
-                The Legends: Dubh Linn
-              </h4>
+              <h4 className="font-serif text-xl lg:text-2xl mb-3 lg:mb-4 italic">The Legends: Dubh Linn</h4>
               <p className="text-[#F5F5DC]/60 text-sm lg:text-base leading-relaxed font-light italic">
-                Declan, Paddy and Sean bring over 40 years of mastery to
-                JJ&apos;S, weaving the very fabric of Irish soul.
+                Declan, Paddy and Sean bring over 40 years of mastery to JJ&apos;S, weaving the very fabric of Irish
+                soul.
               </p>
             </div>
           </div>
@@ -105,19 +92,15 @@ const IrishDancingSection = () => {
     <section className="py-16 lg:py-40 bg-black">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div className="lg:col-span-5 order-2 lg:order-1 text-[#F5F5DC] text-center lg:text-left">
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-7xl mb-6 lg:mb-8 italic">
-            KARAOKE IDOL
-          </h2>
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-7xl mb-6 lg:mb-8 italic">KARAOKE IDOL</h2>
           <div className="space-y-6 lg:space-y-8">
             <div>
               <h3 className="text-[#D4AF37] text-[10px] mb-3">Main Stage</h3>
-              <p className="text-lg lg:text-xl font-light italic text-[#F5F5DC]/80">
-                Performed Nightly from 10.00pm
-              </p>
+              <p className="text-lg lg:text-xl font-light italic text-[#F5F5DC]/80">Performed Nightly from 10.00pm</p>
             </div>
             <p className="text-[#F5F5DC]/60 text-sm lg:text-base leading-relaxed font-light italic max-w-md mx-auto lg:mx-0">
-              Led by John and Ciara, our troupe features world-class performers
-              from the industry’s most prestigious global shows.
+              Led by John and Ciara, our troupe features world-class performers from the industry’s most prestigious
+              global shows.
             </p>
             <button className="mt-4 border border-[#D4AF37]/30 px-8 py-3 lg:px-10 lg:py-4 text-[#D4AF37] text-[9px] lg:text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#D4AF37] hover:text-[#0F1C1C] transition-all duration-500 w-full lg:w-auto">
               Book a Front Row Table
@@ -148,9 +131,9 @@ const IrishDancingSection = () => {
 
 const AdditionalEventsSection = () => {
   const events = [
-    { title: "Jammin's Nights", schedule: "Every Sunday", time: "9:00pm" },
-    { title: "The Craic", schedule: "Tuesday to Saturday", time: "8:00pm" },
-    { title: "The Ark Angels Band", schedule: "Thursdays", time: "7:30pm" },
+    { title: "Jammin's Nights", schedule: 'Every Sunday', time: '9:00pm' },
+    { title: 'The Craic', schedule: 'Tuesday to Saturday', time: '8:00pm' },
+    { title: 'The Ark Angels Band', schedule: 'Thursdays', time: '7:30pm' },
   ];
 
   return (
@@ -199,9 +182,7 @@ const AdditionalEventsSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 lg:gap-4">
                     <div className="w-4 lg:w-6 h-[1px] bg-[#D4AF37]/40"></div>
-                    <p className="text-[#F5F5DC]/60 text-xl lg:text-sm font-light italic">
-                      {event.schedule}
-                    </p>
+                    <p className="text-[#F5F5DC]/60 text-xl lg:text-sm font-light italic">{event.schedule}</p>
                   </div>
 
                   <div className="flex items-center gap-3 lg:gap-4">

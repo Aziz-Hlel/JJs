@@ -1,8 +1,8 @@
+import { InfoGeneralData } from '@/app/data/data-general';
+import { MenuToggleButtonProps } from '@/app/types/common.types';
 import React from 'react';
 import { CgClose } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { MenuToggleButtonProps } from '@/app/types/common.types';
-import { InfoGeneralData } from '@/app/hooks/data-general';
 
 /**
  * A button component that toggles the mobile menu's visibility.
@@ -12,27 +12,27 @@ import { InfoGeneralData } from '@/app/hooks/data-general';
  * @returns {React.ReactElement} The rendered toggle button.
  */
 const MenuToggleButton: React.FC<MenuToggleButtonProps> = ({
-	isMobile,
-	onToggle,
-	'aria-controls': ariaControls,
-	ariaLabelOpen = InfoGeneralData.menuToggleAriaLabelOpen,
-	ariaLabelClose = InfoGeneralData.menuToggleAriaLabelClose,
+  isMobile,
+  onToggle,
+  'aria-controls': ariaControls,
+  ariaLabelOpen = InfoGeneralData.menuToggleAriaLabelOpen,
+  ariaLabelClose = InfoGeneralData.menuToggleAriaLabelClose,
 }) => {
-	return (
-		<button
-			className="header__mobile"
-			onClick={onToggle}
-			aria-expanded={isMobile}
-			aria-label={isMobile ? ariaLabelClose : ariaLabelOpen}
-			aria-controls={ariaControls}
-		>
-			{isMobile ? (
-				<CgClose className="nav-toggle__icon text-white" />
-			) : (
-				<GiHamburgerMenu className="nav-toggle__icon text-white" />
-			)}
-		</button>
-	);
+  return (
+    <button
+      className="header__mobile"
+      onClick={onToggle}
+      aria-expanded={isMobile}
+      aria-label={isMobile ? ariaLabelClose : ariaLabelOpen}
+      aria-controls={ariaControls}
+    >
+      {isMobile ? (
+        <CgClose className="nav-toggle__icon text-white" />
+      ) : (
+        <GiHamburgerMenu className="nav-toggle__icon text-white" />
+      )}
+    </button>
+  );
 };
 
-export default MenuToggleButton; 
+export default MenuToggleButton;

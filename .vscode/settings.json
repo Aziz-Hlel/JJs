@@ -2,5 +2,6 @@
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
-  "cSpell.words": ["appendonly", "nonoptional"]
+  "cSpell.words": ["appendonly", "nonoptional"],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

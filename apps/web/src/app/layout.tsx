@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import LayoutProvider from "./LayoutProvider";
+import type { Metadata } from 'next';
+import './globals.css';
+import LayoutProvider from './LayoutProvider';
 
 export const metadata: Metadata = {
   title: "JJ'S RESTAURANT ",
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     description: "JJ'S Irish Pub & Restaurant",
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-    shortcut: "/favicon.png",
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+    shortcut: '/favicon.png',
   },
-  themeColor: "#000000",
+  themeColor: '#000000',
   viewport: {
-    width: "device-width",
+    width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
     userScalable: false,

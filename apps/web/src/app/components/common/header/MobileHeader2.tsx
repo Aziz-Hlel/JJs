@@ -1,10 +1,10 @@
 'use client';
 
-import { itemsNavbar } from '@/app/hooks/data-navbar';
-import { useState } from 'react';
-import Link from 'next/link';
+import { itemsNavbar } from '@/data/navbar/data-navbar';
 import { cn } from '@/lib/utils';
-import { Clover, ChevronRight } from 'lucide-react';
+import { ChevronRight, Clover } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const MobileHeader2 = ({ handleLinkClick }: { handleLinkClick: () => void }) => {
   const [currentPage, setCurrentPage] = useState('/');

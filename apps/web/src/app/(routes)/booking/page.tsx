@@ -1,19 +1,19 @@
-import { HeroInnerContactData } from "@/app/hooks/data-contact";
-import HeroInnerBlock from "@/app/components/common/hero-inner/Hero-inner";
+import HeroInnerBlock from '@/app/components/common/hero-inner/Hero-inner';
+import { HeroInnerContactData } from '@/app/data/data-contact';
 
-import BookingForm from "@/app/blocks/Booking/BookingForm";
+import BookingForm from '@/app/blocks/Booking/BookingForm';
 
 const BookingPage = () => {
   return (
     <>
       {/* Hero Inner - Block */}
       <HeroInnerBlock
-        title={"Contact Us"}
-        image={"/hero/gallery-14a.jpg"}
+        title={'Contact Us'}
+        image={'/hero/gallery-14a.jpg'}
         altText={HeroInnerContactData.altText}
         breadcrumbs={[
-          { id: 1, title: "Home", link: "/" },
-          { id: 2, title: "Contact", link: "/contact" },
+          { id: 1, title: 'Home', link: '/' },
+          { id: 2, title: 'Contact', link: '/contact' },
         ]}
       />
       {/* / Hero Inner - Block */}

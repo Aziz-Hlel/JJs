@@ -1,33 +1,32 @@
 'use client';
 
-import { AboutClassic } from "@/app/blocks/about";
-import Cta from "@/app/blocks/cta/variants/ctaOne/ctaOne";
-import { GalleryBasic } from "@/app/blocks/gallery";
-import ServicesList from "@/app/blocks/services/variants/servicesList/ServicesList";
-import { HeroCreativeSliderBlock } from "@/app/blocks/hero";
-import { SpecialOffersBlock } from "@/app/blocks/special-offers";
-import { TeamOneBlock as TeamBlock } from "@/app/blocks/team";
-import WeekSpecials from "@/app/blocks/menu/menu-week-specials/menuWeekSpecials";
+import { AboutClassic } from '@/app/blocks/about';
+import Cta from '@/app/blocks/cta/variants/ctaOne/ctaOne';
+import { GalleryBasic } from '@/app/blocks/gallery';
+import { HeroCreativeSliderBlock } from '@/app/blocks/hero';
+import WeekSpecials from '@/app/blocks/menu/menu-week-specials/menuWeekSpecials';
+import ServicesList from '@/app/blocks/services/variants/servicesList/ServicesList';
+import { SpecialOffersBlock } from '@/app/blocks/special-offers';
+import { TeamOneBlock as TeamBlock } from '@/app/blocks/team';
 
 // Data
-import { badgesListData } from "@/app/hooks/data-brands";
-import { aboutData } from "@/app/hooks/data-about";
-import { specialOffersData } from "@/app/hooks/data-special-offers";
-import { menuWeekData } from "@/app/hooks/data-dish";
-import { ServiceCardListData } from "@/app/hooks/data-services";
-import { ctaData } from "@/app/hooks/data-cta";
-import { galleryData } from "@/app/hooks/data-gallery";
-import { teamBlockData } from "@/app/hooks/data-team";
-import { Landing } from "@/app/blocks/landing/Landing";
-import { sliderHeroData } from "@/app/hooks/data-hero";
-import MeetStars from "@/app/blocks/meetStars/MeetStars";
+import ExploreSpacesV2 from '@/app/blocks/exploseSpacesV2/ExploreSpacesV2';
+import { Landing } from '@/app/blocks/landing/Landing';
+import { aboutData } from '@/app/data/data-about';
+import { ctaData } from '@/app/data/data-cta';
+import { menuWeekData } from '@/app/data/data-dish';
+import { galleryData } from '@/app/data/data-gallery';
+import { sliderHeroData } from '@/app/data/data-hero';
+import { ServiceCardListData } from '@/app/data/data-services';
+import { specialOffersData } from '@/app/data/data-special-offers';
+import { teamBlockData } from '@/app/data/data-team';
 
 const PageHomeCreative = () => {
   return (
     <>
       <Landing />
 
-      <MeetStars />
+      <ExploreSpacesV2 minimized />
 
       {/* Slider Hero - Block */}
       <HeroCreativeSliderBlock {...sliderHeroData} />

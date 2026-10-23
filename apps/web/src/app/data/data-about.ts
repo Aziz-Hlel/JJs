@@ -28,18 +28,10 @@ export const aboutData = {
     ],
   },
   descriptionParagraphs: [
-    "To deliver an authentic Irish pub and diningexperience that blends tradition, quality, and hospitality",
-    "We are committed to serving hearty food,exceptional drinks, and creating a welcomingspace where people can gather, celebrate, andfeel part of the JJ’s family.",
-    "To become the leading Irish pub and restaurant brand across the GCC and beyond. ",
-    "Recognized for our authenticity, warm hospitality, and ability to create memorable experiences that bring people together, wherever we go.",
-  ],
-  descriptionParagraphsTwo: [
-    "Beef Restourant Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.",
-    "Warm hospitality is at the heart of everything we do. From the first greeting to the last bite, we strive to make every guest feel welcome, comfortable, and truly at home.",
-  ],
-  descriptionParagraphsThree: [
-    "We believe in the art of culinary innovation. Our chefs experiment daily, crafting bold flavors and unforgettable experiences that surprise and delight every guest who walks through our doors.",
-    "Warm hospitality is at the heart of everything we do. From the first greeting to the last bite, we strive to make every guest feel welcome, comfortable, and truly at home.",
+    "To bring people together through great food, genuine hospitality and the unmistakable spirit of an Irish pub — creating a place where everyone feels welcome.",
+    "At its heart, JJ’s is about good times shared — a welcoming place to eat, drink, celebrate, watch the game, enjoy live entertainment and feel part of the JJ’s community.",
+    "To grow JJ’s from its home in Bahrain into a leading Irish pub and restaurant brand across the GCC and beyond, while staying true to the character, community and hospitality that have defined us since 1999.",
+    "Wherever JJ’s goes, the aim is the same: to create a genuine local gathering place with the warmth, energy and sense of belonging that guests know from Bahrain.",
   ],
 };
 

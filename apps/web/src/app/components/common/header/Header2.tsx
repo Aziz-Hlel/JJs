@@ -1,13 +1,12 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import LogoLink from '@/app/components/common/logo/logoLink';
-import { LogoData } from '@/app/hooks/data-general';
-import { itemsNavbar } from '@/app/hooks/data-navbar';
-import MenuToggleButton from './MenuToggleButton';
+import { LogoData } from '@/app/data/data-general';
+import { itemsNavbar } from '@/data/navbar/data-navbar';
 import { cn } from '@/lib/utils';
 import { useClickAway, useWindowScroll } from '@uidotdev/usehooks';
-import MobileHeader from './MobileHeader';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import MenuToggleButton from './MenuToggleButton';
 import MobileHeader2 from './MobileHeader2';
 
 const STICKY_THRESHOLD = 100;

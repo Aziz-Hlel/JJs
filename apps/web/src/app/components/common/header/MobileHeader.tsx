@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { itemsNavbar } from "@/app/hooks/data-navbar";
-import MenuMobileChips from "./MenuMobileChips";
-import { useState } from "react";
+import { itemsNavbar } from '@/data/navbar/data-navbar';
+import { useState } from 'react';
+import MenuMobileChips from './MenuMobileChips';
 
 const MobileHeader = ({ handleLinkClick }: { handleLinkClick: () => void }) => {
-  const [currentPage, setCurrentPage] = useState("/");
+  const [currentPage, setCurrentPage] = useState('/');
 
   const handleNavigation = (link: string) => {
     setCurrentPage(link);
@@ -15,8 +15,8 @@ const MobileHeader = ({ handleLinkClick }: { handleLinkClick: () => void }) => {
     <div
       className=" flex w-full justify-start space-x-2 overflow-x-scroll scroll-m-4 pb-4 "
       style={{
-        scrollbarColor: "-moz-initial",
-        scrollbarWidth: "thin",
+        scrollbarColor: '-moz-initial',
+        scrollbarWidth: 'thin',
       }}
     >
       {itemsNavbar.map((item, index) => (

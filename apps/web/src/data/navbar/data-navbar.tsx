@@ -13,9 +13,8 @@ export const itemsNavbar = [
   {
     id: 2,
     title: 'Menu',
-    link: '/menu/JJ_Menu.pdf',
+    link: '/menu',
   },
-
   {
     id: 6,
     title: 'Gallery',
@@ -28,35 +27,13 @@ export const itemsNavbar = [
   },
   {
     id: 4,
-    title: 'Entertainment',
+    title: 'Events',
     link: '/events',
-    children: [
-      {
-        id: 9,
-        title: 'One Event',
-        link: '/events/one',
-      },
-      {
-        id: 31,
-        title: 'About Us',
-        link: '/about-us',
-      },
-      {
-        id: 32,
-        title: 'Chefs',
-        link: '/chefs',
-      },
-      {
-        id: 33,
-        title: 'History',
-        link: '/history',
-      },
-      {
-        id: 34,
-        title: 'Services',
-        link: '/services',
-      },
-    ],
+  },
+  {
+    id: 5,
+    title: 'Venue',
+    link: '/explore-spaces',
   },
 
   {

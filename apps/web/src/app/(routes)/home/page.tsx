@@ -1,16 +1,16 @@
-import { AboutClassic } from "@/app/blocks/about";
-import { MasonryGallery } from "@/app/blocks/gallery";
-import { Landing } from "@/app/blocks/landing/Landing";
-import MeetStars from "@/app/blocks/meetStars/MeetStars";
-import { ServicesList } from "@/app/blocks/services";
-import { SpecialOffersBlock } from "@/app/blocks/special-offers";
-import { aboutData } from "@/app/hooks/data-about";
-import { ctaData } from "@/app/hooks/data-cta";
-import { galleryData } from "@/app/hooks/data-gallery";
-import { ServiceCardListData } from "@/app/hooks/data-services";
-import { specialOffersData } from "@/app/hooks/data-special-offers";
-import Cta from "@/app/blocks/cta/variants/ctaOne/ctaOne";
-import Entertainment from "@/app/blocks/badges/BadgesList";
+import { AboutClassic } from '@/app/blocks/about';
+import Entertainment from '@/app/blocks/badges/BadgesList';
+import Cta from '@/app/blocks/cta/variants/ctaOne/ctaOne';
+import ExploreSpacesV2 from '@/app/blocks/exploseSpacesV2/ExploreSpacesV2';
+import { MasonryGallery } from '@/app/blocks/gallery';
+import { Landing } from '@/app/blocks/landing/Landing';
+import { ServicesList } from '@/app/blocks/services';
+import { SpecialOffersBlock } from '@/app/blocks/special-offers';
+import { aboutData } from '@/app/data/data-about';
+import { ctaData } from '@/app/data/data-cta';
+import { galleryData } from '@/app/data/data-gallery';
+import { ServiceCardListData } from '@/app/data/data-services';
+import { specialOffersData } from '@/app/data/data-special-offers';
 
 const HomePage = () => {
   return (
@@ -21,7 +21,7 @@ const HomePage = () => {
         <AboutClassic {...aboutData} />
 
         {/* explore sapces */}
-        <MeetStars />
+        <ExploreSpacesV2 minimized />
 
         {/* brand vlaues */}
         <ServicesList {...ServiceCardListData} />

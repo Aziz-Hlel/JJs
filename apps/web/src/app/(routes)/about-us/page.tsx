@@ -1,20 +1,10 @@
-import { AboutClassic, AboutModern, AboutTwoCols } from "@/app/blocks/about";
-import ContactBlock from "@/app/blocks/Booking/contact";
-import { TeamTwoBlock } from "@/app/blocks/team";
-import { TestimonialsBlock } from "@/app/blocks/testimonials/";
-import HeroInnerBlock from "@/app/components/common/hero-inner/Hero-inner";
-import { MasonryGallery } from "@/app/blocks/gallery";
-import BadgesList from "@/app/blocks/badges/BadgesList";
+import { AboutClassic, AboutTwoCols } from '@/app/blocks/about';
 
 // Import Data
-import { HeroInnerAboutData } from "@/app/hooks/data";
-import { testimonialsData } from "@/app/hooks/data-testimonials";
-import { badgesListData } from "@/app/hooks/data-brands";
-import { aboutData, aboutTwoData } from "@/app/hooks/data-about";
-import { contactData } from "@/app/hooks/data-contact";
-import { galleryData } from "@/app/hooks/data-gallery";
-import HeroInnerBlock2 from "@/app/components/common/hero-inner/Hero-inner2";
-import HsanBlock from "@/app/blocks/about/hsan/HsanBlock";
+import HsanBlock from '@/app/blocks/about/hsan/HsanBlock';
+import HeroInnerBlock2 from '@/app/components/common/hero-inner/Hero-inner2';
+import { HeroInnerAboutData } from '@/app/data/data';
+import { aboutData, aboutTwoData } from '@/app/data/data-about';
 
 const AboutPage = () => {
   return (
@@ -31,7 +21,7 @@ const AboutPage = () => {
       {/* / About Classic - Block */}
 
       {/* Badges Block */}
-      
+
       {/* / Badges Block */}
       {/* About Modern - Block */}
       <AboutTwoCols {...aboutTwoData} />
