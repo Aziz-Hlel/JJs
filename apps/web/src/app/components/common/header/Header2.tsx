@@ -69,12 +69,7 @@ const Header2: React.FC = () => {
                   {leftItems.map((item) => (
                     <li key={item.title}>
                       {
-                        <Link
-                          href="/menu/JJ_Menu.pdf"
-                          className={navLinkClass}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <Link href={item.link} className={navLinkClass}>
                           {item.title}
                         </Link>
                       }
