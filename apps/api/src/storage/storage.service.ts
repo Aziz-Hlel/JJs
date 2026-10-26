@@ -20,7 +20,7 @@ export class StorageService implements IStorageProvider {
     const baseName = path.basename(mediaName, ext);
     const safeBase = baseName.replace(/[^a-zA-Z0-9-_]/g, '').slice(0, 50);
     const timestamp = Date.now();
-    return `/${ENV.APP_NAME}/${safeBase}-${timestamp}${ext}`;
+    return `${ENV.APP_NAME}/${safeBase}-${timestamp}${ext}`;
   }
 
   async verifyConnection() {
