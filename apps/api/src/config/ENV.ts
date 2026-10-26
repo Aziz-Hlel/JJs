@@ -57,8 +57,6 @@ const prodSchema = baseSchema.extend({
     ),
 
   AWS_REGION: z.string().trim(),
-  AWS_ACCESS_KEY_ID: z.string().trim(),
-  AWS_SECRET_ACCESS_KEY: z.string().trim(),
   AWS_S3_BUCKET: z.string().trim(),
 
   AWS_CLOUDFRONT_URL: z.string().trim(),
