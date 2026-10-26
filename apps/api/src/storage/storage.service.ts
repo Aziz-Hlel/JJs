@@ -1,7 +1,8 @@
+import ENV from '@/config/ENV';
 import { PresignedUrlGenerator } from '@repo/contracts/schemas/storage/PresignedUrl';
+import path from 'path';
 import { IStorageProvider } from './interface/storage.interface';
 import { createStorageProvider } from './provider/storage.provider';
-import path from 'path';
 
 export class StorageService implements IStorageProvider {
   private storageProvider = createStorageProvider();
@@ -19,7 +20,7 @@ export class StorageService implements IStorageProvider {
     const baseName = path.basename(mediaName, ext);
     const safeBase = baseName.replace(/[^a-zA-Z0-9-_]/g, '').slice(0, 50);
     const timestamp = Date.now();
-    return `${safeBase}-${timestamp}${ext}`;
+    return `/${ENV.APP_NAME}/${safeBase}-${timestamp}${ext}`;
   }
 
   async verifyConnection() {
