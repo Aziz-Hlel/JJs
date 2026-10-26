@@ -1,6 +1,6 @@
 'use client';
 
-import { itemsNavbar } from '@/data/navbar/data-navbar';
+import { itemsNavbar } from '@/app/data/data-navbar';
 import { useState } from 'react';
 import MenuMobileChips from './MenuMobileChips';
 

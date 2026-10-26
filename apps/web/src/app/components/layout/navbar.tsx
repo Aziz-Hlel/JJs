@@ -1,5 +1,5 @@
 'use client';
-import { itemsNavbar } from '@/data/navbar/data-navbar';
+import { itemsNavbar } from '@/app/data/data-navbar';
 import NavItem from './NavItem';
 
 const Navbar = ({ isMobile }: { isMobile: boolean }) => {

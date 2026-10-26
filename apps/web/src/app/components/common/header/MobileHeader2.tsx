@@ -1,6 +1,6 @@
 'use client';
 
-import { itemsNavbar } from '@/data/navbar/data-navbar';
+import { itemsNavbar } from '@/app/data/data-navbar';
 import { cn } from '@/lib/utils';
 import { ChevronRight, Clover } from 'lucide-react';
 import Link from 'next/link';

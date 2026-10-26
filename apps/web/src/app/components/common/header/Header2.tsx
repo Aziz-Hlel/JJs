@@ -1,7 +1,7 @@
 'use client';
 import LogoLink from '@/app/components/common/logo/logoLink';
 import { LogoData } from '@/app/data/data-general';
-import { itemsNavbar } from '@/data/navbar/data-navbar';
+import { itemsNavbar } from '@/app/data/data-navbar';
 import { cn } from '@/lib/utils';
 import { useClickAway, useWindowScroll } from '@uidotdev/usehooks';
 import Link from 'next/link';
@@ -68,11 +68,7 @@ const Header2: React.FC = () => {
                 <ul className="flex items-center gap-6 lg:gap-10">
                   {leftItems.map((item) => (
                     <li key={item.title}>
-                      {item.title !== 'Menu' ? (
-                        <Link href={item.link} className={navLinkClass}>
-                          {item.title}
-                        </Link>
-                      ) : (
+                      {
                         <Link
                           href="/menu/JJ_Menu.pdf"
                           className={navLinkClass}
@@ -81,7 +77,7 @@ const Header2: React.FC = () => {
                         >
                           {item.title}
                         </Link>
-                      )}
+                      }
                     </li>
                   ))}
                 </ul>

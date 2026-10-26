@@ -1,7 +1,7 @@
 'use client';
 import { MenuMobileData } from '@/app/data/data-mobile-menu';
+import { itemsNavbar } from '@/app/data/data-navbar';
 import { MenuMobileProps, NavItem } from '@/app/types/common.types';
-import { itemsNavbar } from '@/data/navbar/data-navbar';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
