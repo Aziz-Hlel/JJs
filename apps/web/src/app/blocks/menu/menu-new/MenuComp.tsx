@@ -166,7 +166,10 @@ const MenuComp = () => {
 
   return (
     <>
-      <div className="book-scene" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div className="relative book-scene" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <div className="hero-inner__background">
+          <Image src={'/hero/gallery-14a.jpg'} alt={'altText'} width={1620} height={880} />
+        </div>
         {/* Shadcn Tabs: Food vs Drink menu */}
         <div className="menu-tabs-wrapper">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full sm:w-auto flex justify-center">
@@ -222,7 +225,7 @@ const MenuComp = () => {
           <button
             onClick={() => setCurrentIndex((c) => Math.max(0, c - 1))}
             disabled={currentIndex === 0}
-            className="btn"
+            className="btn "
           >
             Previous
           </button>
@@ -243,11 +246,6 @@ const MenuComp = () => {
             /* Centrage absolu dans le viewport */
             min-height: 100vh;
             width: 100%;
-            background-image: url('/services/bg.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin-top: 7%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -260,6 +258,8 @@ const MenuComp = () => {
           }
 
           .menu-tabs-wrapper {
+            padding-top: 8rem;
+
             margin-bottom: 24px;
             z-index: 20;
             display: flex;
@@ -284,7 +284,7 @@ const MenuComp = () => {
             font-size: 0.95rem !important;
             font-weight: 600 !important;
             letter-spacing: 0.5px !important;
-            color: #303d3b !important;
+            color: #ffffff !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             background: transparent;
             cursor: pointer;
@@ -292,7 +292,7 @@ const MenuComp = () => {
 
           :global(.menu-tabs-trigger:hover:not([data-state='active'])) {
             background: rgba(255, 255, 255, 0.25) !important;
-            color: #966b35 !important;
+            color: #ffffff !important;
           }
 
           :global(.menu-tabs-trigger[data-state='active']) {
@@ -334,6 +334,7 @@ const MenuComp = () => {
             }
 
             .menu-tabs-wrapper {
+              padding-top: 0;
               margin-bottom: 20px;
               width: 100%;
               max-width: 280px;
@@ -512,7 +513,7 @@ const MenuComp = () => {
 
           /* --- PAGE INDICATOR --- */
           .page-indicator {
-            color: #303d3b;
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
             font-weight: bold;
             font-size: 1.1rem;
