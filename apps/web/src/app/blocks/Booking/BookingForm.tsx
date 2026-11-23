@@ -9,17 +9,17 @@ import * as z from 'zod';
 
 /* -------------------- CONFIGURATION DES LIEUX -------------------- */
 const PLACES_DATA = {
-  terrasse: { label: 'Live Sports Bar', image: '/ourImages/band/sport.jfif' },
+  SPORTS: { label: 'Live Sports Bar', image: '/ourImages/band/sport.jfif' },
 
-  piscine: {
+  WHISKEY: {
     label: 'Whiskey Bar',
     image: '/ourImages/band/whiskybar.jfif',
   },
-  pub: {
+  MAIN: {
     label: 'Main Bar & Restaurant',
     image: '/ourImages/band/pubbar.jfif',
   },
-  vip_lounge: { label: 'Salon VIP', image: '/ourImages/reservation/vip1.png' },
+  VIP: { label: 'Salon VIP', image: '/ourImages/reservation/vip1.png' },
 };
 const EnumSpaces = {
   SPORTS: 'SPORTS',
@@ -102,6 +102,7 @@ const BookingForm = () => {
       });
     }
   };
+  console.log('form errors', errors);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-4 font-sans text-white">
@@ -313,6 +314,9 @@ const CustomInput = ({ label, name, control, error, type = 'text', isVip }: any)
       render={({ field }) => (
         <input
           {...field}
+          onChange={(e) =>
+            type === 'number' ? field.onChange(parseInt(e.target.value)) : field.onChange(e.target.value)
+          }
           type={type}
           className={cn(
             'h-12 bg-white/5 border rounded-lg px-4 outline-none transition-all text-sm',

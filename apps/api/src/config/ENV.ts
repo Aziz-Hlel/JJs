@@ -7,6 +7,7 @@ const baseSchema = z.object({
   // APP
   API_PORT: z.coerce.number().positive(),
   APP_NAME: z.string().nonempty(),
+  MAIL_RECIPIENT: z.string(),
 
   // FIREBASE
   FIREBASE_CERT: z.string().min(1),

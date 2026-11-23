@@ -8,7 +8,7 @@ class EmailService {
   private readonly EMAIL_ADDRESSES = {
     noReply: 'no-reply@jjsirishrestaurant.com',
     sender: 'no-reply@jjsirishrestaurant.com',
-    devRecipients: ['jjsbahrain@gmail.com'],
+    devRecipients: ['m.aziz.hlel@gmail.com'],
     prodRecipients: ['jjsbahrain@gmail.com'],
   };
   private readonly mailer = {
