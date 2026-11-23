@@ -4,6 +4,7 @@ packages:
 
 onlyBuiltDependencies:
   - '@firebase/util'
+  - '@infisical/cli'
   - '@prisma/engines'
   - '@swc/core'
   - esbuild
