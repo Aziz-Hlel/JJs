@@ -3,6 +3,13 @@ import { HeroInnerHistoryData } from '@/app/data/data';
 import { motion } from 'framer-motion';
 import HeroInnerBlock from '../common/hero-inner/Hero-inner';
 
+export type EventType = {
+  title: string;
+  images: string[];
+  day: string;
+  time: string;
+};
+
 const EntertainmentPage = () => {
   return (
     <div className="bg-[#0F1C1C] min-h-screen selection:bg-[#D4AF37] selection:text-[#0F1C1C]">

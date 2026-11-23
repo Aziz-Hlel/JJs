@@ -2,7 +2,6 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
-import { visualizer } from 'rollup-plugin-visualizer';
 
 function getPort(mode: string): number | undefined {
   const env = loadEnv(mode, process.cwd());

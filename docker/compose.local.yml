@@ -23,7 +23,7 @@ services:
     command: ['redis-server', '--requirepass', '${REDIS_PASSWORD:-password}', '--appendonly', 'yes'] # enables persistence
 
   minio:
-    image: quay.io/minio/minio:latest
+    image: minio/minio:latest
 
     ports:
       - '${MINIO_PORT:?MINIO_PORT is required}:9000'
@@ -39,7 +39,7 @@ services:
     command: server /data --console-address ":9001"
 
   minio-init:
-    image: minio/mc
+    image: minio/mc:latest
     depends_on:
       minio:
         condition: service_started

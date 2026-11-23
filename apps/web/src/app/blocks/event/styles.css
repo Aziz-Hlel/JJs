@@ -1,0 +1,89 @@
+/* ── Embla Fade Carousel ── */
+.embla-fade {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.embla-fade__viewport {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.embla-fade__container {
+  display: flex;
+  height: 100%;
+  /* flex direction is overridden by the fade plugin */
+}
+
+.embla-fade__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative;
+  height: 100%;
+}
+
+.embla-fade__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Dot indicators ── */
+.embla-fade__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+}
+
+.embla-fade__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.embla-fade__dot--active {
+  background: #d4af37;
+  border-color: #d4af37;
+}
+
+
+.embla-fade__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Dot indicators ── */
+.embla-fade__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+}
+
+.embla-fade__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.embla-fade__dot--active {
+  background: #d4af37;
+  border-color: #d4af37;
+}
